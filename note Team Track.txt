@@ -1,0 +1,41 @@
+TeamTrack/ 
+TeamTrack.Web # Progetto per il front-end MVC (Views, Controller MVC) 
+TeamTrack.Api # Progetto per le API REST 
+TeamTrack.Application # Logica di business e servizi 
+TeamTrack.Domain # Modelli e logica del dominio 
+TeamTrack.Infrastructure # Accesso ai dati, database e integrazioni esterne 
+
+
+Utente
+id
+Ruolo
+Nome
+Progetti  
+
+Progetto
+Id
+Codice di accesso
+Password
+Nome
+Lista di Task  
+Admin Utente
+Data inizio progetto
+Data fine progetto
+
+Task
+Id
+Nome 
+Descrizione
+Nota sulla task
+Priorità
+Data inizio
+Data fine
+Utente o utenti che la svolgono
+Stato (completa da svolgere in corso)
+Progetto di appartenenza
+
+
+Grafico torta per il rendimento
+Grafico a linea per task svolte in det periodi dall’utente
+
+
