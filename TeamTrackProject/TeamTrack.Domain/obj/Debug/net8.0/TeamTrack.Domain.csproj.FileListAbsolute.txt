@@ -1,0 +1,12 @@
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\bin\Debug\net8.0\TeamTrack.Domain.deps.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\bin\Debug\net8.0\TeamTrack.Domain.dll
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\bin\Debug\net8.0\TeamTrack.Domain.pdb
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\obj\Debug\net8.0\TeamTrack.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\obj\Debug\net8.0\TeamTrack.Domain.AssemblyInfoInputs.cache
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\obj\Debug\net8.0\TeamTrack.Domain.AssemblyInfo.cs
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\obj\Debug\net8.0\TeamTrack.Domain.csproj.CoreCompileInputs.cache
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\obj\Debug\net8.0\TeamTrack.Domain.sourcelink.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\obj\Debug\net8.0\TeamTrack.Domain.dll
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\obj\Debug\net8.0\refint\TeamTrack.Domain.dll
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\obj\Debug\net8.0\TeamTrack.Domain.pdb
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Domain\obj\Debug\net8.0\ref\TeamTrack.Domain.dll

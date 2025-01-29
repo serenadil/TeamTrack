@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TeamTrack.Api.props" />
+</Project>
