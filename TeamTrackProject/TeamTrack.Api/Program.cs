@@ -1,12 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using TeamTrack.Infrastructure;
-
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Aggiungi il `DbContext` di `TeamTrack.Infrastructure`
-builder.Services.AddDbContext<TeamTrackDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddTeamTrackDbContext(builder.Configuration);
+
+
 
 var app = builder.Build();
 

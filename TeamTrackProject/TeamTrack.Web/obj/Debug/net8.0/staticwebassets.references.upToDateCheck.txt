@@ -2,3 +2,16 @@ C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Api\obj\Debug\net8.0\staticwebassets.build.json

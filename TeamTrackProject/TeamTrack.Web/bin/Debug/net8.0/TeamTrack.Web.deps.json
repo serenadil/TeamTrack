@@ -9,6 +9,7 @@
       "TeamTrack.Web/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "9.0.1",
+          "TeamTrack.Api": "1.0.0",
           "TeamTrack.Application": "1.0.0",
           "TeamTrack.Infrastructure": "1.0.0"
         },

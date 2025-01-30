@@ -5207,6 +5207,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.EntityFrameworkCore.Design >= 9.0.1",
+      "TeamTrack.Api >= 1.0.0",
       "TeamTrack.Application >= 1.0.0",
       "TeamTrack.Infrastructure >= 1.0.0"
     ]
@@ -5243,6 +5244,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\TeamTrack.Api.csproj": {
+              "projectPath": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\TeamTrack.Api.csproj"
+            },
             "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\TeamTrack.Application.csproj": {
               "projectPath": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\TeamTrack.Application.csproj"
             },

@@ -37,6 +37,14 @@ namespace TeamTrack.Infrastructure
                     j => j.HasOne<User>().WithMany().HasForeignKey("UserId")
                 );
 
+            modelBuilder.Entity<Project>()
+                .HasOne(p => p.Admin)   // Un progetto ha un Admin
+                .WithMany()              // Un Admin può gestire più progetti (oppure .WithMany(u => u.Projects) se vuoi che sia bidirezionale)
+                .HasForeignKey(p => p.AdminId)  // Usa AdminId come chiave esterna
+                .OnDelete(DeleteBehavior.Restrict); // Evita la cancellazione cascata
+
+           base.OnModelCreating(modelBuilder);
+
 
         }
     }

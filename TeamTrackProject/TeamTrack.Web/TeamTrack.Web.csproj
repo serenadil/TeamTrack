@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TeamTrack.Api\TeamTrack.Api.csproj" />
     <ProjectReference Include="..\TeamTrack.Application\TeamTrack.Application.csproj" />
     <ProjectReference Include="..\TeamTrack.Infrastructure\TeamTrack.Infrastructure.csproj" />
   </ItemGroup>

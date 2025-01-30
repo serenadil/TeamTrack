@@ -338,6 +338,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\TeamTrack.Api.csproj": {
+                "projectPath": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\TeamTrack.Api.csproj"
+              },
               "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\TeamTrack.Application.csproj": {
                 "projectPath": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\TeamTrack.Application.csproj"
               },
