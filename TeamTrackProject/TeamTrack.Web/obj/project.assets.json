@@ -1711,7 +1711,8 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "TeamTrack.Api": "1.0.0",
-          "TeamTrack.Domain": "1.0.0"
+          "TeamTrack.Domain": "1.0.0",
+          "TeamTrack.Infrastructure": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TeamTrack.Application.dll": {}

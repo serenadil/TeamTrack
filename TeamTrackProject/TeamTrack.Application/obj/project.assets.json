@@ -3295,7 +3295,8 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "TeamTrack.Api >= 1.0.0",
-      "TeamTrack.Domain >= 1.0.0"
+      "TeamTrack.Domain >= 1.0.0",
+      "TeamTrack.Infrastructure >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3335,6 +3336,9 @@
             },
             "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Domain\\TeamTrack.Domain.csproj": {
               "projectPath": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Domain\\TeamTrack.Domain.csproj"
+            },
+            "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Infrastructure\\TeamTrack.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Infrastructure\\TeamTrack.Infrastructure.csproj"
             }
           }
         }

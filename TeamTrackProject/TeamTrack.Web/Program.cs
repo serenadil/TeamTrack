@@ -6,9 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 // 🔹 Registra il DbContext con la configurazione centralizzata
 builder.Services.AddTeamTrackDbContext(builder.Configuration);
 
-builder.Services.AddDbContext<TeamTrackDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
