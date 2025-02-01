@@ -38,6 +38,18 @@ namespace TeamTrack.Application.Repositories
             return _context.Users.FirstOrDefault(u => u.Id == id);
         }
 
+
+        /// <summary>
+        /// Ottiene un singolo utente tramite l'email.
+        /// </summary>
+        /// <param name="id">L'email dell'utente da recuperare.</param>
+        /// <returns>L'utente corrispondente all'email, o null se non trovato.</returns>
+        public User GetByEmail(string email)
+        {
+            return _context.Users.FirstOrDefault(u => u.Email == email);
+        }
+
+
         /// <summary>
         /// Aggiunge un nuovo utente al contesto del database e lo salva.
         /// </summary>

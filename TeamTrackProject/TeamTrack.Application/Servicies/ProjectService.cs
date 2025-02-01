@@ -35,7 +35,7 @@ namespace TeamTrack.Application.Services
         public Project CreateProject(string name, string password, DateTime dataInizioProgetto, DateTime dataFineProgetto, int adminId)
         {
             var admin = _userRepository.GetById(adminId);
-            if (admin == null || admin.Role != Role.Admin)
+            if (admin == null || admin.Ruolo != Ruolo.Admin)
             {
                 throw new ArgumentException("L'utente che sta creando il progetto deve essere un Admin.", nameof(adminId));
             }

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using TeamTrack.Domain.Entity.TeamTrack.Domain.Entity;
+
+
 
 namespace TeamTrack.Domain.Entity
 {
@@ -21,33 +24,58 @@ namespace TeamTrack.Domain.Entity
         /// <summary>
         /// Nome dell'utente.
         /// </summary>
-        public string Name { get; set; }
+        public string Nome { get; set; }
 
         /// <summary>
         /// Indirizzo email dell'utente.
         /// </summary>
-        public string Email { get; set; }
+        public string Email { get; private set; }
 
         /// <summary>
-        /// Ruolo dell'utente (Admin o User).
+        /// Password dell'utente.
         /// </summary>
-        public Role Role { get; set; }
+        public string Password { get; private set; }
+
+        /// <summary>
+        /// Ruolo dell'utente (Amministratore o Utente normale).
+        /// </summary>
+        public Ruolo Ruolo { get; set; }
 
         /// <summary>
         /// Collezione di progetti associati all'utente.
         /// </summary>
-        public ICollection<Project> Projects { get; set; }
+        public ICollection<Project> Progetti { get; set; }
 
         /// <summary>
         /// Collezione di attività associate all'utente.
         /// </summary>
-        public ICollection<ProjectTask> Tasks { get; set; }
+        public ICollection<ProjectTask> Attivita { get; set; }
+
+        /// <summary>
+        /// Costruttore che inizializza un nuovo utente con validazione di email e password.
+        /// </summary>
+        public User(string email, string password, Ruolo ruolo)
+        {
+            if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                throw new ArgumentException("L'email fornita non è valida.");
+            }
+
+            if (password.Length < 8)
+            {
+                throw new ArgumentException("La password deve contenere almeno 8 caratteri.");
+            }
+
+            Email = email;
+            Password = password;
+            Ruolo = ruolo;
+        }
     }
 
     /// <summary>
     /// Enumerazione per rappresentare i ruoli degli utenti.
     /// </summary>
-    public enum Role
+    public enum Ruolo
     {
         /// <summary>
         /// Ruolo di amministratore.
@@ -57,6 +85,6 @@ namespace TeamTrack.Domain.Entity
         /// <summary>
         /// Ruolo di utente normale.
         /// </summary>
-        User
+        Partecipante
     }
 }
