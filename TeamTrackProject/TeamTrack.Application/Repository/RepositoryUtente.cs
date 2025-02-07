@@ -6,7 +6,7 @@ namespace TeamTrack.Application.Repositories
     /// <summary>
     /// La classe UserRepository gestisce l'interazione con il contesto del database per le entità User.
     /// </summary>
-    public class UserRepository
+    public class RepositoryUtente
     {
         private readonly TeamTrackDbContext _context;
 
@@ -14,7 +14,7 @@ namespace TeamTrack.Application.Repositories
         /// Inizializza una nuova istanza di UserRepository con il contesto del database.
         /// </summary>
         /// <param name="context">Il contesto del database.</param>
-        public UserRepository(TeamTrackDbContext context)
+        public RepositoryUtente(TeamTrackDbContext context)
         {
             _context = context;
         }
@@ -23,7 +23,7 @@ namespace TeamTrack.Application.Repositories
         /// Ottiene tutti gli utenti dal database.
         /// </summary>
         /// <returns>Una collezione di tutti gli utenti nel database.</returns>
-        public IEnumerable<User> GetAll()
+        public IEnumerable<Utente> GetAll()
         {
             return _context.Users.ToList();
         }
@@ -33,7 +33,7 @@ namespace TeamTrack.Application.Repositories
         /// </summary>
         /// <param name="id">L'ID dell'utente da recuperare.</param>
         /// <returns>L'utente corrispondente all'ID, o null se non trovato.</returns>
-        public User GetById(int id)
+        public Utente GetById(int id)
         {
             return _context.Users.FirstOrDefault(u => u.Id == id);
         }
@@ -44,7 +44,7 @@ namespace TeamTrack.Application.Repositories
         /// </summary>
         /// <param name="id">L'email dell'utente da recuperare.</param>
         /// <returns>L'utente corrispondente all'email, o null se non trovato.</returns>
-        public User GetByEmail(string email)
+        public Utente GetByEmail(string email)
         {
             return _context.Users.FirstOrDefault(u => u.Email == email);
         }
@@ -55,7 +55,7 @@ namespace TeamTrack.Application.Repositories
         /// </summary>
         /// <param name="user">L'utente da aggiungere.</param>
         /// <returns>L'utente appena aggiunto.</returns>
-        public User Add(User user)
+        public Utente Aggiungi(Utente user)
         {
             _context.Users.Add(user);
             _context.SaveChanges();
@@ -66,7 +66,7 @@ namespace TeamTrack.Application.Repositories
         /// Aggiorna un utente esistente nel contesto del database.
         /// </summary>
         /// <param name="user">L'utente da aggiornare.</param>
-        public void Update(User user)
+        public void Aggiona(Utente user)
         {
             _context.Users.Update(user);
             _context.SaveChanges();
@@ -76,7 +76,7 @@ namespace TeamTrack.Application.Repositories
         /// Elimina un utente dal database tramite l'ID.
         /// </summary>
         /// <param name="userId">L'ID dell'utente da eliminare.</param>
-        public void Delete(int userId)
+        public void Elimina(int userId)
         {
             var user = _context.Users.Find(userId);
             if (user != null)

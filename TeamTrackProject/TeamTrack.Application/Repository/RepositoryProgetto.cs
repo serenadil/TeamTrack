@@ -8,7 +8,7 @@ namespace TeamTrack.Application.Repositories
     /// <summary>
     /// La classe ProjectRepository gestisce l'interazione con il contesto del database per le entità Project.
     /// </summary>
-    public class ProjectRepository
+    public class RepositoryProgetto
     {
         private readonly TeamTrackDbContext _context;
 
@@ -16,7 +16,7 @@ namespace TeamTrack.Application.Repositories
         /// Inizializza una nuova istanza di ProjectRepository con il contesto del database.
         /// </summary>
         /// <param name="context">Il contesto del database.</param>
-        public ProjectRepository(TeamTrackDbContext context)
+        public RepositoryProgetto(TeamTrackDbContext context)
         {
             _context = context;
         }
@@ -25,7 +25,7 @@ namespace TeamTrack.Application.Repositories
         /// Ottiene tutti i progetti dal database, includendo le relative attività e gli utenti.
         /// </summary>
         /// <returns>Una collezione di tutti i progetti con le attività e gli utenti associati.</returns>
-        public IEnumerable<Project> GetAll()
+        public IEnumerable<Progetto> GetAll()
         {
             return _context.Projects
                            .Include(p => p.Tasks)  
@@ -38,7 +38,7 @@ namespace TeamTrack.Application.Repositories
         /// </summary>
         /// <param name="id">L'ID del progetto da recuperare.</param>
         /// <returns>Il progetto corrispondente all'ID, o null se non trovato.</returns>
-        public Project GetById(int id)
+        public Progetto GetById(int id)
         {
             return _context.Projects
                            .Include(p => p.Tasks)
@@ -52,7 +52,7 @@ namespace TeamTrack.Application.Repositories
         /// </summary>
         /// <param name="codiceAccesso">Il codice di accesso del progetto da recuperare.</param>
         /// <returns>Il progetto corrispondente al codice di accesso, o null se non trovato.</returns>
-        public Project GetByAccessCode(string codiceAccesso)
+        public Progetto GetByCodiceAccesso(string codiceAccesso)
         {
             return _context.Projects
                            .Include(p => p.Tasks)
@@ -65,7 +65,7 @@ namespace TeamTrack.Application.Repositories
         /// </summary>
         /// <param name="project">Il progetto da aggiungere.</param>
         /// <returns>Il progetto appena aggiunto.</returns>
-        public Project Add(Project project)
+        public Progetto Aggiungi(Progetto project)
         {
             _context.Projects.Add(project);
             _context.SaveChanges();
@@ -76,7 +76,7 @@ namespace TeamTrack.Application.Repositories
         /// Aggiorna un progetto esistente nel contesto del database.
         /// </summary>
         /// <param name="project">Il progetto da aggiornare.</param>
-        public void Update(Project project)
+        public void Aggiorna(Progetto project)
         {
             _context.Projects.Update(project);
             _context.SaveChanges();
@@ -86,7 +86,7 @@ namespace TeamTrack.Application.Repositories
         /// Elimina un progetto dal database in base al suo ID.
         /// </summary>
         /// <param name="id">L'ID del progetto da eliminare.</param>
-        public void Delete(int id)
+        public void Elimina(int id)
         {
             var project = _context.Projects.Find(id);
             if (project != null)

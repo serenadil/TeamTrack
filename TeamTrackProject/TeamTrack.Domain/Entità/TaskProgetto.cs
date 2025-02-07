@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TeamTrack.Domain.Entity.TeamTrack.Domain.Entity;
 namespace TeamTrack.Domain.Entity
 {
     /// <summary>
     /// Rappresenta un'attività di un progetto con informazioni come nome, descrizione, priorità e stato.
     /// </summary>
-    public class ProjectTask
+    public class TaskProgetto
     {
         /// <summary>
         /// Identificativo univoco dell'attività.
@@ -44,7 +43,7 @@ namespace TeamTrack.Domain.Entity
         /// <summary>
         /// Collezione di utenti associati all'attività.
         /// </summary>
-        public ICollection<User> Utenti { get; set; }
+        public ICollection<Utente> Utenti { get; set; }
 
         /// <summary>
         /// Identificativo dell'amministratore del progetto.
@@ -54,7 +53,7 @@ namespace TeamTrack.Domain.Entity
         /// <summary>
         /// L'amministratore del progetto.
         /// </summary>
-        public User Admin { get; set; }
+        public Utente Admin { get; set; }
 
         /// <summary>
         /// Identificativo del progetto associato all'attività.
@@ -64,12 +63,47 @@ namespace TeamTrack.Domain.Entity
         /// <summary>
         /// Progetto associato all'attività.
         /// </summary>
-        public Project Progetto { get; set; }
+        public Progetto Progetto { get; set; }
 
         /// <summary>
         /// Stato dell'attività (DaFare, InCorso, Completata).
         /// </summary>
         public Stato? StatoTask { get; set; }
+
+        public TaskProgetto(string nome, string descrizione, Progetto progetto, Priorità prioritàTask,  DateTime dataInizioTask, DateTime dataFineTask, Stato? statoTask, int adminId)
+        {
+            if (string.IsNullOrWhiteSpace(nome))
+            {
+                throw new ArgumentException("Il nome della task non può essere null o vuoto.", nameof(nome));
+            }
+            if (string.IsNullOrWhiteSpace(descrizione))
+            {
+                throw new ArgumentException("La descrizione della task non può essere null o vuoto.", nameof(descrizione));
+            }
+            if (dataInizioTask < DateTime.Now)
+            {
+                throw new ArgumentException("La data di inizio della task non può essere nel passato.", nameof(dataInizioTask));
+            }
+            if (dataFineTask <= dataInizioTask)
+            {
+                throw new ArgumentException("La data di fine della task deve essere successiva alla data di inizio.", nameof(dataFineTask));
+            }
+           
+            if (statoTask == null)
+            {
+                throw new ArgumentNullException("La priorità della task non può essere null.", nameof(statoTask));
+            }
+            Nome = nome;
+            Descrizione = descrizione;
+            Progetto = progetto;
+            IdProgetto = progetto.Id;
+            DataInizioTask = dataInizioTask;
+            DataFineTask = dataFineTask;
+            PrioritàTask = prioritàTask;
+            StatoTask = statoTask;
+            AdminId = adminId;
+            Utenti = new List<Utente>();
+        }
     }
 
     /// <summary>
@@ -114,39 +148,5 @@ namespace TeamTrack.Domain.Entity
         Completata
     }
 
-    public ProjectTask(string nome, string descrizione, Priorità prioritàTask, DateTime dataInizioTask, DateTime dataFineTask, Priorità? prioritàTask, Stato? statoTask, int adminId)
-    {
-        if (string.IsNullOrWhiteSpace(nome))
-        {
-            throw new ArgumentException("Il nome della task non può essere null o vuoto.", nameof(nome));
-        }
-        if (string.IsNullOrWhiteSpace(descrizione))
-        {
-            throw new ArgumentException("La descrizione della task non può essere null o vuoto.", nameof(descrizione));
-        }
-        if (dataInizioTask < DateTime.Now)
-        {
-            throw new ArgumentException("La data di inizio della task non può essere nel passato.", nameof(dataInizioTask));
-        }
-        if (dataFineTask <= dataInizioTask)
-        {
-            throw new ArgumentException("La data di fine della task deve essere successiva alla data di inizio.", nameof(dataFineTask));
-        }
-        if (prioritàTask == null)
-        {
-            throw new ArgumentNullException("La priorità della task non può essere null.", nameof(prioritàTask));
-        }
-        if (statoTask == null)
-        {
-            throw new ArgumentNullException("La priorità della task non può essere null.", nameof(statoTask));
-        }
-        Nome = nome;
-        Descrizione = descrizione;
-        DataInizioTask = dataInizioTask;
-        DataFineTask = dataFineTask;
-        PrioritàTask = prioritàTask;
-        StatoTask = statoTask;
-        AdminId = adminId;
-        Users = new List<User>();
-    }
+}
 

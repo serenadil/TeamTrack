@@ -4,7 +4,7 @@
     /// <summary>
     /// Rappresenta un progetto con informazioni come nome, accesso, utenti associati, attività e le date di inizio e fine.
     /// </summary>
-    public class Project
+    public class Progetto
     {
         /// <summary>
         /// Identificativo univoco del progetto.
@@ -29,12 +29,12 @@
         /// <summary>
         /// Collezione di attività associate al progetto.
         /// </summary>
-        public ICollection<ProjectTask> Tasks { get; set; }
+        public ICollection<TaskProgetto> Tasks { get; set; }
 
         /// <summary>
         /// Collezione di utenti associati al progetto.
         /// </summary>
-        public ICollection<User> Users { get; set; }
+        public ICollection<Utente> Users { get; set; }
 
         /// <summary>
         /// Identificativo dell'amministratore del progetto.
@@ -44,7 +44,7 @@
         /// <summary>
         /// L'amministratore del progetto.
         /// </summary>
-        public User Admin { get; set; }
+        public Utente Admin { get; set; }
 
         /// <summary>
         /// Data di inizio del progetto.
@@ -69,7 +69,7 @@
         /// <param name="adminId">L'ID dell'amministratore del progetto.</param>
         /// <exception cref="ArgumentException">Viene lanciata se uno dei parametri non è valido, ad esempio se il nome è null o vuoto, la password è null, o le date non sono corrette.</exception>
         /// 
-        public Project(string name, string password, DateTime dataInizioProgetto, DateTime dataFineProgetto, string codiceAccesso, int adminId)
+        public Progetto(string name, string password, DateTime dataInizioProgetto, DateTime dataFineProgetto, string codiceAccesso, int adminId)
         {
           
             if (string.IsNullOrWhiteSpace(name))
@@ -99,39 +99,65 @@
             DataFineProgetto = dataFineProgetto;
             AdminId = adminId;
             CodiceAccesso = codiceAccesso;
-            Tasks = new List<ProjectTask>();
-            Users = new List<User>();
+            Tasks = new List<TaskProgetto>();
+            Users = new List<Utente>();
         }
 
         /// <summary>
         /// Aggiunge una nuova attività al progetto.
         /// </summary>
-        /// <param name="task">L'attività da aggiungere al progetto.</param>
-        public void AddTask(ProjectTask task)
+        public void AggiungiTask(TaskProgetto task)
         {
             if (task == null)
             {
-                throw new ArgumentNullException(nameof(task), "L'attività non può essere null.");
+                throw new ArgumentNullException(nameof(task), "L'attività non può essere nulla.");
             }
-
-            // Aggiungi la task alla collezione di attività
             Tasks.Add(task);
+        }
+
+        /// <summary>
+        /// Rimuove un'attività dal progetto se è presente.
+        /// </summary>
+        public void RimuoviTask(TaskProgetto task)
+        {
+            if (task == null)
+            {
+                throw new ArgumentNullException(nameof(task), "L'attività non può essere nulla.");
+            }
+            if (!Tasks.Contains(task))
+            {
+                throw new InvalidOperationException("L'attività non è associata a questo progetto.");
+            }
+            Tasks.Remove(task);
         }
 
         /// <summary>
         /// Aggiunge un nuovo utente al progetto.
         /// </summary>
-        /// <param name="user">L'utente da aggiungere al progetto.</param>
-        public void AddUser(User user)
+        public void AggiungiUtente(Utente user)
         {
             if (user == null)
             {
-                throw new ArgumentNullException(nameof(user), "L'utente non può essere null.");
+                throw new ArgumentNullException(nameof(user), "L'utente non può essere nullo.");
             }
-
-            // Aggiungi l'utente alla collezione di utenti
             Users.Add(user);
+        }
+
+        /// <summary>
+        /// Rimuove un utente dal progetto se è presente.
+        /// </summary>
+        public void RimuoviUtente(Utente user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), "L'utente non può essere nullo.");
+            }
+            if (!Users.Contains(user))
+            {
+                throw new InvalidOperationException("L'utente non è associato a questo progetto.");
+            }
+            Users.Remove(user);
         }
     }
 }
-}
+

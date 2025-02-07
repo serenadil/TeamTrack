@@ -10,30 +10,30 @@ using TeamTrack.Domain.Entity;
 
 namespace TeamTrack.Application.Servicies
 {
-    public class UserService
+    public class ServiziUtente
     {
-        private readonly UserRepository _userRepository;
+        private readonly RepositoryUtente _repositoryUtente;
 
 
 
-        public UserService(UserRepository userRepository)
+        public ServiziUtente(RepositoryUtente repository)
         {
-            _userRepository = userRepository;
+            _repositoryUtente = repository;
   
         }
 
 
-        public User Registrazione(string email, string password, Ruolo ruolo)
+        public Utente Registrazione(string email, string password, Ruolo ruolo, string nome)
         {
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
-            var utente = new User(email, passwordHash, ruolo);
-            return _userRepository.Add(utente);
+            var utente = new Utente(email, passwordHash, ruolo, nome);
+            return _repositoryUtente.Aggiungi(utente);
         
         }
 
         public bool Autenticazione(string email, string password)
         {
-            var utente = this.GetUser(email);
+            var utente = this.GetUtente(email);
             if (utente == null || !BCrypt.Net.BCrypt.Verify(password, utente.Password))
             {
                 return false;
@@ -43,15 +43,15 @@ namespace TeamTrack.Application.Servicies
 
 
 
-        public User GetUser (int id)
+        public Utente GetUtente (int id)
         {
-            return _userRepository.GetById(id);
+            return _repositoryUtente.GetById(id);
         }
 
 
-        public User GetUser(string email)
+        public Utente GetUtente(string email)
         {
-            return _userRepository.GetByEmail(email);
+            return _repositoryUtente.GetByEmail(email);
         }
 
     }
