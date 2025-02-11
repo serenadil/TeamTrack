@@ -37,7 +37,7 @@ namespace TeamTrack.Application.Servicies
 
             Progetto progetto = _serviziProgetto.GetProgetto(id) ?? throw new ArgumentException("Nessun progetto trovato");
 
-            var taskProgetto = new TaskProgetto(nome, descrizione, progetto, prioritàTask, dataInizioTask, dataFineTask, statoTask, adminId);
+            var taskProgetto = new TaskProgetto(nome, descrizione, progetto, prioritàTask, dataInizioTask, dataFineTask, statoTask);
             progetto.Tasks.Add(taskProgetto);
 
             _repositoryTaskProgetto.Aggiungi(taskProgetto);

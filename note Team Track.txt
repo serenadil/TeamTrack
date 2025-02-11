@@ -36,6 +36,17 @@ Progetto di appartenenza
 
 
 Grafico torta per il rendimento
-Grafico a linea per task svolte in det periodi dall’utente
+Grafico a linea per task svolte in det periodi dall’utente   
+
+
+
+comandi db
+
+dotnet ef migrations add NomeMigrazione --project TeamTrack.Infrastructure --startup-project TeamTrack.Web
+
+dotnet ef database update --project TeamTrack.Infrastructure --startup-project TeamTrack.Web
+
+
+
 
 

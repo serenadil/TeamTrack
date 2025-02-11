@@ -15,10 +15,12 @@ namespace TeamTrack.Infrastructure
         /// <param name="options">Opzioni per configurare il contesto del database.</param>
         public TeamTrackDbContext(DbContextOptions<TeamTrackDbContext> options) : base(options) { }
 
+        public TeamTrackDbContext() { }
+
         /// <summary>
         /// Ottiene o imposta il set di entità per i progetti.
         /// </summary>
-        public DbSet<Progetto> Projects { get; set; }
+        public DbSet<Progetto> Progetti { get; set; }
 
         /// <summary>
         /// Ottiene o imposta il set di entità per le attività.
@@ -28,7 +30,7 @@ namespace TeamTrack.Infrastructure
         /// <summary>
         /// Ottiene o imposta il set di entità per gli utenti.
         /// </summary>
-        public DbSet<Utente> Users { get; set; }
+        public DbSet<Utente> Utenti { get; set; }
 
         /// <summary>
         /// Configura il modello del database, definendo le relazioni tra le entità.
@@ -46,19 +48,9 @@ namespace TeamTrack.Infrastructure
             modelBuilder.Entity<Utente>()
                 .HasMany(u => u.Progetti)       // Un utente può partecipare a molti progetti
                 .WithMany(p => p.Users)         // Un progetto può avere molti utenti
-                .UsingEntity<Dictionary<string, object>>("UserProject",  // Definisce una tabella di collegamento
-                    j => j.HasOne<Progetto>().WithMany().HasForeignKey("ProjectId"),  // Collega l'utente al progetto
-                    j => j.HasOne<Utente>().WithMany().HasForeignKey("UserId")        // Collega il progetto all'utente
-                );
-
-            // Configura la relazione molti a molti tra utenti e attività
-            modelBuilder.Entity<Utente>()
-                .HasMany(u => u.Attivita)         // Un utente può essere associato a molte attività
-                .WithMany(t => t.Utenti)        // Un'attività può avere molti utenti
-                .UsingEntity<Dictionary<string, object>>(
-                    "UserTask",  // Definisce una tabella di collegamento
-                    j => j.HasOne<TaskProgetto>().WithMany().HasForeignKey("TaskId"),  // Collega l'utente all'attività
-                    j => j.HasOne<Utente>().WithMany().HasForeignKey("UserId")        // Collega l'attività all'utente
+                .UsingEntity<Dictionary<string, object>>("ProgettiUtente",  // Definisce una tabella di collegamento
+                    j => j.HasOne<Progetto>().WithMany().HasForeignKey("IdProgetto"),  // Collega l'utente al progetto
+                    j => j.HasOne<Utente>().WithMany().HasForeignKey("IdUtente")        // Collega il progetto all'utente
                 );
 
             // Configura la relazione tra il progetto e il suo amministratore (uno a molti)

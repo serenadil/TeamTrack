@@ -46,16 +46,6 @@ namespace TeamTrack.Domain.Entity
         public ICollection<Utente> Utenti { get; set; }
 
         /// <summary>
-        /// Identificativo dell'amministratore del progetto.
-        /// </summary>
-        public int AdminId { get; set; }
-
-        /// <summary>
-        /// L'amministratore del progetto.
-        /// </summary>
-        public Utente Admin { get; set; }
-
-        /// <summary>
         /// Identificativo del progetto associato all'attività.
         /// </summary>
         public int IdProgetto { get; set; }
@@ -70,7 +60,7 @@ namespace TeamTrack.Domain.Entity
         /// </summary>
         public Stato? StatoTask { get; set; }
 
-        public TaskProgetto(string nome, string descrizione, Progetto progetto, Priorità prioritàTask,  DateTime dataInizioTask, DateTime dataFineTask, Stato? statoTask, int adminId)
+        public TaskProgetto(string nome, string descrizione, Progetto progetto, Priorità prioritàTask,  DateTime dataInizioTask, DateTime dataFineTask, Stato? statoTask)
         {
             if (string.IsNullOrWhiteSpace(nome))
             {
@@ -101,9 +91,10 @@ namespace TeamTrack.Domain.Entity
             DataFineTask = dataFineTask;
             PrioritàTask = prioritàTask;
             StatoTask = statoTask;
-            AdminId = adminId;
             Utenti = new List<Utente>();
         }
+
+        public TaskProgetto() { }
     }
 
     /// <summary>

@@ -1,16 +1,10 @@
-C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Api.deps.json
-C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Api.runtimeconfig.json
-C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\appsettings.json
-C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Api.staticwebassets.endpoints.json
-C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Api.exe
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Application.deps.json
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Application.dll
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Application.pdb
-C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Api.dll
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Domain.dll
-C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Api.pdb
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Infrastructure.dll
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Domain.pdb
+C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Infrastructure.pdb
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\obj\Debug\net8.0\TeamTrack.Application.csproj.AssemblyReference.cache
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\obj\Debug\net8.0\TeamTrack.Application.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\obj\Debug\net8.0\TeamTrack.Application.AssemblyInfoInputs.cache
@@ -22,5 +16,3 @@ C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\obj\Deb
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\obj\Debug\net8.0\refint\TeamTrack.Application.dll
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\obj\Debug\net8.0\TeamTrack.Application.pdb
 C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\obj\Debug\net8.0\ref\TeamTrack.Application.dll
-C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Infrastructure.dll
-C:\Users\serena\Desktop\TeamTrack\TeamTrackProject\TeamTrack.Application\bin\Debug\net8.0\TeamTrack.Infrastructure.pdb

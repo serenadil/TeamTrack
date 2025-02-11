@@ -22,7 +22,37 @@ namespace TeamTrack.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TeamTrack.Domain.Entity.Project", b =>
+            modelBuilder.Entity("ProgettiUtente", b =>
+                {
+                    b.Property<int>("IdProgetto")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUtente")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdProgetto", "IdUtente");
+
+                    b.HasIndex("IdUtente");
+
+                    b.ToTable("ProgettiUtente");
+                });
+
+            modelBuilder.Entity("TaskProgettoUtente", b =>
+                {
+                    b.Property<int>("AttivitaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UtentiId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AttivitaId", "UtentiId");
+
+                    b.HasIndex("UtentiId");
+
+                    b.ToTable("TaskProgettoUtente");
+                });
+
+            modelBuilder.Entity("TeamTrack.Domain.Entity.Progetto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,12 +60,12 @@ namespace TeamTrack.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AccessCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("AdminId")
                         .HasColumnType("int");
+
+                    b.Property<string>("CodiceAccesso")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DataFineProgetto")
                         .HasColumnType("datetime2");
@@ -43,7 +73,7 @@ namespace TeamTrack.Infrastructure.Migrations
                     b.Property<DateTime>("DataInizioProgetto")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -55,10 +85,10 @@ namespace TeamTrack.Infrastructure.Migrations
 
                     b.HasIndex("AdminId");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Progetti");
                 });
 
-            modelBuilder.Entity("TeamTrack.Domain.Entity.ProjectTask", b =>
+            modelBuilder.Entity("TeamTrack.Domain.Entity.TaskProgetto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,37 +96,37 @@ namespace TeamTrack.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
+                    b.Property<DateTime>("DataFineTask")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInizioTask")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descrizione")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EndingDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("IdProgetto")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Priority")
+                    b.Property<int?>("PrioritàTask")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartingDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
+                    b.Property<int?>("StatoTask")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("IdProgetto");
 
                     b.ToTable("Tasks");
                 });
 
-            modelBuilder.Entity("TeamTrack.Domain.Entity.User", b =>
+            modelBuilder.Entity("TeamTrack.Domain.Entity.Utente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,51 +138,55 @@ namespace TeamTrack.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Role")
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ruolo")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Utenti");
                 });
 
-            modelBuilder.Entity("UserProject", b =>
+            modelBuilder.Entity("ProgettiUtente", b =>
                 {
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
+                    b.HasOne("TeamTrack.Domain.Entity.Progetto", null)
+                        .WithMany()
+                        .HasForeignKey("IdProgetto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProjectId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserProject");
+                    b.HasOne("TeamTrack.Domain.Entity.Utente", null)
+                        .WithMany()
+                        .HasForeignKey("IdUtente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("UserTask", b =>
+            modelBuilder.Entity("TaskProgettoUtente", b =>
                 {
-                    b.Property<int>("TaskId")
-                        .HasColumnType("int");
+                    b.HasOne("TeamTrack.Domain.Entity.TaskProgetto", null)
+                        .WithMany()
+                        .HasForeignKey("AttivitaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TaskId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserTask");
+                    b.HasOne("TeamTrack.Domain.Entity.Utente", null)
+                        .WithMany()
+                        .HasForeignKey("UtentiId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("TeamTrack.Domain.Entity.Project", b =>
+            modelBuilder.Entity("TeamTrack.Domain.Entity.Progetto", b =>
                 {
-                    b.HasOne("TeamTrack.Domain.Entity.User", "Admin")
+                    b.HasOne("TeamTrack.Domain.Entity.Utente", "Admin")
                         .WithMany()
                         .HasForeignKey("AdminId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -161,48 +195,18 @@ namespace TeamTrack.Infrastructure.Migrations
                     b.Navigation("Admin");
                 });
 
-            modelBuilder.Entity("TeamTrack.Domain.Entity.ProjectTask", b =>
+            modelBuilder.Entity("TeamTrack.Domain.Entity.TaskProgetto", b =>
                 {
-                    b.HasOne("TeamTrack.Domain.Entity.Project", "Project")
+                    b.HasOne("TeamTrack.Domain.Entity.Progetto", "Progetto")
                         .WithMany("Tasks")
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("IdProgetto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Project");
+                    b.Navigation("Progetto");
                 });
 
-            modelBuilder.Entity("UserProject", b =>
-                {
-                    b.HasOne("TeamTrack.Domain.Entity.Project", null)
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TeamTrack.Domain.Entity.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("UserTask", b =>
-                {
-                    b.HasOne("TeamTrack.Domain.Entity.ProjectTask", null)
-                        .WithMany()
-                        .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TeamTrack.Domain.Entity.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TeamTrack.Domain.Entity.Project", b =>
+            modelBuilder.Entity("TeamTrack.Domain.Entity.Progetto", b =>
                 {
                     b.Navigation("Tasks");
                 });

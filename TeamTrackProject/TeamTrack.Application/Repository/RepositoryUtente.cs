@@ -25,7 +25,7 @@ namespace TeamTrack.Application.Repositories
         /// <returns>Una collezione di tutti gli utenti nel database.</returns>
         public IEnumerable<Utente> GetAll()
         {
-            return _context.Users.ToList();
+            return _context.Utenti.ToList();
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace TeamTrack.Application.Repositories
         /// <returns>L'utente corrispondente all'ID, o null se non trovato.</returns>
         public Utente GetById(int id)
         {
-            return _context.Users.FirstOrDefault(u => u.Id == id);
+            return _context.Utenti.FirstOrDefault(u => u.Id == id);
         }
 
 
@@ -46,7 +46,7 @@ namespace TeamTrack.Application.Repositories
         /// <returns>L'utente corrispondente all'email, o null se non trovato.</returns>
         public Utente GetByEmail(string email)
         {
-            return _context.Users.FirstOrDefault(u => u.Email == email);
+            return _context.Utenti.FirstOrDefault(u => u.Email == email);
         }
 
 
@@ -57,7 +57,7 @@ namespace TeamTrack.Application.Repositories
         /// <returns>L'utente appena aggiunto.</returns>
         public Utente Aggiungi(Utente user)
         {
-            _context.Users.Add(user);
+            _context.Utenti.Add(user);
             _context.SaveChanges();
             return user;
         }
@@ -68,7 +68,7 @@ namespace TeamTrack.Application.Repositories
         /// <param name="user">L'utente da aggiornare.</param>
         public void Aggiona(Utente user)
         {
-            _context.Users.Update(user);
+            _context.Utenti.Update(user);
             _context.SaveChanges();
         }
 
@@ -78,10 +78,10 @@ namespace TeamTrack.Application.Repositories
         /// <param name="userId">L'ID dell'utente da eliminare.</param>
         public void Elimina(int userId)
         {
-            var user = _context.Users.Find(userId);
+            var user = _context.Utenti.Find(userId);
             if (user != null)
             {
-                _context.Users.Remove(user);
+                _context.Utenti.Remove(user);
                 _context.SaveChanges();
             }
         }

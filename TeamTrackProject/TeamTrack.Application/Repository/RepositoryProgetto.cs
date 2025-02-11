@@ -27,7 +27,7 @@ namespace TeamTrack.Application.Repositories
         /// <returns>Una collezione di tutti i progetti con le attività e gli utenti associati.</returns>
         public IEnumerable<Progetto> GetAll()
         {
-            return _context.Projects
+            return _context.Progetti
                            .Include(p => p.Tasks)  
                            .Include(p => p.Users) 
                            .ToList();              
@@ -40,7 +40,7 @@ namespace TeamTrack.Application.Repositories
         /// <returns>Il progetto corrispondente all'ID, o null se non trovato.</returns>
         public Progetto GetById(int id)
         {
-            return _context.Projects
+            return _context.Progetti
                            .Include(p => p.Tasks)
                            .Include(p => p.Users)
                            .FirstOrDefault(p => p.Id == id);
@@ -54,7 +54,7 @@ namespace TeamTrack.Application.Repositories
         /// <returns>Il progetto corrispondente al codice di accesso, o null se non trovato.</returns>
         public Progetto GetByCodiceAccesso(string codiceAccesso)
         {
-            return _context.Projects
+            return _context.Progetti
                            .Include(p => p.Tasks)
                            .Include(p => p.Users)
                            .FirstOrDefault(p => p.CodiceAccesso == codiceAccesso);
@@ -67,7 +67,7 @@ namespace TeamTrack.Application.Repositories
         /// <returns>Il progetto appena aggiunto.</returns>
         public Progetto Aggiungi(Progetto project)
         {
-            _context.Projects.Add(project);
+            _context.Progetti.Add(project);
             _context.SaveChanges();
             return project;
         }
@@ -78,7 +78,7 @@ namespace TeamTrack.Application.Repositories
         /// <param name="project">Il progetto da aggiornare.</param>
         public void Aggiorna(Progetto project)
         {
-            _context.Projects.Update(project);
+            _context.Progetti.Update(project);
             _context.SaveChanges();
         }
 
@@ -88,10 +88,10 @@ namespace TeamTrack.Application.Repositories
         /// <param name="id">L'ID del progetto da eliminare.</param>
         public void Elimina(int id)
         {
-            var project = _context.Projects.Find(id);
+            var project = _context.Progetti.Find(id);
             if (project != null)
             {
-                _context.Projects.Remove(project);
+                _context.Progetti.Remove(project);
                 _context.SaveChanges();
             }
         }

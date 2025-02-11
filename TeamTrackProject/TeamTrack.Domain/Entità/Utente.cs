@@ -72,6 +72,10 @@ namespace TeamTrack.Domain.Entity
             Nome = nome;
         }
 
+        public Utente()
+        {
+        }
+
 
         /// <summary>
         /// Aggiunge un progetto all'utente se non è già presente.

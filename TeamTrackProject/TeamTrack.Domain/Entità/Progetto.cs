@@ -103,6 +103,8 @@
             Users = new List<Utente>();
         }
 
+        public Progetto() { }
+
         /// <summary>
         /// Aggiunge una nuova attività al progetto.
         /// </summary>
