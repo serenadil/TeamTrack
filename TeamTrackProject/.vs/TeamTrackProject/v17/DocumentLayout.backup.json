@@ -1,62 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\",
+  "WorkspaceRootPath": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrackProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|solutionrelative:teamtrack.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.api\\util\\richiestaregistazione.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|solutionrelative:teamtrack.api\\util\\richiestaregistazione.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E25CD87F-44FE-4796-BB71-2AA10C191818}|TeamTrack.Domain\\TeamTrack.Domain.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.domain\\entit\u00E0\\utente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E25CD87F-44FE-4796-BB71-2AA10C191818}|TeamTrack.Domain\\TeamTrack.Domain.csproj|solutionrelative:teamtrack.domain\\entit\u00E0\\utente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.api\\util\\richiestalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|solutionrelative:teamtrack.api\\util\\richiestalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|solutionrelative:teamtrack.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.api\\teamtrack.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|solutionrelative:teamtrack.api\\teamtrack.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAAD01E0-7E8B-4876-B5D7-33573525600B}|TeamTrack.Application\\TeamTrack.Application.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.application\\teamtrack.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{FAAD01E0-7E8B-4876-B5D7-33573525600B}|TeamTrack.Application\\TeamTrack.Application.csproj|solutionrelative:teamtrack.application\\teamtrack.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAAD01E0-7E8B-4876-B5D7-33573525600B}|TeamTrack.Application\\TeamTrack.Application.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.application\\repository\\repositorytaskprogetto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAAD01E0-7E8B-4876-B5D7-33573525600B}|TeamTrack.Application\\TeamTrack.Application.csproj|solutionrelative:teamtrack.application\\repository\\repositorytaskprogetto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAAD01E0-7E8B-4876-B5D7-33573525600B}|TeamTrack.Application\\TeamTrack.Application.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.application\\servizi\\serviziutente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAAD01E0-7E8B-4876-B5D7-33573525600B}|TeamTrack.Application\\TeamTrack.Application.csproj|solutionrelative:teamtrack.application\\servizi\\serviziutente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAAD01E0-7E8B-4876-B5D7-33573525600B}|TeamTrack.Application\\TeamTrack.Application.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.application\\servizi\\servizitaskprogetto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAAD01E0-7E8B-4876-B5D7-33573525600B}|TeamTrack.Application\\TeamTrack.Application.csproj|solutionrelative:teamtrack.application\\servizi\\servizitaskprogetto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.api\\teamtrack.api.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|solutionrelative:teamtrack.api\\teamtrack.api.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.api\\teamtrack.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{C78CC490-5929-48D2-B645-FFDB6E18B63A}|TeamTrack.Api\\TeamTrack.Api.csproj|solutionrelative:teamtrack.api\\teamtrack.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9E81C7A-6D74-4E36-ACE8-6ECAD6997D3D}|TeamTrack.Web\\TeamTrack.Web.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.web\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9E81C7A-6D74-4E36-ACE8-6ECAD6997D3D}|TeamTrack.Web\\TeamTrack.Web.csproj|solutionrelative:teamtrack.web\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E25CD87F-44FE-4796-BB71-2AA10C191818}|TeamTrack.Domain\\TeamTrack.Domain.csproj|c:\\users\\serena\\desktop\\teamtrack\\teamtrackproject\\teamtrack.domain\\entit\u00E0\\taskprogetto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E25CD87F-44FE-4796-BB71-2AA10C191818}|TeamTrack.Domain\\TeamTrack.Domain.csproj|solutionrelative:teamtrack.domain\\entit\u00E0\\taskprogetto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Controllers\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TeamTrack.Api\\Controllers\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,179 +14,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Utente.cs",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Domain\\Entit\u00E0\\Utente.cs",
-              "RelativeDocumentMoniker": "TeamTrack.Domain\\Entit\u00E0\\Utente.cs",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Domain\\Entit\u00E0\\Utente.cs",
-              "RelativeToolTip": "TeamTrack.Domain\\Entit\u00E0\\Utente.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T10:03:35.417Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RichiestaRegistazione.cs",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Util\\RichiestaRegistazione.cs",
-              "RelativeDocumentMoniker": "TeamTrack.Api\\Util\\RichiestaRegistazione.cs",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Util\\RichiestaRegistazione.cs",
-              "RelativeToolTip": "TeamTrack.Api\\Util\\RichiestaRegistazione.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T09:58:19.292Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "TeamTrack.Api.http",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\TeamTrack.Api.http",
-              "RelativeDocumentMoniker": "TeamTrack.Api\\TeamTrack.Api.http",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\TeamTrack.Api.http",
-              "RelativeToolTip": "TeamTrack.Api\\TeamTrack.Api.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-02-11T09:54:44.602Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Controllers\\UserController.cs",
+              "DocumentMoniker": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "TeamTrack.Api\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Controllers\\UserController.cs",
               "RelativeToolTip": "TeamTrack.Api\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-11T09:54:42.624Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TeamTrack.Application.csproj",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\TeamTrack.Application.csproj",
-              "RelativeDocumentMoniker": "TeamTrack.Application\\TeamTrack.Application.csproj",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\TeamTrack.Application.csproj",
-              "RelativeToolTip": "TeamTrack.Application\\TeamTrack.Application.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-11T09:54:51.18Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TeamTrack.Api.csproj",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\TeamTrack.Api.csproj",
-              "RelativeDocumentMoniker": "TeamTrack.Api\\TeamTrack.Api.csproj",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\TeamTrack.Api.csproj",
-              "RelativeToolTip": "TeamTrack.Api\\TeamTrack.Api.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-11T09:57:23.016Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Program.cs",
-              "RelativeDocumentMoniker": "TeamTrack.Api\\Program.cs",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Program.cs",
-              "RelativeToolTip": "TeamTrack.Api\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAADwvykAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T10:14:51.195Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RichiestaLogin.cs",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Util\\RichiestaLogin.cs",
-              "RelativeDocumentMoniker": "TeamTrack.Api\\Util\\RichiestaLogin.cs",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\Util\\RichiestaLogin.cs",
-              "RelativeToolTip": "TeamTrack.Api\\Util\\RichiestaLogin.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T09:58:04.492Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ServiziTaskProgetto.cs",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\Servizi\\ServiziTaskProgetto.cs",
-              "RelativeDocumentMoniker": "TeamTrack.Application\\Servizi\\ServiziTaskProgetto.cs",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\Servizi\\ServiziTaskProgetto.cs",
-              "RelativeToolTip": "TeamTrack.Application\\Servizi\\ServiziTaskProgetto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T10:21:46.764Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RepositoryTaskProgetto.cs",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\Repository\\RepositoryTaskProgetto.cs",
-              "RelativeDocumentMoniker": "TeamTrack.Application\\Repository\\RepositoryTaskProgetto.cs",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\Repository\\RepositoryTaskProgetto.cs",
-              "RelativeToolTip": "TeamTrack.Application\\Repository\\RepositoryTaskProgetto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T10:21:50.086Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ErrorViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Web\\Models\\ErrorViewModel.cs",
-              "RelativeDocumentMoniker": "TeamTrack.Web\\Models\\ErrorViewModel.cs",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Web\\Models\\ErrorViewModel.cs",
-              "RelativeToolTip": "TeamTrack.Web\\Models\\ErrorViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T10:03:40.402Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ServiziUtente.cs",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\Servizi\\ServiziUtente.cs",
-              "RelativeDocumentMoniker": "TeamTrack.Application\\Servizi\\ServiziUtente.cs",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Application\\Servizi\\ServiziUtente.cs",
-              "RelativeToolTip": "TeamTrack.Application\\Servizi\\ServiziUtente.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwBsAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T09:55:14.527Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "TeamTrack.Api",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\TeamTrack.Api.csproj",
-              "RelativeDocumentMoniker": "TeamTrack.Api\\TeamTrack.Api.csproj",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Api\\TeamTrack.Api.csproj",
-              "RelativeToolTip": "TeamTrack.Api\\TeamTrack.Api.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-11T10:19:13.647Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "TaskProgetto.cs",
-              "DocumentMoniker": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Domain\\Entit\u00E0\\TaskProgetto.cs",
-              "RelativeDocumentMoniker": "TeamTrack.Domain\\Entit\u00E0\\TaskProgetto.cs",
-              "ToolTip": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrackProject\\TeamTrack.Domain\\Entit\u00E0\\TaskProgetto.cs",
-              "RelativeToolTip": "TeamTrack.Domain\\Entit\u00E0\\TaskProgetto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T10:03:34.182Z"
             }
           ]
         }

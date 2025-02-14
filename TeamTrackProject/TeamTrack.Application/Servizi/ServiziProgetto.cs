@@ -33,7 +33,7 @@ namespace TeamTrack.Application.Services
         /// <returns>Il progetto appena creato.</returns>
         /// <exception cref="ArgumentException">Se uno dei parametri non è valido.</exception>
         /// 
-        public Progetto CreaProgetto(string name, string password, DateTime dataInizioProgetto, DateTime dataFineProgetto, int adminId)
+        public Progetto creaProgetto(string name, string password, DateTime dataInizioProgetto, DateTime dataFineProgetto, int adminId)
         {
             var admin = _serviziUtente.GetUtente(adminId);
             if (admin == null || admin.Ruolo != Ruolo.Admin)
