@@ -44,6 +44,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/Utente/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXRlbnRlXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/Utente/Registrazione.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXRlbnRlXFJlZ2lzdHJhemlvbmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

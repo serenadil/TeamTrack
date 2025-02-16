@@ -1,11 +1,13 @@
-﻿using TeamTrack.Dominio;
+﻿using System.Xml.Linq;
+using TeamTrack.Dominio;
 using TeamTrack.Servizi.Repository;
 
 namespace TeamTrack.Servizi.Servizi
-{ /// <summary>
-  /// Servizio per la gestione delle attività (Task) all'interno di un progetto.
-  /// Fornisce metodi per la creazione, eliminazione e aggiornamento delle attività.
-  /// </summary>
+{
+    /// <summary>
+    /// Servizio per la gestione delle attività (Task) all'interno di un progetto.
+    /// Fornisce metodi per la creazione, eliminazione e aggiornamento delle attività.
+    /// </summary>
     public class ServiziTaskProgetto
     {
         private readonly RepositoryTaskProgetto _repositoryTaskProgetto;
@@ -51,6 +53,7 @@ namespace TeamTrack.Servizi.Servizi
             progetto?.Tasks.Remove(task);
 
             _repositoryTaskProgetto.Elimina(projectTaskId);
+            _serviziProgetto.AggiornaProgetto(progetto); 
             return true;
         }
 
@@ -124,5 +127,41 @@ namespace TeamTrack.Servizi.Servizi
             task.StatoTask = nuovoStato;
             _repositoryTaskProgetto.Aggiorna(task);
         }
+
+        /// <summary>
+        /// Ottieni tutte le task di un progetto specifico.
+        /// </summary>
+        public IEnumerable<TaskProgetto> GetTasksByProgetto(string progettoId)
+        {
+            var progetto = _serviziProgetto.GetProgetto(progettoId);
+            if (progetto == null)
+            {
+                throw new ArgumentException("Progetto non trovato.");
+            }
+            return _repositoryTaskProgetto.GetByIdProgetto(progetto.Id);
+        }
+
+        /// <summary>
+        /// Ottieni una task specifica tramite il suo ID.
+        /// </summary>
+        public TaskProgetto GetTaskById(int taskId)
+        {
+            var task = _repositoryTaskProgetto.GetById(taskId);
+            if (task == null)
+            {
+                throw new ArgumentException("Task non trovata.");
+            }
+            return task;
+        }
+
+        /// <summary>
+        /// Restituisce tutti gli utenti associati a una task.
+        /// </summary>
+        public IEnumerable<Utente> GetUtentiDaTask(int taskId)
+        {
+            var task = _repositoryTaskProgetto.GetById(taskId) ?? throw new ArgumentException("Task non trovata.");
+            return task.Utenti;
+        }
+
     }
 }

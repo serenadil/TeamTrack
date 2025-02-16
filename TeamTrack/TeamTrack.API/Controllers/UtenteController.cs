@@ -21,18 +21,19 @@ namespace TeamTrack.API.Controllers
         /// </summary>
         [HttpPost("Registrazione")]
         public IActionResult Registrazione([FromBody] RichiestaRegistazione request)
-
         {
             if (!Enum.IsDefined(typeof(Ruolo), request.Ruolo))
             {
                 return BadRequest("Ruolo non valido");
             }
-            var utente = _serviziUtente.Registrazione(request.Email, request.Password, request.Ruolo, request.Nome);
 
-            if (utente == null)
+            // Eseguiamo la registrazione dell'utente e otteniamo l'ID
+            var userId = _serviziUtente.Registrazione(request.Email, request.Password, request.Ruolo, request.Nome);
+
+            if (userId == 0)
                 return BadRequest("Registrazione fallita");
 
-            return Ok(new { Message = "Registrazione avvenuta con successo!", UserId = utente.Id });
+            return Ok(new { Message = "Registrazione avvenuta con successo!", UserId = userId });
         }
 
         /// <summary>
@@ -41,15 +42,13 @@ namespace TeamTrack.API.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] RichiestaLogin request)
         {
-            bool autenticato = _serviziUtente.Autenticazione(request.Email, request.Password);
+            var userId = _serviziUtente.Autenticazione(request.Email, request.Password);
 
-            if (!autenticato)
+            if (userId == null)
                 return Unauthorized("Credenziali non valide");
 
-            return Ok(new { Message = "Login avvenuto con successo!" });
+            // Restituiamo l'ID dell'utente autenticato
+            return Ok(new { Message = "Login avvenuto con successo!", UserId = userId });
         }
-
-
-
     }
 }
