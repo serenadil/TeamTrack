@@ -11,13 +11,13 @@ namespace TeamTrack.Servizi.Servizi
     public class ServiziTaskProgetto
     {
         private readonly RepositoryTaskProgetto _repositoryTaskProgetto;
-        private readonly ServiziProgetto _serviziProgetto;
+        private readonly RepositoryProgetto _repositoryProgetto;  // Usa la repository per il progetto
         private readonly ServiziUtente _serviziUtente;
 
-        public ServiziTaskProgetto(RepositoryTaskProgetto repositoryTaskProgetto, ServiziProgetto serviziProgetto, ServiziUtente serviziUtente)
+        public ServiziTaskProgetto(RepositoryTaskProgetto repositoryTaskProgetto, RepositoryProgetto repositoryProgetto, ServiziUtente serviziUtente)
         {
             _repositoryTaskProgetto = repositoryTaskProgetto;
-            _serviziProgetto = serviziProgetto;
+            _repositoryProgetto = repositoryProgetto;  // Usa la repository per ottenere il progetto
             _serviziUtente = serviziUtente;
         }
 
@@ -30,13 +30,14 @@ namespace TeamTrack.Servizi.Servizi
             if (admin == null || admin.Ruolo != Ruolo.Admin)
                 throw new ArgumentException("L'utente deve essere un Admin.", nameof(adminId));
 
-            Progetto progetto = _serviziProgetto.GetProgetto(id) ?? throw new ArgumentException("Nessun progetto trovato");
+            // Ottieni il progetto tramite il RepositoryProgetto
+            Progetto progetto = _repositoryProgetto.GetById(int.Parse(id)) ?? throw new ArgumentException("Nessun progetto trovato");
 
             var taskProgetto = new TaskProgetto(nome, descrizione, progetto, prioritàTask, dataInizioTask, dataFineTask, statoTask);
             progetto.Tasks.Add(taskProgetto);
 
             _repositoryTaskProgetto.Aggiungi(taskProgetto);
-            _serviziProgetto.AggiornaProgetto(progetto);
+            _repositoryProgetto.Aggiorna(progetto);  // Aggiorna il progetto tramite la repository
 
             return taskProgetto;
         }
@@ -53,7 +54,7 @@ namespace TeamTrack.Servizi.Servizi
             progetto?.Tasks.Remove(task);
 
             _repositoryTaskProgetto.Elimina(projectTaskId);
-            _serviziProgetto.AggiornaProgetto(progetto); 
+            _repositoryProgetto.Aggiorna(progetto);  // Aggiorna il progetto tramite la repository
             return true;
         }
 
@@ -133,7 +134,7 @@ namespace TeamTrack.Servizi.Servizi
         /// </summary>
         public IEnumerable<TaskProgetto> GetTasksByProgetto(string progettoId)
         {
-            var progetto = _serviziProgetto.GetProgetto(progettoId);
+            var progetto = _repositoryProgetto.GetById(int.Parse(progettoId));
             if (progetto == null)
             {
                 throw new ArgumentException("Progetto non trovato.");
@@ -162,6 +163,5 @@ namespace TeamTrack.Servizi.Servizi
             var task = _repositoryTaskProgetto.GetById(taskId) ?? throw new ArgumentException("Task non trovata.");
             return task.Utenti;
         }
-
     }
 }

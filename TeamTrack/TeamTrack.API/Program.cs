@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using TeamTrack.Infrastrutture;
+using TeamTrack.Servizi;
 using TeamTrack.Servizi.Repository;
 using TeamTrack.Servizi.Servizi;
 
@@ -26,6 +27,13 @@ builder.Services.AddDbContext<TeamTrackDbContext>(options =>
 // ?? Registrazione dei servizi e repository
 builder.Services.AddScoped<RepositoryUtente>();
 builder.Services.AddScoped<ServiziUtente>();
+builder.Services.AddScoped<RepositoryProgetto>();
+builder.Services.AddScoped<ServiziTaskProgetto>();
+builder.Services.AddScoped<RepositoryTaskProgetto>();
+builder.Services.AddScoped<ServiziProgetto>();
+builder.Services.AddScoped<GeneratoreCodiciAccesso>();
+
+
 
 // ?? Aggiunta dei controller
 builder.Services.AddControllers();
@@ -38,7 +46,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "TeamTrack API",
         Version = "v1",
-        Description = "Una breve descrizione della tua API"
+        Description = ""
     });
 });
 
