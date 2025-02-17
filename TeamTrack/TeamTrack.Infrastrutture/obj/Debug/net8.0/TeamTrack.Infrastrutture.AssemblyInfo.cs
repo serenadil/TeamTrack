@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TeamTrack.Infrastrutture")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+35e66d6c089314f277ac6eb5316fc2a4ea8b05f7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+11a747eb909f8607053c2d4aa6609909bb7c6655")]
 [assembly: System.Reflection.AssemblyProductAttribute("TeamTrack.Infrastrutture")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TeamTrack.Infrastrutture")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

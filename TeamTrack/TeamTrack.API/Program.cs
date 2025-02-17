@@ -1,26 +1,40 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using TeamTrack.Infrastrutture;
 using TeamTrack.Servizi.Repository;
 using TeamTrack.Servizi.Servizi;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Aggiungi la configurazione per il contesto DB e i servizi
-builder.Services.AddScoped<RepositoryUtente>();  // Aggiungi questa riga per il repository
-builder.Services.AddScoped<ServiziUtente>();    // Aggiungi questa riga per il servizio
+// ?? Caricamento esplicito della configurazione
+var config = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
+// ?? Recupero della stringa di connessione e debug
+var connectionString = config.GetConnectionString("DefaultConnection");
+Console.WriteLine($"Connection String: {connectionString}");  // Controlla se viene stampata correttamente
+
+// ?? Registrazione del DbContext con la stringa di connessione
 builder.Services.AddDbContext<TeamTrackDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseSqlServer(connectionString)
 );
 
-// Aggiungi i controller
+// ?? Registrazione dei servizi e repository
+builder.Services.AddScoped<RepositoryUtente>();
+builder.Services.AddScoped<ServiziUtente>();
+
+// ?? Aggiunta dei controller
 builder.Services.AddControllers();
 
-// Aggiungi il supporto per Swagger/OpenAPI
+// ?? Configurazione Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    // Aggiungi metadati per la documentazione di Swagger
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    options.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "TeamTrack API",
         Version = "v1",
@@ -30,23 +44,23 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// Configura il middleware per Swagger solo in modalità sviluppo
+// ?? Middleware Swagger (solo in sviluppo)
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "TeamTrack API V1");
-        options.RoutePrefix = string.Empty;  // Swagger UI sarà visibile alla root dell'app
+        options.RoutePrefix = string.Empty;  // Swagger disponibile alla root dell'app
     });
 }
 
-// Configura il resto del middleware
+// ?? Middleware aggiuntivi
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
-// Mappa i controller
+// ?? Mappa i controller
 app.MapControllers();
 
-// Esegui l'applicazione
+// ?? Avvio dell'applicazione
 app.Run();

@@ -20,15 +20,14 @@ namespace TeamTrack.API.Controllers
         /// Registra un nuovo utente.
         /// </summary>
         [HttpPost("Registrazione")]
-        public IActionResult Registrazione([FromBody] RichiestaRegistazione request)
+        public IActionResult Registrazione(  string email, string password, Ruolo ruolo, string nome)
         {
-            if (!Enum.IsDefined(typeof(Ruolo), request.Ruolo))
+            if (!Enum.IsDefined(typeof(Ruolo), ruolo))
             {
                 return BadRequest("Ruolo non valido");
             }
 
-            // Eseguiamo la registrazione dell'utente e otteniamo l'ID
-            var userId = _serviziUtente.Registrazione(request.Email, request.Password, request.Ruolo, request.Nome);
+            var userId = _serviziUtente.Registrazione(email, password, ruolo, nome);
 
             if (userId == 0)
                 return BadRequest("Registrazione fallita");
@@ -40,15 +39,20 @@ namespace TeamTrack.API.Controllers
         /// Effettua il login di un utente.
         /// </summary>
         [HttpPost("Login")]
-        public IActionResult Login([FromBody] RichiestaLogin request)
+        public IActionResult Login(string email, string password)
         {
-            var userId = _serviziUtente.Autenticazione(request.Email, request.Password);
+            var authResult = _serviziUtente.Autenticazione(email, password);
 
-            if (userId == null)
-                return Unauthorized("Credenziali non valide");
+            if (!authResult.Success)
+            {
+                return Unauthorized(new { Message = authResult.Message });
+            }
 
-            // Restituiamo l'ID dell'utente autenticato
-            return Ok(new { Message = "Login avvenuto con successo!", UserId = userId });
+            return Ok(new
+            {
+                Message = authResult.Message,
+                UserId = authResult.UserId
+            });
         }
     }
 }

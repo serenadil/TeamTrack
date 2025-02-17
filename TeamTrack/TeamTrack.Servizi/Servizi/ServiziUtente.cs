@@ -19,25 +19,29 @@ namespace TeamTrack.Servizi.Servizi
 
         public int Registrazione(string email, string password, Ruolo ruolo, string nome)
         {
-            // Creiamo l'utente con la password cifrata
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
             var utente = new Utente(email, passwordHash, ruolo, nome);
 
-            // Aggiungiamo l'utente al repository e ritorniamo l'ID
             _repositoryUtente.Aggiungi(utente);
 
-            return utente.Id; // Restituiamo l'ID dell'utente appena creato
+            return utente.Id; 
         }
 
-        public bool Autenticazione(string email, string password)
+        public (bool Success, string Message, int? UserId) Autenticazione(string email, string password)
         {
-            var utente = this.GetUtente(email);
-            if (utente == null || !BCrypt.Net.BCrypt.Verify(password, utente.Password))
+            var utente = _repositoryUtente.GetByEmail(email);
+
+            if (utente == null)
             {
-                return false;
+                return (false, "Utente non trovato", null);
             }
 
-            return true;
+            if (!BCrypt.Net.BCrypt.Verify(password, utente.Password))
+            {
+                return (false, "Password errata", null);
+            }
+
+            return (true, $"Benvenuto, {utente.Nome}!", utente.Id);
         }
 
         public Utente GetUtente(int id)
