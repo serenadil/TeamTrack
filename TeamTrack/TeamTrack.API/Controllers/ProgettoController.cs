@@ -15,30 +15,19 @@ namespace TeamTrack.API.Controllers
             _serviziProgetto = serviziProgetto;
         }
 
-        // POST: api/progetti
-        [HttpPost]
-        public IActionResult CreaProgetto([FromBody] RichiestaCreazioneProgetto request)
-        {
-            try
-            {
-                var progetto = _serviziProgetto.creaProgetto(
-                    request.Name,
-                    request.Password,
-                    request.DataInizioProgetto,
-                    request.DataFineProgetto,
-                    request.AdminId);
+        [HttpPost("CreaProgetto")]
+        public IActionResult CreaProgetto(string nome, string password, DateTime dataInizioProgetto, DateTime dataFineProgetto, int adminId)
+        { 
+                var progettoId = _serviziProgetto.creaProgetto(nome, password, dataInizioProgetto, dataFineProgetto, adminId);
 
-                return CreatedAtAction("GetProgetto", new { id = progetto.Id }, progetto);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            if (progettoId == 0)
+                return BadRequest("Creazione del progetto fallita");
+
+            return Ok(new { Message = "Creazione del progetto avvenuta con successo!", Id = progettoId });
         }
 
-        // PUT: api/progetti/5
         [HttpPut("{id}")]
-        public IActionResult AggiornaDataFineProgetto(int id, [FromBody] DateTime nuovaDataFine)
+        public IActionResult AggiornaDataFineProgetto(int id, DateTime nuovaDataFine)
         {
             try
             {
@@ -51,7 +40,6 @@ namespace TeamTrack.API.Controllers
             }
         }
 
-        // GET: api/progetti/5
         [HttpGet("{id}")]
         public ActionResult<Progetto> GetProgetto(int id)
         {
@@ -63,7 +51,6 @@ namespace TeamTrack.API.Controllers
             return Ok(progetto);
         }
 
-        // DELETE: api/progetti/5
         [HttpDelete("{id}")]
         public IActionResult EliminaProgetto(int id)
         {

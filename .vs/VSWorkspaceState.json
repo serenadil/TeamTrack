@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\TeamTrack",
+    "\\TeamTrack\\TeamTrack.API",
+    "\\TeamTrack\\TeamTrack.API\\Controllers",
+    "\\TeamTrack\\TeamTrack.Dominio"
+  ],
+  "SelectedNode": "\\TeamTrack\\TeamTrack.API\\Controllers\\ProgettoController.cs",
+  "PreviewInSolutionExplorer": false
+}
