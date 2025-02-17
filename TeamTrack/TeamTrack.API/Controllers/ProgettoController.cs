@@ -18,12 +18,17 @@ namespace TeamTrack.API.Controllers
         [HttpPost("CreaProgetto")]
         public IActionResult CreaProgetto(string nome, string password, DateTime dataInizioProgetto, DateTime dataFineProgetto, int adminId)
         { 
-                var progettoId = _serviziProgetto.creaProgetto(nome, password, dataInizioProgetto, dataFineProgetto, adminId);
+            try
+            {
+                var progetto = _serviziProgetto.creaProgetto(nome, password, dataInizioProgetto, dataFineProgetto, adminId);
 
-            if (progettoId == 0)
-                return BadRequest("Creazione del progetto fallita");
+                return Ok(new { Message = "Creazione del progetto avvenuta con successo!", ProgettoId = progetto.Id });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-            return Ok(new { Message = "Creazione del progetto avvenuta con successo!", Id = progettoId });
         }
 
         [HttpPut("{id}")]
