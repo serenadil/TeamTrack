@@ -54,7 +54,7 @@ namespace TeamTrack.Servizi.Servizi
             progetto?.Tasks.Remove(task);
 
             _repositoryTaskProgetto.Elimina(projectTaskId);
-            _repositoryProgetto.Aggiorna(progetto);  // Aggiorna il progetto tramite la repository
+            _repositoryProgetto.Aggiorna(progetto);  
             return true;
         }
 

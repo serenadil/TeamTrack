@@ -45,7 +45,10 @@ namespace TeamTrack.Servizi.Servizi
             }
             string codiceAccesso = _generatoreCodiciAccesso.GeneraCodiceUnico();
             var progetto = new Progetto(name, password, dataInizioProgetto, dataFineProgetto, codiceAccesso, adminId);
-            return _repositoryProgetto.Aggiungi(progetto);
+            _repositoryProgetto.Aggiungi(progetto);
+            admin.AggiungiProgetto(progetto);
+            _serviziUtente.salvaUtente(admin);
+            return progetto;
         }
 
 
@@ -57,6 +60,24 @@ namespace TeamTrack.Servizi.Servizi
             {
                 throw new ArgumentException("Nessun progetto trovato");
             }
+            var utentiAssociati = progetto.Users;
+            foreach(var utente in utentiAssociati)
+            {
+                utente.RimuoviProgetto(progetto);
+                _serviziUtente.salvaUtente(utente);
+                var taskProgetto = utente.Attivita;
+                foreach(var a in taskProgetto)
+                {
+                    if(a.IdProgetto == progetto.Id)
+                    {
+                        utente.RimuoviTask(a);
+                        _serviziUtente.salvaUtente(utente);
+                        _serviziTaskProgetto.EliminaTaskProgetto(a.Id);
+
+                    }
+                }
+            }
+           
             _repositoryProgetto.Elimina(id);
             return true;
         }
@@ -73,6 +94,8 @@ namespace TeamTrack.Servizi.Servizi
             {
                 progetto.AggiungiUtente(user);
                 _repositoryProgetto.Aggiorna(progetto);
+                user.AggiungiProgetto(progetto);
+                _serviziUtente.salvaUtente(user);
                 return true;
             }
             return false;

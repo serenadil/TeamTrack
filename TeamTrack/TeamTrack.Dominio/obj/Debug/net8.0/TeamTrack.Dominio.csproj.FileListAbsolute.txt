@@ -22,3 +22,4 @@ C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Dominio\obj\Debug\net8.0\Te
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Dominio\obj\Debug\net8.0\refint\TeamTrack.Dominio.dll
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Dominio\obj\Debug\net8.0\TeamTrack.Dominio.pdb
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Dominio\obj\Debug\net8.0\ref\TeamTrack.Dominio.dll
+C:\Users\serena\Desktop\TeamTrack\TeamTrack\TeamTrack.Dominio\obj\Debug\net8.0\TeamTrack.Dominio.csproj.AssemblyReference.cache

@@ -192,3 +192,4 @@ C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.API\obj\Debug\net8.0\static
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.API\obj\Debug\net8.0\TeamTrac.CC03E7D8.Up2Date
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.API\obj\Debug\net8.0\TeamTrack.API.genruntimeconfig.cache
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.API\obj\Debug\net8.0\ref\TeamTrack.API.dll
+C:\Users\serena\Desktop\TeamTrack\TeamTrack\TeamTrack.API\bin\Debug\net8.0\Newtonsoft.Json.dll

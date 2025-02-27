@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TeamTrack.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c2dc77921b0b07b0f295cc06b63873c54ad03e9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d64e09fd751322bb7dbbb6337248fa77226933b8")]
 [assembly: System.Reflection.AssemblyProductAttribute("TeamTrack.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TeamTrack.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

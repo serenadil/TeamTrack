@@ -53,5 +53,10 @@ namespace TeamTrack.Servizi.Servizi
         {
             return _repositoryUtente.GetByEmail(email);
         }
+
+        public void salvaUtente(Utente utente)
+        {
+            _repositoryUtente.Aggiona(utente);
+        }
     }
 }

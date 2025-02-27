@@ -108,7 +108,10 @@ namespace TeamTrack.Dominio
             Users = new List<Utente>();
         }
 
-        public Progetto() { }
+        public Progetto() {
+            Tasks = new List<TaskProgetto>();
+            Users = new List<Utente>();
+        }
 
         /// <summary>
         /// Aggiunge una nuova attività al progetto.

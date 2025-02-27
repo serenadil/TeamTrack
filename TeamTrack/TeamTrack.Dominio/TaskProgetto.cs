@@ -94,7 +94,9 @@ namespace TeamTrack.Dominio
             Utenti = new List<Utente>();
         }
 
-        public TaskProgetto() { }
+        public TaskProgetto() {
+            Utenti = new List<Utente>();
+        }
     }
 
     /// <summary>

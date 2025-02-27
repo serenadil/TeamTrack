@@ -1,6 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
+
 namespace TeamTrack.Dominio
 {
     /// <summary>
@@ -36,11 +37,13 @@ namespace TeamTrack.Dominio
         /// <summary>
         /// Collezione di progetti associati all'utente.
         /// </summary>
+        [JsonIgnore]
         public ICollection<Progetto> Progetti { get; set; }
 
         /// <summary>
         /// Collezione di attività associate all'utente.
         /// </summary>
+         [JsonIgnore]
         public ICollection<TaskProgetto> Attivita { get; set; }
 
         /// <summary>
@@ -62,10 +65,14 @@ namespace TeamTrack.Dominio
             Password = password;
             Ruolo = ruolo;
             Nome = nome;
+            Progetti = new List<Progetto>();
+            Attivita = new List<TaskProgetto>();
         }
 
         public Utente()
         {
+            Progetti = new List<Progetto>();
+            Attivita = new List<TaskProgetto>();
         }
 
 
