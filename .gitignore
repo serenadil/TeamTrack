@@ -1,0 +1,25 @@
+# .NET build outputs
+bin/
+obj/
+
+# Visual Studio config files
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+
+# Log files
+*.log
+
+# Files di backup
+*.bak
+*.tmp
+
+# Ignora Dockerfile se non vuoi tracciarlo
+# Dockerfile
