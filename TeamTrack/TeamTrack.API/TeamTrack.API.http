@@ -1,0 +1,6 @@
+@TeamTrack.API_HostAddress = http://localhost:5250
+
+GET {{TeamTrack.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
