@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace TeamTrack.Dominio
@@ -53,6 +54,7 @@ namespace TeamTrack.Dominio
         /// <summary>
         /// Progetto associato all'attività.
         /// </summary>
+        [JsonIgnore]
         public Progetto Progetto { get; set; }
 
         /// <summary>

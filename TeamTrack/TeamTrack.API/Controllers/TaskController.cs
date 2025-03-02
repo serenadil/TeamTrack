@@ -2,210 +2,263 @@
 using TeamTrack.Dominio;
 using TeamTrack.Servizi.Servizi;
 
-namespace TeamTrack.API.Controllers
+namespace TeamTrack.API.Controllers;
+/// <summary>
+/// Controller per la gestione delle task in un progetto.
+/// Fornisce endpoint per creare, eliminare, aggiornare e visualizzare le task all'interno di un progetto.
+/// </summary>
+[Route("api/[controller]")]
+[ApiController]
+public class TaskProgettoController : ControllerBase
 {
+    private readonly ServiziTaskProgetto _serviziTaskProgetto;
+    private readonly ServiziProgetto _serviziProgetto;
+    private readonly ServiziUtente _serviziUtente;
+
     /// <summary>
-    /// Controller per la gestione delle task in un progetto.
+    /// Costruttore del controller, inizializza i servizi necessari.
     /// </summary>
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TaskProgettoController : ControllerBase
+    /// <param name="serviziTaskProgetto">Servizio per la gestione delle task.</param>
+    /// <param name="serviziProgetto">Servizio per la gestione dei progetti.</param>
+    /// <param name="serviziUtente">Servizio per la gestione degli utenti.</param>
+    public TaskProgettoController(ServiziTaskProgetto serviziTaskProgetto, ServiziProgetto serviziProgetto, ServiziUtente serviziUtente)
     {
-        private readonly ServiziTaskProgetto _serviziTaskProgetto;
+        _serviziTaskProgetto = serviziTaskProgetto;
+        _serviziProgetto = serviziProgetto;
+        _serviziUtente = serviziUtente;
+    }
 
-        public TaskProgettoController(ServiziTaskProgetto serviziTaskProgetto)
+    /// <summary>
+    /// Verifica se un utente è l'amministratore di un progetto.
+    /// </summary>
+    /// <param name="progettoId">ID del progetto.</param>
+    /// <param name="userId">ID dell'utente.</param>
+    /// <returns>True se l'utente è l'amministratore, altrimenti false.</returns>
+    private bool IsAdmin(int progettoId, int userId)
+    {
+        var progetto = _serviziProgetto.GetProgetto(progettoId);
+        return progetto != null && progetto.AdminId == userId;
+    }
+
+    /// <summary>
+    /// Verifica se un utente è un partecipante di un progetto.
+    /// </summary>
+    /// <param name="progettoId">ID del progetto.</param>
+    /// <param name="userId">ID dell'utente.</param>
+    /// <returns>True se l'utente è un partecipante, altrimenti false.</returns>
+    private bool IsParticipant(int progettoId, int userId)
+    {
+        var utente = _serviziUtente.GetUtente(userId);
+        return utente?.Progetti.Any(p => p.Id == progettoId) ?? false;
+    }
+
+    /// <summary>
+    /// Crea una nuova task per un progetto.
+    /// Solo l'amministratore del progetto può creare task.
+    /// </summary>
+    /// <param name="progettoId">ID del progetto.</param>
+    /// <param name="nome">Nome della task.</param>
+    /// <param name="descrizione">Descrizione della task.</param>
+    /// <param name="prioritàTask">Priorità della task.</param>
+    /// <param name="dataInizioTask">Data di inizio della task.</param>
+    /// <param name="dataFineTask">Data di fine della task.</param>
+    /// <param name="statoTask">Stato della task.</param>
+    /// <param name="userId">ID dell'utente che sta creando la task.</param>
+    /// <returns>Ok se la task è stata creata, altrimenti BadRequest con il messaggio di errore.</returns>
+    [HttpPost]
+    public ActionResult<TaskProgetto> CreaTask(int progettoId, string nome, string descrizione, Priorità prioritàTask, DateTime dataInizioTask, DateTime dataFineTask, Stato? statoTask, int userId)
+    {
+        if (!IsAdmin(progettoId, userId))
+            return Unauthorized("Solo l'amministratore del progetto può creare task.");
+
+        try
         {
-            _serviziTaskProgetto = serviziTaskProgetto;
+            var task = _serviziTaskProgetto.CreaTaskProgetto(progettoId, nome, descrizione, prioritàTask, dataInizioTask, dataFineTask, statoTask, userId);
+            return Ok(task);
         }
-
-        /// <summary>
-        /// Crea una nuova attività all'interno di un progetto.
-        /// </summary>
-        [HttpPost]
-        public ActionResult<TaskProgetto> CreaTask([FromBody] RichiestaCreazioneTask request)
+        catch (Exception ex)
         {
-            try
-            {
-                var task = _serviziTaskProgetto.CreaTaskProgetto(
-                    request.IdProgetto,
-                    request.Nome,
-                    request.Descrizione,
-                    request.PrioritàTask,
-                    request.DataInizioTask,
-                    request.DataFineTask,
-                    request.StatoTask,
-                    request.AdminId
-                );
-
-                return CreatedAtAction(nameof(GetTaskById), new { taskId = task.Id }, task);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Elimina una task da un progetto.
-        /// </summary>
-        [HttpDelete("{taskId}")]
-        public ActionResult EliminaTask(int taskId)
-        {
-            try
-            {
-                bool isDeleted = _serviziTaskProgetto.EliminaTaskProgetto(taskId);
-                if (isDeleted)
-                    return NoContent();  
-                else
-                    return NotFound("Task non trovata.");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Aggiunge un utente a una task.
-        /// </summary>
-        [HttpPost("{taskId}/utente/{userId}")]
-        public ActionResult AggiungiUtenteATask(int taskId, int userId)
-        {
-            try
-            {
-                bool isAdded = _serviziTaskProgetto.AggiungiUtenteATask(taskId, userId);
-                if (isAdded)
-                    return NoContent(); 
-                else
-                    return BadRequest("L'utente è già associato alla task.");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Rimuove un utente da una task.
-        /// </summary>
-        [HttpDelete("{taskId}/utente/{userId}")]
-        public ActionResult RimuoviUtenteDaTask(int taskId, int userId)
-        {
-            try
-            {
-                bool isRemoved = _serviziTaskProgetto.RimuoviUtenteDaTask(taskId, userId);
-                if (isRemoved)
-                    return NoContent();
-                else
-                    return BadRequest("Utente non trovato nella task.");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Aggiorna la descrizione di una task.
-        /// </summary>
-        [HttpPut("{taskId}/descrizione")]
-        public ActionResult AggiornaDescrizione(int taskId, [FromBody] string nuovaDescrizione)
-        {
-            try
-            {
-                _serviziTaskProgetto.AggiornaDescrizioneTask(taskId, nuovaDescrizione);
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Aggiorna le date di inizio e fine di una task.
-        /// </summary>
-        [HttpPut("{taskId}/date")]
-        public ActionResult AggiornaDate(int taskId, DateTime DataInizio, DateTime DataFine)
-        {
-            try
-            {
-                _serviziTaskProgetto.AggiornaDateTask(taskId, DataInizio, DataFine);
-                return NoContent();  
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Aggiorna lo stato di una task.
-        /// </summary>
-        [HttpPut("{taskId}/stato")]
-        public ActionResult AggiornaStato(int taskId, [FromBody] Stato nuovoStato)
-        {
-            try
-            {
-                _serviziTaskProgetto.AggiornaStatoTask(taskId, nuovoStato);
-                return NoContent(); 
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Ottieni tutte le task di un progetto.
-        /// </summary>
-        [HttpGet("progetto/{progettoId}")]
-        public ActionResult<IEnumerable<TaskProgetto>> GetTasksByProgetto(string progettoId)
-        {
-            try
-            {
-                var tasks = _serviziTaskProgetto.GetTasksByProgetto(progettoId);
-                return Ok(tasks);  
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Ottieni una task specifica tramite il suo ID.
-        /// </summary>
-        [HttpGet("{taskId}")]
-        public ActionResult<TaskProgetto> GetTaskById(int taskId)
-        {
-            try
-            {
-                var task = _serviziTaskProgetto.GetTaskById(taskId);
-                return Ok(task);  
-            }
-            catch (Exception ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Restituisce tutti gli utenti associati a una task.
-        /// </summary>
-        [HttpGet("{taskId}/utenti")]
-        public ActionResult<IEnumerable<Utente>> GetUtentiDaTask(int taskId)
-        {
-            try
-            {
-                var utenti = _serviziTaskProgetto.GetUtentiDaTask(taskId);
-                return Ok(utenti); 
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return BadRequest(ex.Message);
         }
     }
 
+    /// <summary>
+    /// Elimina una task da un progetto.
+    /// Solo l'amministratore del progetto può eliminare task.
+    /// </summary>
+    /// <param name="taskId">ID della task da eliminare.</param>
+    /// <param name="userId">ID dell'utente che sta tentando di eliminare la task.</param>
+    /// <returns>Una risposta NoContent se la task è stata eliminata, altrimenti NotFound o BadRequest con il messaggio di errore.</returns>
+    [HttpDelete("{taskId}")]
+    public ActionResult EliminaTask(int taskId, int userId)
+    {
+        var task = _serviziTaskProgetto.GetTaskById(taskId);
+        if (task == null || !IsAdmin(task.IdProgetto, userId))
+            return Unauthorized("Solo l'amministratore del progetto può eliminare task.");
+
+        try
+        {
+            bool isDeleted = _serviziTaskProgetto.EliminaTaskProgetto(taskId);
+            return isDeleted ? NoContent() : NotFound("Task non trovata.");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Aggiunge un utente a una task esistente.
+    /// Solo l'amministratore del progetto può aggiungere utenti a una task.
+    /// </summary>
+    /// <param name="taskId">ID della task.</param>
+    /// <param name="adminId">ID dell'amministratore che sta aggiungendo l'utente.</param>
+    /// <param name="userId">ID dell'utente da aggiungere alla task.</param>
+    /// <returns>Una risposta NoContent se l'utente è stato aggiunto, altrimenti BadRequest con un messaggio di errore.</returns>
+    [HttpPost("{taskId}/utente/{userId}")]
+    public ActionResult AggiungiUtenteATask(int taskId, int adminId, int userId)
+    {
+        var task = _serviziTaskProgetto.GetTaskById(taskId);
+        if (task == null || !IsAdmin(task.IdProgetto, adminId))
+            return Unauthorized("Solo l'amministratore del progetto può aggiungere utenti a una task.");
+
+        try
+        {
+            bool isAdded = _serviziTaskProgetto.AggiungiUtenteATask(taskId, userId);
+            return isAdded ? NoContent() : BadRequest("L'utente è già associato alla task.");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Rimuove un utente da una task esistente.
+    /// Solo l'amministratore del progetto può rimuovere utenti da una task.
+    /// </summary>
+    /// <param name="taskId">ID della task.</param>
+    /// <param name="userId">ID dell'utente da rimuovere dalla task.</param>
+    /// <param name="adminId">ID dell'amministratore che sta rimuovendo l'utente.</param>
+    /// <returns>Una risposta NoContent se l'utente è stato rimosso, altrimenti BadRequest con un messaggio di errore.</returns>
+    [HttpDelete("{taskId}/utente/{userId}")]
+    public ActionResult RimuoviUtenteDaTask(int taskId, int userId, int adminId)
+    {
+        var task = _serviziTaskProgetto.GetTaskById(taskId);
+        if (task == null || !IsAdmin(task.Progetto.Id, adminId))
+            return Unauthorized("Solo l'amministratore del progetto può rimuovere utenti da una task.");
+
+        try
+        {
+            bool isRemoved = _serviziTaskProgetto.RimuoviUtenteDaTask(taskId, userId);
+            return isRemoved ? NoContent() : BadRequest("Utente non trovato nella task.");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Aggiorna la descrizione di una task.
+    /// Solo l'amministratore del progetto può aggiornare la descrizione di una task.
+    /// </summary>
+    /// <param name="taskId">ID della task.</param>
+    /// <param name="nuovaDescrizione">Nuova descrizione della task.</param>
+    /// <param name="userId">ID dell'utente che sta aggiornando la descrizione.</param>
+    /// <returns>Una risposta NoContent se la descrizione è stata aggiornata, altrimenti BadRequest con un messaggio di errore.</returns>
+    [HttpPut("{taskId}/descrizione")]
+    public ActionResult AggiornaDescrizione(int taskId, string nuovaDescrizione, int userId)
+    {
+        var task = _serviziTaskProgetto.GetTaskById(taskId);
+        if (task == null || !IsAdmin(task.Progetto.Id, userId))
+            return Unauthorized("Solo l'amministratore del progetto può modificare la descrizione della task.");
+
+        try
+        {
+            _serviziTaskProgetto.AggiornaDescrizioneTask(taskId, nuovaDescrizione);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Aggiorna la priorità di una task.
+    /// Solo l'amministratore del progetto può aggiornare la priorità della task.
+    /// </summary>
+    /// <param name="taskId">ID della task.</param>
+    /// <param name="stato">Nuovo stato della task.</param>
+    /// <param name="userId">ID dell'utente che sta aggiornando la priorità.</param>
+    /// <returns>Una risposta NoContent se la priorità è stata aggiornata, altrimenti BadRequest con un messaggio di errore.</returns>
+    [HttpPut("{taskId}/priorita")]
+    public ActionResult AggiornaPriorita(int taskId, Stato stato, int userId)
+    {
+        var task = _serviziTaskProgetto.GetTaskById(taskId);
+        if (task == null || !IsAdmin(task.Progetto.Id, userId))
+            return Unauthorized("Solo l'amministratore del progetto può modificare la priorità della task.");
+
+        try
+        {
+            _serviziTaskProgetto.AggiornaStatoTask(taskId, stato);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Aggiorna le date di inizio e fine di una task.
+    /// Solo l'amministratore del progetto può aggiornare le date della task.
+    /// </summary>
+    /// <param name="taskId">ID della task.</param>
+    /// <param name="dataInizio">Nuova data di inizio.</param>
+    /// <param name="dataFine">Nuova data di fine.</param>
+    /// <param name="userId">ID dell'utente che sta aggiornando le date.</param>
+    /// <returns>Una risposta NoContent se le date sono state aggiornate, altrimenti BadRequest con un messaggio di errore.</returns>
+    [HttpPut("{taskId}/date")]
+    public ActionResult AggiornaDate(int taskId, DateTime dataInizio, DateTime dataFine, int userId)
+    {
+        var task = _serviziTaskProgetto.GetTaskById(taskId);
+        if (task == null || !IsAdmin(task.Progetto.Id, userId))
+            return Unauthorized("Solo l'amministratore del progetto può modificare le date della task.");
+
+        try
+        {
+            _serviziTaskProgetto.AggiornaDateTask(taskId, dataInizio, dataFine);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Ottiene tutte le task di un progetto specifico.
+    /// Solo i partecipanti del progetto possono visualizzare le task.
+    /// </summary>
+    /// <param name="progettoId">ID del progetto.</param>
+    /// <param name="userId">ID dell'utente che sta richiedendo le task.</param>
+    /// <returns>Ok con la lista delle task, o BadRequest con il messaggio di errore.</returns>
+    [HttpGet("progetto/{progettoId}")]
+    public ActionResult<IEnumerable<TaskProgetto>> GetTasksByProgetto(int progettoId, int userId)
+    {
+        if (!IsParticipant(progettoId, userId))
+            return Unauthorized("Solo i membri del progetto possono visualizzare le task.");
+
+        try
+        {
+            var tasks = _serviziTaskProgetto.GetTasksByProgetto(progettoId);
+            return Ok(tasks);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

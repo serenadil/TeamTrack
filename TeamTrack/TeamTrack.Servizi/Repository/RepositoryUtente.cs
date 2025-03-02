@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,9 +40,10 @@ namespace TeamTrack.Servizi.Repository
         /// <returns>L'utente corrispondente all'ID, o null se non trovato.</returns>
         public Utente GetById(int id)
         {
-            return _context.Utenti.FirstOrDefault(u => u.Id == id);
+            return _context.Utenti
+                .Include(u => u.Progetti)  
+                .FirstOrDefault(u => u.Id == id);
         }
-
 
         /// <summary>
         /// Ottiene un singolo utente tramite l'email.
@@ -50,7 +52,7 @@ namespace TeamTrack.Servizi.Repository
         /// <returns>L'utente corrispondente all'email, o null se non trovato.</returns>
         public Utente GetByEmail(string email)
         {
-            return _context.Utenti.FirstOrDefault(u => u.Email == email);
+            return _context.Utenti.Include(u => u.Progetti).FirstOrDefault(u => u.Email == email);
         }
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,9 +41,13 @@ namespace TeamTrack.Servizi.Repository
         /// </summary>
         /// <param name="id">L'ID dell'attività.</param>
         /// <returns>L'attività corrispondente</returns>
-        public TaskProgetto GetById(int id)
+        public TaskProgetto GetById(int taskId)
         {
-            return _context.Tasks.FirstOrDefault(u => u.Id == id); ;
+            return _context.Tasks
+                .Include(t => t.Progetto) 
+                .ThenInclude(p => p.Users)  
+                .Include(t => t.Utenti)     
+                .FirstOrDefault(t => t.Id == taskId);
         }
 
         /// <summary>
