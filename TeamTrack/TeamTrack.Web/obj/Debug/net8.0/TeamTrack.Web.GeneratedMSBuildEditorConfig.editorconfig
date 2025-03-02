@@ -17,49 +17,53 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TeamTrack.Web
 build_property.RootNamespace = TeamTrack.Web
-build_property.ProjectDir = C:\Users\serena\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\
+build_property.ProjectDir = C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\serena\Desktop\TeamTrack\TeamTrack\TeamTrack.Web
+build_property.MSBuildProjectDirectory = C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[C:/Users/sarav/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Models/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFZpZXdzXEhvbWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/sarav/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Models/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFZpZXdzXEhvbWVcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[C:/Users/sarav/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Models/Views/Progetto/Progetto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFZpZXdzXFByb2dldHRvXFByb2dldHRvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[C:/Users/sarav/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Models/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFZpZXdzXFNoYXJlZFxFcnJvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/Utente/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXRlbnRlXExvZ2luLmNzaHRtbA==
+[C:/Users/sarav/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Models/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFZpZXdzXFNoYXJlZFxfVmFsaWRhdGlvblNjcmlwdHNQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/Utente/Registrazione.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXRlbnRlXFJlZ2lzdHJhemlvbmUuY3NodG1s
+[C:/Users/sarav/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Models/Views/Utente/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFZpZXdzXFV0ZW50ZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[C:/Users/sarav/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Models/Views/Utente/Registrazione.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFZpZXdzXFV0ZW50ZVxSZWdpc3RyYXppb25lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[C:/Users/sarav/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Models/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFZpZXdzXF9WaWV3SW1wb3J0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/serena/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-1r8oeavhy5
+[C:/Users/sarav/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Models/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sarav/Desktop/TeamTrack/TeamTrack/TeamTrack.Web/Models/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFZpZXdzXFNoYXJlZFxfTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = b-s55qghxc5j

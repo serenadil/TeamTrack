@@ -2,10 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\TeamTrack",
-    "\\TeamTrack\\TeamTrack.API",
-    "\\TeamTrack\\TeamTrack.API\\Controllers",
-    "\\TeamTrack\\TeamTrack.Dominio"
+    "\\TeamTrack\\TeamTrack.Dominio",
+    "\\TeamTrack\\TeamTrack.Web",
+    "\\TeamTrack\\TeamTrack.Web\\Controllers",
+    "\\TeamTrack\\TeamTrack.Web\\Models"
   ],
-  "SelectedNode": "\\TeamTrack\\TeamTrack.API\\Controllers\\ProgettoController.cs",
+  "SelectedNode": "\\TeamTrack\\TeamTrack.Dominio\\TaskProgetto.cs",
   "PreviewInSolutionExplorer": false
 }

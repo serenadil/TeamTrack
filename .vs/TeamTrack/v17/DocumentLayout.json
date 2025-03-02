@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\sarav\\Desktop\\TeamTrack\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.API\\Controllers\\ProgettoController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TeamTrack\\TeamTrack.API\\Controllers\\ProgettoController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Models\\RichiestaTask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TeamTrack\\TeamTrack.Web\\Models\\RichiestaTask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Dominio\\Progetto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TeamTrack\\TeamTrack.Dominio\\Progetto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Dominio\\TaskProgetto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TeamTrack\\TeamTrack.Dominio\\TaskProgetto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.API\\Controllers\\UtenteController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TeamTrack\\TeamTrack.API\\Controllers\\UtenteController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Controllers\\TaskController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TeamTrack\\TeamTrack.Web\\Controllers\\TaskController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Controllers\\ProgettoController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TeamTrack\\TeamTrack.Web\\Controllers\\ProgettoController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Controllers\\UtenteController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TeamTrack\\TeamTrack.Web\\Controllers\\UtenteController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,44 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Progetto.cs",
-              "DocumentMoniker": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Dominio\\Progetto.cs",
-              "RelativeDocumentMoniker": "TeamTrack\\TeamTrack.Dominio\\Progetto.cs",
-              "ToolTip": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Dominio\\Progetto.cs",
-              "RelativeToolTip": "TeamTrack\\TeamTrack.Dominio\\Progetto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAiAAAAAAAAAA==",
+              "Title": "TaskProgetto.cs",
+              "DocumentMoniker": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Dominio\\TaskProgetto.cs",
+              "RelativeDocumentMoniker": "TeamTrack\\TeamTrack.Dominio\\TaskProgetto.cs",
+              "ToolTip": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Dominio\\TaskProgetto.cs",
+              "RelativeToolTip": "TeamTrack\\TeamTrack.Dominio\\TaskProgetto.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAcwDIAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T11:04:03.751Z",
+              "WhenOpened": "2025-03-02T08:48:42.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RichiestaTask.cs",
+              "DocumentMoniker": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Models\\RichiestaTask.cs",
+              "RelativeDocumentMoniker": "TeamTrack\\TeamTrack.Web\\Models\\RichiestaTask.cs",
+              "ToolTip": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Models\\RichiestaTask.cs",
+              "RelativeToolTip": "TeamTrack\\TeamTrack.Web\\Models\\RichiestaTask.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T08:48:13.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProgettoController.cs",
+              "DocumentMoniker": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Controllers\\ProgettoController.cs",
+              "RelativeDocumentMoniker": "TeamTrack\\TeamTrack.Web\\Controllers\\ProgettoController.cs",
+              "ToolTip": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Controllers\\ProgettoController.cs",
+              "RelativeToolTip": "TeamTrack\\TeamTrack.Web\\Controllers\\ProgettoController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T08:17:32.333Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UtenteController.cs",
-              "DocumentMoniker": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.API\\Controllers\\UtenteController.cs",
-              "RelativeDocumentMoniker": "TeamTrack\\TeamTrack.API\\Controllers\\UtenteController.cs",
-              "ToolTip": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.API\\Controllers\\UtenteController.cs",
-              "RelativeToolTip": "TeamTrack\\TeamTrack.API\\Controllers\\UtenteController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAANAAAAAAAAAA==",
+              "Title": "TaskController.cs",
+              "DocumentMoniker": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Controllers\\TaskController.cs",
+              "RelativeDocumentMoniker": "TeamTrack\\TeamTrack.Web\\Controllers\\TaskController.cs",
+              "ToolTip": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Controllers\\TaskController.cs",
+              "RelativeToolTip": "TeamTrack\\TeamTrack.Web\\Controllers\\TaskController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T10:58:27.927Z"
+              "WhenOpened": "2025-03-02T08:17:13.196Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProgettoController.cs",
-              "DocumentMoniker": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.API\\Controllers\\ProgettoController.cs",
-              "RelativeDocumentMoniker": "TeamTrack\\TeamTrack.API\\Controllers\\ProgettoController.cs",
-              "ToolTip": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.API\\Controllers\\ProgettoController.cs",
-              "RelativeToolTip": "TeamTrack\\TeamTrack.API\\Controllers\\ProgettoController.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAASwB0AAAANAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "UtenteController.cs",
+              "DocumentMoniker": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Controllers\\UtenteController.cs",
+              "RelativeDocumentMoniker": "TeamTrack\\TeamTrack.Web\\Controllers\\UtenteController.cs",
+              "ToolTip": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\Controllers\\UtenteController.cs",
+              "RelativeToolTip": "TeamTrack\\TeamTrack.Web\\Controllers\\UtenteController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T10:58:12.494Z",
+              "WhenOpened": "2025-03-02T08:19:22.628Z",
               "EditorCaption": ""
             }
           ]

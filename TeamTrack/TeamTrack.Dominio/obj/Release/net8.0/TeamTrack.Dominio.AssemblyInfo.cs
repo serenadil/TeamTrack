@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TeamTrack.Dominio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c2dc77921b0b07b0f295cc06b63873c54ad03e9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f6d5a491cfdfb5a229555419ad82b173a70083b")]
 [assembly: System.Reflection.AssemblyProductAttribute("TeamTrack.Dominio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TeamTrack.Dominio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
