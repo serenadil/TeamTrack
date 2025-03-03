@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TeamTrack.Dominio;
 using TeamTrack.Servizi.Servizi;
-namespace TeamTrack.Controllers
+namespace TeamTrack.Controllers;
 /// <summary>
 /// Controller per la gestione dei progetti.
 /// Fornisce operazioni per creare, aggiornare, recuperare ed eliminare progetti.

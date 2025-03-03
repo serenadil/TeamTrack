@@ -3,7 +3,7 @@ using TeamTrack.API;
 using TeamTrack.Dominio;
 using TeamTrack.Servizi.Servizi;
 
-namespace TeamTrack.API.Controllers
+namespace TeamTrack.API.Controllers;
 /// <summary>
 /// Controller per la gestione degli utenti.
 /// Permette la registrazione, il login e la gestione dei progetti associati agli utenti.
