@@ -3,11 +3,12 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Net.Http.Json;
 using TeamTrack.Web.Models;
 
 namespace TeamTrack.MVC.Controllers
 {
-    public class ProgettoController : Controllers
+    public class ProgettoController : Controller
     {
         private readonly HttpClient _httpClient;
         public ProgettoController (HttpClient httpClient)
@@ -46,7 +47,7 @@ namespace TeamTrack.MVC.Controllers
             var response = await _httpClient.GetAsync($"https://localhost:5001/api/progetti/{id}?userId={userId}");
             if (response.IsSuccessStatusCode)
             {
-                var progetto = await response.Content.ReadAsAsync<ProgettoModel>();
+                var progetto = await response.Content.ReadFromJsonAsync<ProgettoModel>();
                 return View(progetto);
             }
 

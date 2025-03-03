@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dW/vDt/PChA=",
+  "dgSpecHash": "26JZ1BxbTIk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\serena\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Dominio\\TeamTrack.Dominio.csproj",
+  "projectFilePath": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Dominio\\TeamTrack.Dominio.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\serena\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\sarav\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 namespace TeamTrack.MVC.Controllers
 {
 	public class ProgettoModel
@@ -33,7 +36,7 @@ namespace TeamTrack.MVC.Controllers
         public ProgettoModel()
 		{
             Tasks = new List<TaskProgettoModel>();
-            Users = new List<UtenteModek>();
+            Users = new List<UtenteModel>();
         }
     }
 }
