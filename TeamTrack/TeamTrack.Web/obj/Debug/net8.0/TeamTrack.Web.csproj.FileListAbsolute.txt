@@ -336,7 +336,6 @@ C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\bin\Debug\net8.0\TeamTr
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\bin\Debug\net8.0\TeamTrack.Infrastrutture.dll
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\bin\Debug\net8.0\TeamTrack.Infrastrutture.pdb
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\bin\Debug\net8.0\TeamTrack.Dominio.pdb
-C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\obj\Debug\net8.0\scopedcss\Models\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\obj\Debug\net8.0\scopedcss\bundle\TeamTrack.Web.styles.css
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\obj\Debug\net8.0\scopedcss\projectbundle\TeamTrack.Web.bundle.scp.css
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\obj\Debug\net8.0\staticwebassets.build.json
@@ -351,3 +350,4 @@ C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\obj\Debug\net8.0\static
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\obj\Debug\net8.0\TeamTrac.44E704B6.Up2Date
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\obj\Debug\net8.0\TeamTrack.Web.genruntimeconfig.cache
 C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\obj\Debug\net8.0\ref\TeamTrack.Web.dll
+C:\Users\sarav\Desktop\TeamTrack\TeamTrack\TeamTrack.Web\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KGNHWW+7XMhG4ig5GXmaENcGVKYZFs/UxGY9c2mBvZ8=",
+  "Hash": "THZ6AlNaNbmVOvvD8XJuCSRQ4fdkhuY/AIU9FGLENHM=",
   "Source": "TeamTrack.Web",
   "BasePath": "_content/TeamTrack.Web",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "yzlfid7dj8",
-      "Integrity": "HnPo5P9RhtJ+frNMdcD4FqhnqMWJIpnjJ3J585M1Vig=",
+      "Fingerprint": "iq0gjuziqx",
+      "Integrity": "ukIvJvMa6Ap2Ae/jLu4Kx5QIIKCNcXrSDa//2pkyxE8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TeamTrack.Web.styles.css"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "yzlfid7dj8",
-      "Integrity": "HnPo5P9RhtJ+frNMdcD4FqhnqMWJIpnjJ3J585M1Vig=",
+      "Fingerprint": "iq0gjuziqx",
+      "Integrity": "ukIvJvMa6Ap2Ae/jLu4Kx5QIIKCNcXrSDa//2pkyxE8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TeamTrack.Web.bundle.scp.css"
@@ -6251,7 +6251,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1138"
+          "Value": "1131"
         },
         {
           "Name": "Content-Type",
@@ -6259,11 +6259,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HnPo5P9RhtJ+frNMdcD4FqhnqMWJIpnjJ3J585M1Vig=\""
+          "Value": "\"ukIvJvMa6Ap2Ae/jLu4Kx5QIIKCNcXrSDa//2pkyxE8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 03 Mar 2025 15:50:55 GMT"
+          "Value": "Mon, 03 Mar 2025 16:04:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6273,7 +6273,97 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-HnPo5P9RhtJ+frNMdcD4FqhnqMWJIpnjJ3J585M1Vig="
+          "Value": "sha256-ukIvJvMa6Ap2Ae/jLu4Kx5QIIKCNcXrSDa//2pkyxE8="
+        }
+      ]
+    },
+    {
+      "Route": "TeamTrack.Web.iq0gjuziqx.bundle.scp.css",
+      "AssetFile": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TeamTrack.Web.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1131"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ukIvJvMa6Ap2Ae/jLu4Kx5QIIKCNcXrSDa//2pkyxE8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 03 Mar 2025 16:04:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iq0gjuziqx"
+        },
+        {
+          "Name": "label",
+          "Value": "TeamTrack.Web.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ukIvJvMa6Ap2Ae/jLu4Kx5QIIKCNcXrSDa//2pkyxE8="
+        }
+      ]
+    },
+    {
+      "Route": "TeamTrack.Web.iq0gjuziqx.styles.css",
+      "AssetFile": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TeamTrack.Web.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1131"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ukIvJvMa6Ap2Ae/jLu4Kx5QIIKCNcXrSDa//2pkyxE8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 03 Mar 2025 16:04:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iq0gjuziqx"
+        },
+        {
+          "Name": "label",
+          "Value": "TeamTrack.Web.styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ukIvJvMa6Ap2Ae/jLu4Kx5QIIKCNcXrSDa//2pkyxE8="
         }
       ]
     },
@@ -6288,7 +6378,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1138"
+          "Value": "1131"
         },
         {
           "Name": "Content-Type",
@@ -6296,11 +6386,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HnPo5P9RhtJ+frNMdcD4FqhnqMWJIpnjJ3J585M1Vig=\""
+          "Value": "\"ukIvJvMa6Ap2Ae/jLu4Kx5QIIKCNcXrSDa//2pkyxE8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 03 Mar 2025 15:50:55 GMT"
+          "Value": "Mon, 03 Mar 2025 16:04:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6310,97 +6400,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-HnPo5P9RhtJ+frNMdcD4FqhnqMWJIpnjJ3J585M1Vig="
-        }
-      ]
-    },
-    {
-      "Route": "TeamTrack.Web.yzlfid7dj8.bundle.scp.css",
-      "AssetFile": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TeamTrack.Web.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1138"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"HnPo5P9RhtJ+frNMdcD4FqhnqMWJIpnjJ3J585M1Vig=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 03 Mar 2025 15:50:55 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "yzlfid7dj8"
-        },
-        {
-          "Name": "label",
-          "Value": "TeamTrack.Web.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-HnPo5P9RhtJ+frNMdcD4FqhnqMWJIpnjJ3J585M1Vig="
-        }
-      ]
-    },
-    {
-      "Route": "TeamTrack.Web.yzlfid7dj8.styles.css",
-      "AssetFile": "C:\\Users\\sarav\\Desktop\\TeamTrack\\TeamTrack\\TeamTrack.Web\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TeamTrack.Web.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1138"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"HnPo5P9RhtJ+frNMdcD4FqhnqMWJIpnjJ3J585M1Vig=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 03 Mar 2025 15:50:55 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "yzlfid7dj8"
-        },
-        {
-          "Name": "label",
-          "Value": "TeamTrack.Web.styles.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-HnPo5P9RhtJ+frNMdcD4FqhnqMWJIpnjJ3J585M1Vig="
+          "Value": "sha256-ukIvJvMa6Ap2Ae/jLu4Kx5QIIKCNcXrSDa//2pkyxE8="
         }
       ]
     }
