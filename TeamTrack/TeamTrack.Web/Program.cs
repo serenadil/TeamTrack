@@ -8,6 +8,8 @@ builder.Services.AddDbContext<TeamTrackDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+builder.Services.AddHttpClient();
+
 // Aggiungi altri servizi, come i controller
 builder.Services.AddControllersWithViews();
 
@@ -27,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Utente}/{action=Login}/{id?}");
 
 app.Run();

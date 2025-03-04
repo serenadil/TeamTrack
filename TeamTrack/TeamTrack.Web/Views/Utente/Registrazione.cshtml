@@ -1,1 +1,27 @@
-﻿
+﻿@model TeamTrack.Web.Models.RichiestaRegistazione
+
+@{
+    ViewData["Title"] = "Registrazione";
+}
+
+<h2>Registrazione</h2>
+
+<form action="/Utente/Registrazione" method="post">
+    <input type="text" name="Nome" placeholder="Nome" required />
+    <input type="email" name="Email" placeholder="Email" required />
+    <input type="password" name="Password" placeholder="Password" required />
+    <select name="Ruolo" required>
+        <option value="Admin">Amministratore</option>
+        <option value="Partecipante">Partecipante</option>
+    </select>
+    <button type="submit">Registrati</button>
+</form>
+
+<div>
+    <p>Hai già un account? <a asp-action="Login">Accedi</a></p>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

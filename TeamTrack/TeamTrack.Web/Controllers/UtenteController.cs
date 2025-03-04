@@ -28,19 +28,21 @@ namespace TeamTrack.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(request);
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine($"Errore di validazione: {error.ErrorMessage}");
+                }
             }
 
             var json = JsonConvert.SerializeObject(request);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("https://localhost:5001/api/utente/Registrazione", content);
+            var response = await _httpClient.PostAsync("http://localhost:5250/api/utente/Registrazione", content);
 
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Login");
             }
-
             ModelState.AddModelError(string.Empty, "Registrazione fallita.");
             return View(request);
         }
@@ -62,7 +64,7 @@ namespace TeamTrack.MVC.Controllers
             var json = JsonConvert.SerializeObject(request);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("https://localhost:5001/api/utente/Login", content);
+            var response = await _httpClient.PostAsync("http://localhost:5250/api/utente/Login", content);
 
             if (response.IsSuccessStatusCode)
             {
