@@ -32,7 +32,9 @@ builder.Services.AddScoped<ServiziTaskProgetto>();
 builder.Services.AddScoped<RepositoryTaskProgetto>();
 builder.Services.AddScoped<ServiziProgetto>();
 builder.Services.AddScoped<GeneratoreCodiciAccesso>();
+builder.Services.AddScoped<ServiziQuickChart>();
 
+builder.Services.AddHttpClient();  
 
 
 // ?? Aggiunta dei controller
