@@ -34,13 +34,21 @@ builder.Services.AddScoped<ServiziProgetto>();
 builder.Services.AddScoped<GeneratoreCodiciAccesso>();
 builder.Services.AddScoped<ServiziQuickChart>();
 
-builder.Services.AddHttpClient();  
+builder.Services.AddHttpClient();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", builder =>
+    {
+        builder.WithOrigins("http://localhost:5043")
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
 
-// ?? Aggiunta dei controller
+
 builder.Services.AddControllers();
 
-// ?? Configurazione Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -65,7 +73,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-// ?? Middleware aggiuntivi
+app.UseCors("AllowSpecificOrigin");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
