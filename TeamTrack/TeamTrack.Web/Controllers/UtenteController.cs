@@ -37,7 +37,7 @@ namespace TeamTrack.MVC.Controllers
             var json = JsonConvert.SerializeObject(request);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("http://localhost:5250/api/utente/Registrazione", content);
+            var response = await _httpClient.PostAsync("http://localhost:5250/api/Utente/Registrazione", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -64,7 +64,7 @@ namespace TeamTrack.MVC.Controllers
             var json = JsonConvert.SerializeObject(request);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("http://localhost:5250/api/utente/Login", content);
+            var response = await _httpClient.PostAsync("http://localhost:5250/api/Utente/Login", content);
 
             if (response.IsSuccessStatusCode)
             {

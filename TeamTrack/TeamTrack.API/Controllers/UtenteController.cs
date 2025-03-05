@@ -31,7 +31,7 @@ public class UtenteController : ControllerBase
     /// <param name="ruolo">Ruolo dell'utente (Admin, User, etc.).</param>
     /// <param name="nome">Nome dell'utente.</param>
     [HttpPost("Registrazione")]
-    public IActionResult Registrazione(string email, string password, Ruolo ruolo, string nome)
+    public IActionResult Registrazione([FromForm] string email, [FromForm] string password, [FromForm] Ruolo ruolo, [FromForm] string nome)
     {
         if (!Enum.IsDefined(typeof(Ruolo), ruolo))
         {
@@ -46,13 +46,14 @@ public class UtenteController : ControllerBase
         return Ok(new { Message = "Registrazione avvenuta con successo!", UserId = userId });
     }
 
+
     /// <summary>
     /// Effettua il login di un utente.
     /// </summary>
     /// <param name="email">Email dell'utente.</param>
     /// <param name="password">Password dell'utente.</param>
     [HttpPost("Login")]
-    public IActionResult Login(string email, string password)
+    public IActionResult Login([FromForm] string email, [FromForm] string password)
     {
         var authResult = _serviziUtente.Autenticazione(email, password);
 
