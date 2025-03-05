@@ -1,30 +1,41 @@
-# Vedere https://aka.ms/customizecontainer per informazioni su come personalizzare il contenitore di debug e su come Visual Studio usa questo Dockerfile per compilare le immagini per un debug più rapido.
-
-# Questa fase viene usata durante l'esecuzione da Visual Studio in modalità rapida (impostazione predefinita per la configurazione di debug)
+# Fase base, usata in produzione
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-
-# Questa fase viene usata per compilare il progetto di servizio
+# Fase di build, usata per compilare il progetto
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
+# Copia dei progetti e restore delle dipendenze
+COPY ["TeamTrack.Dominio/TeamTrack.Dominio.csproj", "Dominio/"]
+COPY ["TeamTrack.Infrastrutture/TeamTrack.Infrastrutture.csproj", "Infrastrutture/"]
+COPY ["TeamTrack.Servizi/TeamTrack.Servizi.csproj", "Servizi/"]
+COPY ["TeamTrack.API/TeamTrack.API.csproj", "API/"]
 COPY ["TeamTrack.Web/TeamTrack.Web.csproj", "TeamTrack.Web/"]
 RUN dotnet restore "./TeamTrack.Web/TeamTrack.Web.csproj"
-COPY . .
+COPY . ./
+
+# Costruzione dell'applicazione
 WORKDIR "/src/TeamTrack.Web"
 RUN dotnet build "./TeamTrack.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Questa fase viene usata per pubblicare il progetto di servizio da copiare nella fase finale
+# Fase di pubblicazione
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./TeamTrack.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# Questa fase viene usata nell'ambiente di produzione o durante l'esecuzione da Visual Studio in modalità normale (impostazione predefinita quando non si usa la configurazione di debug)
+# Fase per installare gli strumenti globali (dotnet-ef)
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS tool-install
+WORKDIR /app
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+# Fase finale di produzione
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=tool-install /root/.dotnet/tools /root/.dotnet/tools
 ENTRYPOINT ["dotnet", "TeamTrack.Web.dll"]
