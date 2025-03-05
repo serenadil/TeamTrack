@@ -6,14 +6,17 @@
 
 <h2>Registrazione</h2>
 
-<form action="/Utente/Registrazione" method="post">
-    <input type="text" name="Nome" placeholder="Nome" required />
-    <input type="email" name="Email" placeholder="Email" required />
-    <input type="password" name="Password" placeholder="Password" required />
-    <select name="Ruolo" required>
+<!-- Formuliamo un form con un id per poterlo usare facilmente con JavaScript -->
+<form id="registrazioneForm">
+    <input type="text" id="Nome" name="Nome" placeholder="Nome" required autocomplete="name" />
+    <input type="email" id="Email" name="Email" placeholder="Email" required autocomplete="email" />
+    <input type="password" id="Password" name="Password" placeholder="Password" required autocomplete="new-password" />
+
+    <select id="Ruolo" name="Ruolo" required>
         <option value="Admin">Amministratore</option>
         <option value="Partecipante">Partecipante</option>
     </select>
+
     <button type="submit">Registrati</button>
 </form>
 
@@ -22,6 +25,35 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <script>
+        // Gestore dell'evento submit del form
+        document.getElementById('registrazioneForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Previene il comportamento di invio del form (ricaricamento della pagina)
 
+            // Raccogliamo i dati dal form
+            const requestData = {
+                Nome: document.getElementById('Nome').value,
+                Email: document.getElementById('Email').value,
+                Password: document.getElementById('Password').value,
+                Ruolo: document.getElementById('Ruolo').value
+            };
+
+            // Inviamo una richiesta POST con i dati come JSON
+            const response = await fetch('http://localhost:5250/api/utente/Registrazione', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Indichiamo che i dati sono in formato JSON
+                },
+                body: JSON.stringify(requestData) // Convertiamo il nostro oggetto JavaScript in una stringa JSON
+            });
+
+            // Se la registrazione è andata a buon fine, reindirizziamo l'utente alla pagina di login
+            if (response.ok) {
+                window.location.href = '@Url.Action("Login", "Utente")'; // Redirect alla pagina di login
+            } else {
+                const result = await response.json();
+                alert(result.message || "Registrazione fallita.");
+            }
+        });
+    </script>
+}

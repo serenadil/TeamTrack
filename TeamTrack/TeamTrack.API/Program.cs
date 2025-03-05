@@ -6,7 +6,6 @@ using TeamTrack.Servizi.Repository;
 using TeamTrack.Servizi.Servizi;
 
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // ?? Caricamento esplicito della configurazione
@@ -34,8 +33,7 @@ builder.Services.AddScoped<ServiziProgetto>();
 builder.Services.AddScoped<GeneratoreCodiciAccesso>();
 builder.Services.AddScoped<ServiziQuickChart>();
 
-builder.Services.AddHttpClient();  
-
+builder.Services.AddHttpClient();
 
 // ?? Aggiunta dei controller
 builder.Services.AddControllers();
@@ -52,6 +50,17 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+// ?? Abilitare CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", builder =>
+    {
+        builder.WithOrigins("http://localhost:5043") 
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // ?? Middleware Swagger (solo in sviluppo)
@@ -64,6 +73,9 @@ if (app.Environment.IsDevelopment())
         options.RoutePrefix = string.Empty;  // Swagger disponibile alla root dell'app
     });
 }
+
+// ?? Middleware CORS (abilitato per l'intero progetto)
+app.UseCors("AllowSpecificOrigin");  // Applica la politica CORS
 
 // ?? Middleware aggiuntivi
 app.UseHttpsRedirection();
