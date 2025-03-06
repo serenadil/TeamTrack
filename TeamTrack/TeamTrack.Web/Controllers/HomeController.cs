@@ -17,6 +17,12 @@ namespace TeamTrack.Web.Controllers
         [Authorize]
         public IActionResult Index()
         {
+            var userId = HttpContext.Session.GetString("UserId");
+            if (string.IsNullOrEmpty(userId))
+            {
+                // Se l'utente non è loggato, reindirizza alla pagina di login
+                return RedirectToAction("Utente", "Login");
+            }
             return View();
         }
 

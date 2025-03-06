@@ -57,9 +57,13 @@
                 body: formData.toString()
             })
             .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    alert(data.message);
+           .then(data => {
+                if (data.userId) {  
+                    localStorage.setItem('userId', data.userId); 
+                    localStorage.setItem('userRole', document.getElementById('ruolo').value); 
+
+                    alert(data.Message); 
+                    window.location.href = "/Home/Index"; 
                 } else {
                     document.getElementById('emailError').innerText = data.message || 'Errore durante la registrazione';
                 }
