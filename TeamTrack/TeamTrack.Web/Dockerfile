@@ -1,30 +1,57 @@
-# Vedere https://aka.ms/customizecontainer per informazioni su come personalizzare il contenitore di debug e su come Visual Studio usa questo Dockerfile per compilare le immagini per un debug più rapido.
-
-# Questa fase viene usata durante l'esecuzione da Visual Studio in modalità rapida (impostazione predefinita per la configurazione di debug)
+# Fase base, usata in produzione  
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-
-# Questa fase viene usata per compilare il progetto di servizio
+# Fase di build, usata per compilare il progetto
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["TeamTrack.Web/TeamTrack.Web.csproj", "TeamTrack.Web/"]
+
+# Copia solo i file .csproj per eseguire il restore
+COPY ./TeamTrack.Dominio/TeamTrack.Dominio.csproj ./TeamTrack.Dominio/
+COPY ./TeamTrack.Infrastrutture/TeamTrack.Infrastrutture.csproj ./TeamTrack.Infrastrutture/
+COPY ./TeamTrack.Servizi/TeamTrack.Servizi.csproj ./TeamTrack.Servizi/
+COPY ./TeamTrack.API/TeamTrack.API.csproj ./TeamTrack.API/
+COPY ./TeamTrack.Web/TeamTrack.Web.csproj ./TeamTrack.Web/
+
+# Esegui il restore 
 RUN dotnet restore "./TeamTrack.Web/TeamTrack.Web.csproj"
-COPY . .
+
+
+# Copia tutti i file
+COPY . ./
+
+# Costruzione dell'applicazione
 WORKDIR "/src/TeamTrack.Web"
 RUN dotnet build "./TeamTrack.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Questa fase viene usata per pubblicare il progetto di servizio da copiare nella fase finale
+# Fase di pubblicazione
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./TeamTrack.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# Questa fase viene usata nell'ambiente di produzione o durante l'esecuzione da Visual Studio in modalità normale (impostazione predefinita quando non si usa la configurazione di debug)
-FROM base AS final
+# Fase finale di produzione
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
+
+# Installa il .NET SDK direttamente dai repository ufficiali di Microsoft
+RUN apt-get update \
+    && apt-get install -y wget apt-transport-https software-properties-common \
+    && wget https://packages.microsoft.com/config/ubuntu/22.04/prod.list \
+    && mv prod.list /etc/apt/sources.list.d/microsoft-prod.list \
+    && wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | apt-key add - \
+    && apt-get update \
+    && apt-get install -y dotnet-sdk-8.0
+
+# Copia l'applicazione pubblicata dalla fase di pubblicazione
 COPY --from=publish /app/publish .
+
+# Installa il tool dotnet-ef nella fase finale
+RUN dotnet tool install --global dotnet-ef
+
+# Imposta la variabile PATH correttamente
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+# Esegui l'applicazione
 ENTRYPOINT ["dotnet", "TeamTrack.Web.dll"]

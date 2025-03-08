@@ -3,6 +3,9 @@ using TeamTrack.Infrastrutture; // Assicurati che il namespace sia corretto
 
 var builder = WebApplication.CreateBuilder(args);
 
+// ?? Imposta l'URL per ascoltare sulla porta 80 dentro il container
+builder.WebHost.UseUrls("http://+:80");
+
 // Configura il DbContext per usare SQL Server
 builder.Services.AddDbContext<TeamTrackDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -32,3 +35,4 @@ app.MapControllerRoute(
     pattern: "{controller=Utente}/{action=Login}/{id?}");
 
 app.Run();
+

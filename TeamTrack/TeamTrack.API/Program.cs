@@ -8,7 +8,6 @@ using TeamTrack.Servizi.Servizi;
 
 
 var builder = WebApplication.CreateBuilder(args);
-
 // ?? Caricamento esplicito della configurazione
 var config = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())

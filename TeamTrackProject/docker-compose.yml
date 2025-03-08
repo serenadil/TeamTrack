@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+
+ sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Your_password123
+    ports:
+      - "1433:1433"
+    networks:
+      - teamtrack_network
+    container_name: sqlserver
+
+ teamtrackproject:
+    image: ${DOCKER_REGISTRY-}teamtrackproject
+    build:
+      context: .
+      dockerfile: TeamTrackProject/Dockerfile
+    depends_on:
+      - sqlserver
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - teamtrack_network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=TeamTrackDb;User Id=sa;Password=Your_password123;Encrypt=False
+
+
+
+networks:
+  teamtrack_network:
+    driver: bridge
