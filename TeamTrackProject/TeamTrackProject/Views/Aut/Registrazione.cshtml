@@ -47,8 +47,7 @@
             let expires = "expires=" + d.toUTCString();
             document.cookie = name + "=" + value + ";" + expires + ";path=/";
 
-            // Aggiungi questa riga per visualizzare il cookie in console
-            console.log('Cookie impostato:', document.cookie);
+      
         }
 
         document.getElementById('registrazioneForm').addEventListener('submit', async function (e) {

@@ -15,15 +15,14 @@ namespace TeamTrackProject.Controllers
 
         public IActionResult Index()
         {
+            
             if (Request.Cookies["userId"] == null)
             {
                 return RedirectToAction("Login", "Aut");
             }
 
-           
             return View();
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -32,3 +31,4 @@ namespace TeamTrackProject.Controllers
         }
     }
 }
+

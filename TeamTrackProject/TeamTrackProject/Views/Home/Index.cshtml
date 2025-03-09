@@ -2,4 +2,93 @@
     ViewData["Title"] = "Home";
 }
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center" id="welcomeMessage">Benvenuto!</h1> 
+            @await Html.PartialAsync("ListaProgetti")
+
+            <div id="createProject" style="display: none;">
+                @await Html.PartialAsync("CreaProgetto")
+            </div>
+
+            @await Html.PartialAsync("UnioneProgetto")
+
+            @await Html.PartialAsync("TaskChart")
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function getCookie(name) {
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i].trim();
+                if (c.indexOf(name + "=") === 0) {
+                    return c.substring(name.length + 1, c.length);
+                }
+            }
+            return "";
+        }
+
+        async function getUserProfile() {
+            const userId = getCookie('userId');
+
+            if (!userId) {
+             
+                window.location.href = "/Aut/Login";
+                return;
+            }
+
+
+            try {
+                const response = await fetch(`/api/utente/utente/${userId}`);
+
+                if (!response.ok) {
+                    
+                    return;
+                }
+
+              
+                const responseData = await response.json();
+
+              
+                if (!responseData) {
+                    console.error('Dati dell\'utente non validi o vuoti');
+                    return;
+                }
+
+
+                const welcomeMessageElement = document.getElementById('welcomeMessage');
+                if (welcomeMessageElement) {
+                    welcomeMessageElement.innerText = `Benvenuto, ${responseData.nome}!`;
+                } else {
+                    console.error('Elemento di benvenuto non trovato nel DOM.');
+                }
+
+         
+                const createProjectElement = document.getElementById('createProject');
+                if (createProjectElement) {
+                    if (responseData.ruolo === 0) { 
+                      
+                        createProjectElement.style.display = 'block';
+                    } else {
+                        
+                        createProjectElement.style.display = 'none';
+                    }
+                } else {
+                    console.error('Elemento di creazione progetto non trovato nel DOM.');
+                }
+
+            } catch (error) {
+                console.error('Errore nella richiesta API:', error);
+            }
+        }
+
+        getUserProfile();
+    </script>
+}
 
