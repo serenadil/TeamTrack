@@ -59,7 +59,7 @@ else
     app.UseHsts();
 }
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
@@ -68,6 +68,5 @@ app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Utente}/{action=Login}/{id?}");
-
+    pattern: "{controller=Aut}/{action=Login}/{id?}");
 app.Run();

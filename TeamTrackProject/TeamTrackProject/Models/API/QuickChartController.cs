@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TeamTrackProject.Models.Servizi;
 
-namespace TeamTrackProject.Controllers
+namespace TeamTrackProject.Models.API
 {
     [Route("api/[controller]")]
     [ApiController]

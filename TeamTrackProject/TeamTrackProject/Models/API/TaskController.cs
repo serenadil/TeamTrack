@@ -2,7 +2,7 @@
 using TeamTrackProject.Models.Dominio;
 using TeamTrackProject.Models.Servizi;
 
-namespace TeamTrackProject.Controllers
+namespace TeamTrackProject.Models.API
 {/// <summary>
  /// Controller per la gestione delle task in un progetto.
  /// Fornisce endpoint per creare, eliminare, aggiornare e visualizzare le task all'interno di un progetto.

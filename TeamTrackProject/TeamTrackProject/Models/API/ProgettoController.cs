@@ -2,7 +2,7 @@
 using TeamTrackProject.Models.Dominio;
 using TeamTrackProject.Models.Servizi;
 
-namespace TeamTrackProject.Controllers
+namespace TeamTrackProject.Models.API
 {
     /// <summary>
     /// Controller per la gestione dei progetti.
@@ -130,7 +130,7 @@ namespace TeamTrackProject.Controllers
         /// <param name="password">Password del progetto</param>
         /// <returns>True se l'iscrizione ha successo, false in caso contrario</returns>
         [HttpPost("iscrizione/{id}")]
-        public Boolean AggiungiUtente(int id, string codice, string password)
+        public bool AggiungiUtente(int id, string codice, string password)
         {
             var utente = _serviziUtente.GetUtente(id);
             return _serviziProgetto.aggiungiUtente(utente, codice, password);

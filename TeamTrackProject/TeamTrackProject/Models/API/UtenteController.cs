@@ -2,7 +2,7 @@
 using TeamTrackProject.Models.Dominio;
 using TeamTrackProject.Models.Servizi;
 
-namespace TeamTrackProject.Controllers
+namespace TeamTrackProject.Models.API
 {
     /// <summary>
     /// Controller per la gestione degli utenti.
@@ -59,13 +59,13 @@ namespace TeamTrackProject.Controllers
 
             if (!authResult.Success)
             {
-                return Unauthorized(new { Message = authResult.Message });
+                return Unauthorized(new { authResult.Message });
             }
 
             return Ok(new
             {
-                Message = authResult.Message,
-                UserId = authResult.UserId
+                authResult.Message,
+                authResult.UserId
             });
         }
 

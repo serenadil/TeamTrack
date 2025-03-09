@@ -1,0 +1,20 @@
+﻿@* _ProjectList.cshtml *@
+@{
+    var projects = Model.Projects; 
+}
+
+@if (projects != null && projects.Any())
+{
+    <ul class="list-group">
+        @foreach (var project in projects)
+        {
+            <li class="list-group-item">
+                <a href="/Progetti/Details/@project.Id">@project.Name</a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Non sei ancora iscritto a nessun progetto. Unisciti a uno!</p>
+}
