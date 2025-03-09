@@ -1,0 +1,98 @@
+@model TeamTrackProject.Models.Dominio.Progetto
+@{
+    ViewData["Title"] = "Dettaglio Progetto";
+    var isAdmin = User.IsInRole("Admin");
+}
+
+<div class="p-4">
+    <h1 class="text-2xl font-bold mb-4">Dettaglio Progetto: @Model.Nome</h1>
+    <p><strong>Codice Accesso:</strong> @Model.CodiceAccesso</p>
+    <p><strong>Data Inizio:</strong> @Model.DataInizioProgetto.ToShortDateString()</p>
+    <p><strong>Data Fine:</strong> @Model.DataFineProgetto.ToShortDateString()</p>
+    <p><strong>Amministratore:</strong> @Model.Admin?.Nome</p>
+
+    <h2 class="text-xl font-semibold mt-6">Attivit‡ del Progetto</h2>
+    <ul class="list-disc pl-6">
+        @foreach (var task in Model.Tasks)
+        {
+        <li>
+            <a href="/TaskProgetto/DettagliTaskProgetto/@task.Id" class="text-blue-500 hover:underline">
+                @task.Nome
+                </a> - Priorit‡: @task.Priorit‡Task
+        </li>
+        }
+    </ul>
+
+    <h2 class="text-xl font-semibold mt-6">Utenti Associati</h2>
+    <ul class="list-disc pl-6">
+        @foreach (var user in Model.Users)
+        {
+        <li>@user.Nome (@user.Email)</li>
+        }
+    </ul>
+
+    @if (isAdmin)
+    {
+    <div class="mt-6">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="visualizzaGrafico()">Visualizza Grafico Task</button>
+        <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="eliminaProgetto(@Model.Id)">Elimina Progetto</button>
+    </div>
+
+    <div class="mt-6">
+        <h2 class="text-xl font-semibold">Aggiungi Utente al Progetto</h2>
+        <input type="text" id="codice" placeholder="Codice Progetto" class="border p-2 rounded" />
+        <input type="password" id="password" placeholder="Password" class="border p-2 rounded ml-2" />
+        <button class="bg-green-500 text-white px-4 py-2 rounded ml-2" onclick="aggiungiUtente(@Model.Id)">Aggiungi Utente</button>
+    </div>
+    }
+
+    <div class="mt-6" id="chartContainer"></div>
+</div>
+
+<script>
+    async function visualizzaGrafico() {
+        try {
+            const response = await fetch('/api/QuickChart/pie?daFare=10&inCorso=5&completate=7');
+            const data = await response.json();
+            document.getElementById('chartContainer').innerHTML = `<img src="${data.chartUrl}" alt="Grafico Task" class="mt-4" />`;
+        } catch (error) {
+            console.error('Errore durante il caricamento del grafico:', error);
+        }
+    }
+
+    async function eliminaProgetto(progettoId) {
+        if (confirm('Sei sicuro di voler eliminare questo progetto?')) {
+            try {
+                const response = await fetch(`/api/Progetti/${progettoId}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    alert('Progetto eliminato con successo');
+                    window.location.href = '/Progetti/ListaProgetti';
+                } else {
+                    alert('Errore');
+                }
+            } catch (error) {
+                console.error('Errore: ', error);
+            }
+        }
+    }
+
+    async function aggiungiUtente(progettoId) {
+        const codice = document.getElementById('codice').value;
+        const password = document.getElementById('password').value;
+        try {
+            const response = await fetch(`/api/Progetti/iscrizione/${progettoId}?codice=${codice}&password=${password}`, {
+                method: 'POST'
+            });
+            if (response.ok) {
+                alert('Utente aggiunto con successo');
+                window.location.reload();
+            } else {
+                alert('Errore');
+            }
+        } catch (error) {
+            console.error('Errore:', error);
+        }
+    }
+</script>

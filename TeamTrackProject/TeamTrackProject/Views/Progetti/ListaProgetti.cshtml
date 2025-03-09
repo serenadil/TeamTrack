@@ -1,0 +1,65 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Lista Progetti";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <button id="creaProgettoBtn" class="btn btn-success d-none">Crea Nuovo Progetto</button>
+</div>
+
+<ul id="progettiList" class="list-group">
+</ul>
+
+@section Scripts {
+    <script>document.addEventListener('DOMContentLoaded', function () {
+            const userId = localStorage.getItem('userId');
+            const userRole = localStorage.getItem('userRole');
+
+            if (userRole === '0') { 
+                document.getElementById('creaProgettoBtn').classList.remove('d-none');
+            }
+
+            fetch(`http://localhost:5250/api/Utente/progetti/${userId}`)
+                .then(response => response.json())
+                .then(progetti => {
+                    const listaProgetti = document.getElementById('progettiList');
+                    listaProgetti.innerHTML = '';
+                    progetti.forEach(progetto => {
+                        const li = document.createElement('li');
+                        li.className = 'list-group-item list-group-item-action';
+                        li.textContent = progetto.nome;
+                        li.onclick = () => window.location.href = `/Progetti/DettagliProgetto?id=${progetto.id}&userId=${userId}`;
+                        listaProgetti.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Errore nel recupero dei progetti:', error));
+
+            document.getElementById('creaProgettoBtn').addEventListener('click', function () {
+                const nomeProgetto = prompt('Inserisci il nome del progetto:');
+                if (!nomeProgetto) return;
+
+                const formData = new URLSearchParams();
+                formData.append('nome', nomeProgetto);
+                formData.append('password', 'passwordProgetto');
+                formData.append('dataInizioProgetto', new Date().toISOString());
+                formData.append('dataFineProgetto', new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString());
+                formData.append('adminId', userId);
+
+                fetch('http://localhost:5250/api/Progetti/CreaProgetto', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData.toString()
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.Message);
+                    window.location.reload();
+                })
+                .catch(error => console.error('Errore nella creazione del progetto:', error));
+            });
+        });</script>
+}

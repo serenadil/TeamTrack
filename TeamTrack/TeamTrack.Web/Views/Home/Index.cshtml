@@ -1,8 +1,119 @@
-﻿@{
+﻿    @{
     ViewData["Title"] = "Home Page";
-}
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Team Track</h1>
+        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+
+        <h2>Lista dei Progetti</h2>
+        @if (User.IsInRole("Admin") && progetto.AdminId == @User.FindFirst("Id").Value) {
+        <a asp-action="Crea" class="btn btn-primary mb-3">Crea Nuovo Progetto</a>
+        }
+        <div id="formCreaProgetto" style="display:none;">
+            <h3>Crea Nuovo Progetto</h3>
+            <form asp-action="Crea" method="post">
+                <div class="form-group">
+                    <label for="Nome">Nome del Progetto</label>
+                    <input type="text" class="form-control" id="Nome" name="nome" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="Password">Password del Progetto</label>
+                    <input type="password" class="form-control" id="Password" name="password" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="DataInizio">Data Inizio</label>
+                    <input type="date" class="form-control" id="DataInizio" name="dataInizio" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="DataFine">Data Fine</label>
+                    <input type="date" class="form-control" id="DataFine" name="dataFine" required />
+                </div>
+
+                <input type="hidden" name="adminId" value="@User.FindFirst("Id").Value" />
+
+                <button type="submit" class="btn btn-primary">Crea Progetto</button>
+                <button type="button" class="btn btn-secondary" id="btnAnnulla">Annulla</button>
+            </form>
+        </div>
+
+        <hr />
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data Inizio</th>
+                    <th>Data Fine</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var progetto in Model)
+        {
+                <tr>
+                    <td>@progetto.Nome</td>
+                    <td>@progetto.DataInizioProgetto.ToShortDateString()</td>
+                    <td>@progetto.DataFineProgetto.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="Dettagli" asp-route-id="@progetto.Id" class="btn btn-info">Dettagli</a>
+
+                        @if (User.IsInRole("Admin") && progetto.AdminId == @User.FindFirst("Id").Value)
+                    {
+                        <a asp-action="Modifica" asp-route-id="@progetto.Id" class="btn btn-warning">Modifica</a>
+                        <a asp-action="Elimina" asp-route-id="@progetto.Id" class="btn btn-danger"
+                           onclick="return confirm('Sei sicuro di voler eliminare questo progetto?');">Elimina</a>
+                    }
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+
+    </div>
+    @section Scripts {
+        <script>
+            // Quando si clicca sul bottone "Crea Nuovo Progetto", mostra il form
+            document.getElementById('btnCreaProgetto').addEventListener('click', function () {
+                document.getElementById('formCreaProgetto').style.display = 'block';
+                document.getElementById('btnCreaProgetto').style.display = 'none'; // Nascondi il bottone
+            });
+            document.getElementById('formCreaProgetto').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const formData = new URLSearchParams();
+                formData.append('Nome', document.getElementById('Nome').value);
+                formData.append('Password', document.getElementById('Password').value);
+                formData.append('DataInizio', document.getElementById('DataInizio').value);
+                formData.append('DataFine', document.getElementById('DataFine').value);
+
+                fetch('http://localhost:5250/api/Progetti/CreaProgetto', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: formData.toString()
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                            alert(data.Message);
+                            window.location.href = "/Home/Index";
+                    })
+                    .catch((error) => {
+                        console.error('Errore nella creazione del progetto:', error);
+                        document.getElementById('emailError').innerText = 'Errore nella registrazione, per favore riprova.';
+                    });
+            });
+
+            // Quando si clicca su "Annulla", nascondi il form
+            document.getElementById('btnAnnulla').addEventListener('click', function () {
+                document.getElementById('formCreaProgetto').style.display = 'none';
+                document.getElementById('btnCreaProgetto').style.display = 'block'; // Mostra di nuovo il bottone
+            });
+        </script>
+    }
