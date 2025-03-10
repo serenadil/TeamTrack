@@ -43,9 +43,8 @@
             return null;
         }
 
-         document.getElementById('progettoForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
+        
+            function creaProgetto(){
             const nome = document.getElementById('nome').value;
             const password = document.getElementById('password').value;
             const dataInizio = document.getElementById('dataInizio').value;
@@ -80,7 +79,10 @@
                 console.error('Errore durante la richiesta della creazione del progetto:', error);
                 alert('Errore nella creazione del progetto, riprova.');
                 }
-
+            }
+             document.getElementById('progettoForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            creaProgetto();
 
     </script>
 }

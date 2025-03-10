@@ -27,46 +27,41 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
             return null;
         }
+        function iscriviUtente() {
+             const codice = document.getElementById('codice').value;
+             const password = document.getElementById('password').value;
+             const userId = getCookie('adminId');
 
-        document.getElementById('iscrizioneForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const codice = document.getElementById('codice').value;
-            const password = document.getElementById('password').value;
-            const userId = getCookie('adminId');
-            if (!userId) {
-                console.error('ID utente non trovato nei cookie!');
-                return;
-            }
-
-            try {
-                const response = await fetch(`/api/progetti/iscrizione/${userId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: new URLSearchParams({
-                        codice: codice,
-                        password: password
-                    })
-                });
+             try {
+                 const response = await fetch(`/api/progetti/iscrizione/${userId}`, {
+                 method: 'POST',
+                  body: new URLSearchParams({
+                     codice: codice,
+                     password: password
+                 }),
+                 headers: {
+                     'Content-Type': 'application/x-www-form-urlencoded'
+                 }
+                 });
 
                 if (response.ok) {
                     const result = await response.json();
-                    if (result) {
-                        alert('Iscrizione al progetto avvenuta con successo!');
-                        window.location.href = 'Progetti/DettagliProgetto';
-                    } else {
-                        alert('Iscrizione fallita. Controlla il codice e la password.');
-                    }
+                    window.location.href = "/Home/Index";
+
                 } else {
-                    const errorText = await response.text();
-                    console.error('Errore nella risposta API:', errorText);
+                    const errorData = await response.json();
+                    console.alert('Errore nell\' iscrizione al progetto:' + errorData.Message);
                 }
-            } catch (error) {
-                console.error('Errore nella richiesta API:', error);
-            }
-        });
+                     } catch (error) {
+                console.error('Errore durante la richiesta dell\' iscrizione al progetto:', error);
+                alert('Errore nell\' iscrizione al progetto, riprova.');
+                }
+         }
+
+         document.getElementById('iscrizioneForm').addEventListener('submit', function (e) {
+             e.preventDefault();
+             iscriviUtente();
+         });
     </script>
 }
 
