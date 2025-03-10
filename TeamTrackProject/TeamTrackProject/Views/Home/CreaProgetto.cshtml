@@ -2,34 +2,36 @@
     ViewData["Title"] = "Crea un nuovo progetto";
 }
 
-<h2>@ViewData["Title"]</h2>
-
+<h2 class="text-center">@ViewData["Title"]</h2>
 
 <div class="container d-flex justify-content-center">
-    <form id="progettoForm" class="w-50">
-        <div class="form-group">
-            <label for="nome" class="control-label">Nome del progetto</label>
-            <input type="text" id="nome" name="nome" class="form-control" required />
-            <span id="nomeError" class="text-danger"></span>
-        </div>
+  
+        <div class="card-body">
+            <form id="progettoForm">
+                <div class="form-group">
+                    <label for="nome" class="control-label">Nome del progetto</label>
+                    <input type="text" id="nome" name="nome" class="form-control" required />
+                    <span id="nomeError" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <label for="password" class="control-label">Password</label>
-            <input type="password" id="password" name="password" class="form-control" required />
-            <span id="passwordError" class="text-danger"></span>
-        </div>
+                <div class="form-group">
+                    <label for="password" class="control-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required />
+                    <span id="passwordError" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <label for="dataInizio" class="control-label">Data di inizio</label>
-            <input type="datetime-local" id="dataInizio" name="dataInizio" class="form-control" required>
-        </div>
+                <div class="form-group">
+                    <label for="dataInizio" class="control-label">Data di inizio</label>
+                    <input type="datetime-local" id="dataInizio" name="dataInizio" class="form-control" required />
+                </div>
 
-        <div class="form-group">
-            <label for="dataFine" class="control-label">Data di fine</label>
-            <input type="datetime-local" id="dataFine" name="dataFine" class="form-control" required>
-        </div>
+                <div class="form-group">
+                    <label for="dataFine" class="control-label">Data di fine</label>
+                    <input type="datetime-local" id="dataFine" name="dataFine" class="form-control" required />
+                </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Crea</button>
-    </form>
+                <button type="submit" class="btn btn-primary btn-block">Crea</button>
+            </form>
+        </div>
+    
 </div>
-

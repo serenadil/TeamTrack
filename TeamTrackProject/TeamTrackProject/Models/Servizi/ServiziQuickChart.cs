@@ -1,12 +1,16 @@
-﻿using System.Text.Json;
+﻿using Azure;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace TeamTrackProject.Models.Servizi
 {
     public class ServiziQuickChart
     {
-        private const string QuickChartUrl = "https://quickchart." +
-            "io/chart";
+        private const string QuickChartUrl = "https://quickchart.io/chart";
         private readonly HttpClient _httpClient;
 
         public ServiziQuickChart(HttpClient httpClient)
@@ -14,7 +18,8 @@ namespace TeamTrackProject.Models.Servizi
             _httpClient = httpClient;
         }
 
-        public async Task<string> GetStatoTaskGrafico(int[] values)
+        // Metodo per ottenere il grafico a torta
+        public async Task<string> GetStatoTaskGraficoAsync(int[] values)
         {
             var chartConfig = new
             {
@@ -42,7 +47,8 @@ namespace TeamTrackProject.Models.Servizi
             return await GenerateChartUrlAsync(chartConfig);
         }
 
-        public async Task<string> GetTasksGrafico(int[] tasksPerMonth)
+        // Metodo per ottenere il grafico a barre
+        public async Task<string> GetTasksGraficoAsync(int[] tasksPerMonth)
         {
             var chartConfig = new
             {
@@ -107,20 +113,45 @@ namespace TeamTrackProject.Models.Servizi
             return await GenerateChartUrlAsync(chartConfig);
         }
 
+        // Metodo per generare l'URL del grafico
         private async Task<string> GenerateChartUrlAsync(object chartConfig)
         {
-            string jsonConfig = JsonSerializer.Serialize(chartConfig);
-            var content = new StringContent($"{{\"chart\": {jsonConfig} }}", Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PostAsync(QuickChartUrl, content);
-            Console.Write(response);
-            Console.Write(response.Content);
-            if (!response.IsSuccessStatusCode)
+            var requestBody = new
             {
-                throw new Exception($"Errore nella chiamata QuickChart: {response.StatusCode}");
-            }
+                chart = chartConfig
+            };
 
-            return await response.Content.ReadAsStringAsync();
+            // Serializza l'oggetto in JSON
+            string jsonRequestBody = JsonSerializer.Serialize(requestBody);
+            var content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
+
+            try
+            {
+                // Invio la richiesta POST con il corpo JSON
+                HttpResponseMessage response = await _httpClient.PostAsync(QuickChartUrl, content);
+
+                // Assicurati che la risposta sia ok
+                response.EnsureSuccessStatusCode();
+
+                // Controlla il tipo di contenuto della risposta
+                var contentType = response.Content.Headers.ContentType.MediaType;
+
+                if (contentType == "image/png")
+                {
+                    // Restituisci l'URL del grafico (come immagine)
+                    return response.RequestMessage.RequestUri.ToString();
+                }
+                else
+                {
+                    throw new Exception($"Errore: La risposta non è un'immagine (tipo: {contentType}).");
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                // Gestione degli errori HTTP
+              
+                throw new Exception($"Errore nella chiamata API: {e.Message}.");
+            }
         }
     }
 }

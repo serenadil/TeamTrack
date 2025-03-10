@@ -2,20 +2,24 @@
     ViewData["Title"] = "Unisciti a un progetto";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2 class="text-center">@ViewData["Title"]</h2>
+
 <div class="container d-flex justify-content-center">
-    <form id="iscrizioneForm" class="w-50">
-        <div class="form-group">
-            <label for="codice" class="control-label">Codice di Accesso</label>
-            <input type="text" id="codice" name="codice" class="form-control" required />
-        </div>
+   
+        <div class="card-body">
+            <form id="iscrizioneForm">
+                <div class="form-group">
+                    <label for="codice" class="control-label">Codice di Accesso</label>
+                    <input type="text" id="codice" name="codice" class="form-control" required />
+                </div>
 
-        <div class="form-group">
-            <label for="password.unione" class="control-label">Password del Progetto</label>
-            <input type="password" id="password.unione" name="password.unione" class="form-control" required />
-        </div>
+                <div class="form-group">
+                    <label for="password.unione" class="control-label">Password del Progetto</label>
+                    <input type="password" id="password.unione" name="password.unione" class="form-control" required />
+                </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Iscriviti</button>
-    </form>
+                <button type="submit" class="btn btn-primary btn-block">Iscriviti</button>
+            </form>
+        </div>
+    
 </div>
-

@@ -21,12 +21,13 @@ namespace TeamTrackProject.Models.API
         /// I dati devono essere passati come parametri di query: "daFare", "inCorso", "completate".
         /// </summary>
         [HttpGet("pie")]
-        public async Task<IActionResult> GetPieChart([FromQuery] int daFare, [FromQuery] int inCorso, [FromQuery] int completate)
+        public async Task<IActionResult> GetPieChart([FromForm] int daFare, [FromForm] int inCorso, [FromForm
+            ] int completate)
         {
 
             int[] taskCounts = { daFare, inCorso, completate };
 
-            string chartUrl = await _serviziQuickChart.GetStatoTaskGrafico(taskCounts);
+            string chartUrl = await _serviziQuickChart.GetStatoTaskGraficoAsync(taskCounts);
             return Ok(new { chartUrl });
         }
 
@@ -42,7 +43,7 @@ namespace TeamTrackProject.Models.API
                 return BadRequest("Devi fornire esattamente 12 valori, uno per ogni mese.");
             }
 
-            string chartUrl = await _serviziQuickChart.GetTasksGrafico(tasksPerMonth);
+            string chartUrl = await _serviziQuickChart.GetTasksGraficoAsync(tasksPerMonth);
             return Ok(new { chartUrl });
         }
 

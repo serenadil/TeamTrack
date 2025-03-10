@@ -2,43 +2,48 @@
     ViewData["Title"] = "Registrazione";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <div class="container d-flex justify-content-center">
-    <form id="registrazioneForm" class="w-50">
-        <div class="form-group">
-            <label for="email" class="control-label">Email</label>
-            <input type="email" id="email" name="email" class="form-control" required />
-            <span id="emailError" class="text-danger"></span>
-        </div>
+    <div class="card shadow-lg" style="width: 100%; max-width: 420px; border-radius: 10px;">
+        <div class="card-body">
+            <form id="registrazioneForm">
+                <div class="form-group">
+                    <label for="email" class="control-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required />
+                    <span id="emailError" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <label for="password" class="control-label">Password</label>
-            <input type="password" id="password" name="password" class="form-control" required />
-            <span id="passwordError" class="text-danger"></span>
-        </div>
+                <div class="form-group">
+                    <label for="password" class="control-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required />
+                    <span id="passwordError" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <label for="ruolo" class="control-label">Ruolo</label>
-            <select id="ruolo" name="ruolo" class="form-control" required>
-                <option value="0">Admin</option>
-                <option value="1">User</option>
-            </select>
-        </div>
+                <div class="form-group">
+                    <label for="ruolo" class="control-label">Ruolo</label>
+                    <select id="ruolo" name="ruolo" class="form-control" required>
+                        <option value="0">Admin</option>
+                        <option value="1">User</option>
+                    </select>
+                </div>
 
-        <div class="form-group">
-            <label for="nome" class="control-label">Nome</label>
-            <input type="text" id="nome" name="nome" class="form-control" required />
-            <span id="nomeError" class="text-danger"></span>
-        </div>
+                <div class="form-group">
+                    <label for="nome" class="control-label">Nome</label>
+                    <input type="text" id="nome" name="nome" class="form-control" required />
+                    <span id="nomeError" class="text-danger"></span>
+                </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Registrati</button>
+                <button type="submit" class="btn btn-primary btn-block mt-3" style="border-radius: 30px;">Registrati</button>
 
-        <div class="text-center mt-3">
-            <p>Hai già un account? <a href="/Aut/Login">Accedi qui</a></p>
+                <div class="text-center mt-3">
+                    <p>Hai già un account? <a href="/Aut/Login">Accedi qui</a></p>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
+
 @section Scripts {
     <script>
         function setCookie(name, value, days) {
@@ -46,8 +51,6 @@
             d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
             let expires = "expires=" + d.toUTCString();
             document.cookie = name + "=" + value + ";" + expires + ";path=/";
-
-      
         }
 
         document.getElementById('registrazioneForm').addEventListener('submit', async function (e) {
@@ -74,20 +77,16 @@
 
                 if (response.ok) {
                     const result = await response.json();
-                   
                     setCookie('userId', result.userId, 7);
-
                     window.location.href = '/Home/Index';
                 } else {
                     const errorData = await response.json();
                     alert('Errore nella registrazione: ' + errorData.Message);
                 }
             } catch (error) {
-                
                 alert('Errore nella registrazione, riprova.');
             }
         });
     </script>
 }
 
-}

@@ -5,9 +5,9 @@
 <div class="container mt-4">
     <h1 class="text-center mb-4" id="welcomeMessage">Benvenuto!</h1>
 
-    <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
-            <div class="card shadow-sm h-100">
+            <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
                     @await Html.PartialAsync("ListaProgetti")
                 </div>
@@ -15,34 +15,33 @@
         </div>
 
         <div class="col">
-            <div class="card shadow-sm h-100" id="createProject" style="display: none;">
+            <div class="card shadow-lg h-100" id="createProject" style="border-radius: 15px; display: none;">
                 <div class="card-body">
-            
                     @await Html.PartialAsync("CreaProgetto")
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card shadow-sm h-100">
+            <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
-                  
                     @await Html.PartialAsync("UnioneProgetto")
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card shadow-sm h-100">
+            <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
-                    <img id="taskChart" class="img-fluid" alt="Grafico delle Task" />
-                    
+                    <div id="chartContainer" style="width: 100%; text-align: center;">
+                    </div>
                     @await Html.PartialAsync("TaskChart")
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 @section Scripts {
     <script>
@@ -87,11 +86,6 @@
             const password = document.getElementById('password.unione').value;
             const userId = getCookie('userId');
 
-            console.log("🔹 Tentativo di iscrizione...");
-            console.log("📌 Codice:", codice);
-            console.log("📌 Password:", password);
-            console.log("📌 Admin ID:", userId);
-
             try {
                 const response = await fetch(`/api/Progetti/iscrizione/${userId}`, {
                     method: 'POST',
@@ -99,47 +93,44 @@
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 });
 
-                console.log("🔹 Risposta ricevuta:", response.status, response.statusText);
+               
 
                 if (!response.ok) {
-                    console.warn("⚠️ Errore nella risposta:", response.status);
-
-                    // Controlla se il server ha restituito del testo
+                   
                     const errorText = await response.text();
-                    console.log("📌 Testo risposta errore:", errorText);
+                   
 
                     try {
-                        const errorData = JSON.parse(errorText); // Prova a convertire in JSON
+                        const errorData = JSON.parse(errorText);
                         alert('Errore nell\'iscrizione al progetto: ' + errorData.Message);
                     } catch (jsonError) {
-                        console.warn("⚠️ La risposta non è JSON valido:", jsonError);
+                        
                         alert(`Errore nell'iscrizione: ${response.statusText}`);
                     }
 
                     return;
                 }
 
-                // Controlla se la risposta è vuota
+           
                 const textResponse = await response.text();
-                console.log("📌 Testo risposta:", textResponse);
+               
 
                 if (!textResponse) {
-                    console.warn("⚠️ Nessuna risposta ricevuta dal server.");
+                   
                     alert("Errore sconosciuto: risposta vuota dal server.");
                     return;
                 }
 
-                // Converti la risposta JSON
                 try {
                     const result = JSON.parse(textResponse);
-                    console.log("✅ Iscrizione avvenuta con successo:", result);
+                   
                     window.location.href = "/Home/Index";
                 } catch (jsonError) {
-                    console.error("❌ Errore nel parsing JSON:", jsonError);
+                    console.error("Errore nel parsing JSON:", jsonError);
                 }
 
             } catch (error) {
-                console.error('❌ Errore durante l\'iscrizione al progetto:', error);
+               
                 alert('Errore nell\'iscrizione al progetto, riprova.');
             }
         }
@@ -158,17 +149,11 @@
             let dataFine = document.getElementById('dataFine').value;
             const adminId = getCookie('userId');
 
-            console.log("DataInizio originale:", dataInizio);
-            console.log("DataFine originale:", dataFine);
-
-            // Converti le date in oggetti Date
+           
             let dataInizioDate = new Date(dataInizio);
             let dataFineDate = new Date(dataFine);
 
-            console.log("DataInizio convertita:", dataInizioDate.toISOString());
-            console.log("DataFine convertita:", dataFineDate.toISOString());
 
-            // Controlli lato client
             let now = new Date();
             if (dataInizioDate < now) {
                 alert("Errore: La data di inizio non può essere nel passato.");
@@ -256,7 +241,7 @@
 
 
 
-        async function getTaskGraph() {
+               async function getTaskGraph() {
             const userId = getCookie('userId');
             if (!userId) {
                 window.location.href = "/Aut/Login";
@@ -282,20 +267,34 @@
                         tasksPerMonth[monthIndex]++;
                     }
                 });
-              
-               const apiUrl = `/api/QuickChart/tasks-participation?${tasksPerMonth.map(value => `tasksPerMonth=${value}`).join('&')}`;
+
+                const apiUrl = `/api/QuickChart/tasks-participation?${tasksPerMonth.map(value => `tasksPerMonth=${value}`).join('&')}`;
                 const chartResponse = await fetch(apiUrl);
 
                 if (!chartResponse.ok) {
                     console.error("Errore nella richiesta API:", chartResponse.statusText);
                     return;
                 }
-                    
 
+                const chartData = await chartResponse.json();
+
+                
+                if (chartData.chartUrl) {
+                    const img = document.createElement('img');
+                    img.src = chartData.chartUrl; 
+                    img.alt = "Grafico delle task nel tempo";
+                    img.style.maxWidth = '100%';  
+
+                  
+                    document.getElementById('chartContainer').appendChild(img);
+                } else {
+                    console.error("Nessun URL del grafico restituito.");
+                }
             } catch (error) {
                 console.error("Errore nella richiesta API:", error);
             }
         }
+
 
 
 
