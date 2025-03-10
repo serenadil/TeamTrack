@@ -74,7 +74,7 @@ namespace TeamTrackProject.Models.API
         /// </summary>
         /// <param name="id">ID dell'utente.</param>
         [HttpGet("progetti/{id}")]
-        public ICollection<Progetto> GetProgettiUtente([FromForm]int id)
+        public ICollection<Progetto> GetProgettiUtente(int id)
         {
             return _serviziUtente.getProgettiUtente(id);
         }

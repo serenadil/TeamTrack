@@ -84,14 +84,7 @@
             {
                 throw new ArgumentException("La password del progetto non può essere null o vuota.", nameof(password));
             }
-            if (dataInizioProgetto < DateTime.Now)
-            {
-                throw new ArgumentException("La data di inizio del progetto non può essere nel passato.", nameof(dataInizioProgetto));
-            }
-            if (dataFineProgetto <= dataInizioProgetto)
-            {
-                throw new ArgumentException("La data di fine del progetto deve essere successiva alla data di inizio.", nameof(dataFineProgetto));
-            }
+         
             Nome = name;
             Password = password;
             DataInizioProgetto = dataInizioProgetto;

@@ -261,5 +261,19 @@ namespace TeamTrackProject.Models.API
                 return BadRequest(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Ottiene tutte le task di un utente specifico.
+        /// </summary>
+        /// <param name="userId">ID dell'utente che sta richiedendo le task.</param>
+        /// <returns>Ok con la lista delle task.</returns>
+        [HttpGet("utente/{id}")]
+        public IActionResult GetTaskUtente(int id)
+        {
+            var tasks = _serviziTaskProgetto.GetTaskUtente(id);
+
+            return Ok(tasks);
+        }
+
     }
 }

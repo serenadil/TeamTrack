@@ -211,5 +211,16 @@ namespace TeamTrackProject.Models.Servizi
             var task = _repositoryTaskProgetto.GetById(taskId) ?? throw new ArgumentException("Task non trovata.");
             return task.Utenti;
         }
+
+
+        /// <summary>
+        /// Ottiene tutte le attività in cui un utente è coinvolto.
+        /// </summary>
+        /// <param name="userId">ID dell'utente.</param>
+        /// <returns>Lista di Task associate all'utente.</returns>
+        public IEnumerable<TaskProgetto> GetTaskUtente(int userId)
+        {
+            return _repositoryTaskProgetto.GetTasksByUserId(userId);
+        }
     }
 }

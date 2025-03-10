@@ -81,5 +81,17 @@ namespace TeamTrackProject.Models.Repo
                 _context.SaveChanges();
             }
         }
+
+        /// <summary>
+    /// Ottiene tutte le task di un utente specifico.
+    /// </summary>
+    /// <param name="userId">L'ID dell'utente.</param>
+    /// <returns>Una lista di task associate all'utente.</returns>
+    public IEnumerable<TaskProgetto> GetTasksByUserId(int userId)
+    {
+        return _context.Tasks
+            .Where(t => t.Utenti.Any(u => u.Id == userId)) // Filtra le task in base agli utenti associati
+            .ToList();
+    }
     }
 }

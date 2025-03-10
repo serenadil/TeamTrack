@@ -2,20 +2,44 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h1 class="text-center" id="welcomeMessage">Benvenuto!</h1> 
-            @await Html.PartialAsync("ListaProgetti")
+<div class="container mt-4">
+    <h1 class="text-center mb-4" id="welcomeMessage">Benvenuto!</h1>
 
-            <div id="createProject" style="display: none;">
-                @await Html.PartialAsync("CreaProgetto")
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    @await Html.PartialAsync("ListaProgetti")
+                </div>
             </div>
+        </div>
 
-            @await Html.PartialAsync("UnioneProgetto")
+        <div class="col">
+            <div class="card shadow-sm h-100" id="createProject" style="display: none;">
+                <div class="card-body">
+            
+                    @await Html.PartialAsync("CreaProgetto")
+                </div>
+            </div>
+        </div>
 
-            @await Html.PartialAsync("TaskChart")
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                  
+                    @await Html.PartialAsync("UnioneProgetto")
+                </div>
+            </div>
+        </div>
 
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <img id="taskChart" class="img-fluid" alt="Grafico delle Task" />
+                    
+                    @await Html.PartialAsync("TaskChart")
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -36,59 +60,249 @@
 
         async function getUserProfile() {
             const userId = getCookie('userId');
-
             if (!userId) {
-             
                 window.location.href = "/Aut/Login";
                 return;
             }
 
-
             try {
                 const response = await fetch(`/api/utente/utente/${userId}`);
+                if (!response.ok) return;
 
-                if (!response.ok) {
-                    
-                    return;
-                }
-
-              
                 const responseData = await response.json();
-
-              
                 if (!responseData) {
-                    console.error('Dati dell\'utente non validi o vuoti');
+                    console.error('Dati utente non validi');
                     return;
                 }
 
-
-                const welcomeMessageElement = document.getElementById('welcomeMessage');
-                if (welcomeMessageElement) {
-                    welcomeMessageElement.innerText = `Benvenuto, ${responseData.nome}!`;
-                } else {
-                    console.error('Elemento di benvenuto non trovato nel DOM.');
-                }
-
-         
-                const createProjectElement = document.getElementById('createProject');
-                if (createProjectElement) {
-                    if (responseData.ruolo === 0) { 
-                      
-                        createProjectElement.style.display = 'block';
-                    } else {
-                        
-                        createProjectElement.style.display = 'none';
-                    }
-                } else {
-                    console.error('Elemento di creazione progetto non trovato nel DOM.');
-                }
-
+                document.getElementById('welcomeMessage').innerText = `Benvenuto, ${responseData.nome}!`;
+                document.getElementById('createProject').style.display = responseData.ruolo === 0 ? 'block' : 'none';
             } catch (error) {
-                console.error('Errore nella richiesta API:', error);
+                console.error('Errore API:', error);
             }
         }
 
+        async function iscriviUtente() {
+            const codice = document.getElementById('codice').value;
+            const password = document.getElementById('password.unione').value;
+            const userId = getCookie('userId');
+
+            console.log("🔹 Tentativo di iscrizione...");
+            console.log("📌 Codice:", codice);
+            console.log("📌 Password:", password);
+            console.log("📌 Admin ID:", userId);
+
+            try {
+                const response = await fetch(`/api/Progetti/iscrizione/${userId}`, {
+                    method: 'POST',
+                    body: new URLSearchParams({ codice, password }),
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                });
+
+                console.log("🔹 Risposta ricevuta:", response.status, response.statusText);
+
+                if (!response.ok) {
+                    console.warn("⚠️ Errore nella risposta:", response.status);
+
+                    // Controlla se il server ha restituito del testo
+                    const errorText = await response.text();
+                    console.log("📌 Testo risposta errore:", errorText);
+
+                    try {
+                        const errorData = JSON.parse(errorText); // Prova a convertire in JSON
+                        alert('Errore nell\'iscrizione al progetto: ' + errorData.Message);
+                    } catch (jsonError) {
+                        console.warn("⚠️ La risposta non è JSON valido:", jsonError);
+                        alert(`Errore nell'iscrizione: ${response.statusText}`);
+                    }
+
+                    return;
+                }
+
+                // Controlla se la risposta è vuota
+                const textResponse = await response.text();
+                console.log("📌 Testo risposta:", textResponse);
+
+                if (!textResponse) {
+                    console.warn("⚠️ Nessuna risposta ricevuta dal server.");
+                    alert("Errore sconosciuto: risposta vuota dal server.");
+                    return;
+                }
+
+                // Converti la risposta JSON
+                try {
+                    const result = JSON.parse(textResponse);
+                    console.log("✅ Iscrizione avvenuta con successo:", result);
+                    window.location.href = "/Home/Index";
+                } catch (jsonError) {
+                    console.error("❌ Errore nel parsing JSON:", jsonError);
+                }
+
+            } catch (error) {
+                console.error('❌ Errore durante l\'iscrizione al progetto:', error);
+                alert('Errore nell\'iscrizione al progetto, riprova.');
+            }
+        }
+
+        document.getElementById('iscrizioneForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            await iscriviUtente();
+        });
+
+
+
+                async function creaProgetto() {
+            const nome = document.getElementById('nome').value;
+            const password = document.getElementById('password').value;
+            let dataInizio = document.getElementById('dataInizio').value;
+            let dataFine = document.getElementById('dataFine').value;
+            const adminId = getCookie('userId');
+
+            console.log("DataInizio originale:", dataInizio);
+            console.log("DataFine originale:", dataFine);
+
+            // Converti le date in oggetti Date
+            let dataInizioDate = new Date(dataInizio);
+            let dataFineDate = new Date(dataFine);
+
+            console.log("DataInizio convertita:", dataInizioDate.toISOString());
+            console.log("DataFine convertita:", dataFineDate.toISOString());
+
+            // Controlli lato client
+            let now = new Date();
+            if (dataInizioDate < now) {
+                alert("Errore: La data di inizio non può essere nel passato.");
+                return;
+            }
+
+            if (dataFineDate <= dataInizioDate) {
+                alert("Errore: La data di fine deve essere successiva alla data di inizio.");
+                return;
+            }
+
+            // Converte le date nel formato ISO 8601 (standard universale)
+            dataInizio = dataInizioDate.toISOString();
+            dataFine = dataFineDate.toISOString();
+
+            try {
+                const response = await fetch('/api/progetti/CreaProgetto', {
+                    method: 'POST',
+                    body: new URLSearchParams({
+                        nome: nome,
+                        password: password,
+                        dataInizio: dataInizio,
+                        dataFine: dataFine,
+                        adminId: adminId
+                    }),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    window.location.href = "/Home/Index";
+                } else {
+                    const errorText = await response.text();
+                    console.error("Errore nella creazione del progetto:", errorText);
+                    alert("Errore nella creazione del progetto: " + errorText);
+                }
+            } catch (error) {
+                console.error("Errore nella creazione del progetto:", error);
+                alert("Errore nella creazione del progetto, riprova.");
+            }
+        }
+
+
+        document.getElementById('progettoForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            await creaProgetto();
+        });
+
+
+
+        async function getUserProject() {
+                    const userId = getCookie('userId');
+                    if (!userId) {
+                        window.location.href = "/Aut/Login";
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch(`/api/Utente/progetti/${userId}`);
+                        if (!response.ok) {
+                            console.error("Errore API:", response.statusText);
+                            return;
+                        }
+
+                        const progetti = await response.json();
+                        const progettiList = document.getElementById('progettiList');
+                        if (progettiList) {
+                            progettiList.innerHTML = "";
+                            progetti.forEach(progetto => {
+                                const listItem = document.createElement("li");
+                                const link = document.createElement("a");
+                                link.href = `/progetto/dettagli/${progetto.id}`;
+                                link.textContent = progetto.nome;
+                                link.classList.add("list-group-item", "list-group-item-action");
+                                listItem.appendChild(link);
+                                progettiList.appendChild(listItem);
+                            });
+                        }
+                    } catch (error) {
+                        console.error("Errore nella richiesta API:", error);
+                    }
+        }
+
+
+
+        async function getTaskGraph() {
+            const userId = getCookie('userId');
+            if (!userId) {
+                window.location.href = "/Aut/Login";
+                return;
+            }
+
+            try {
+                const tasksResponse = await fetch(`/api/TaskProgetto/utente/${userId}`);
+                if (!tasksResponse.ok) {
+                    console.error("Errore nel recupero delle task:", tasksResponse.statusText);
+                    return;
+                }
+
+                const tasks = await tasksResponse.json();
+
+                const tasksPerMonth = new Array(12).fill(0);
+                const currentYear = new Date().getFullYear();
+
+                tasks.forEach(task => {
+                    const taskDate = new Date(task.DataInizioTask);
+                    if (taskDate.getFullYear() === currentYear) {
+                        const monthIndex = taskDate.getMonth();
+                        tasksPerMonth[monthIndex]++;
+                    }
+                });
+              
+               const apiUrl = `/api/QuickChart/tasks-participation?${tasksPerMonth.map(value => `tasksPerMonth=${value}`).join('&')}`;
+                const chartResponse = await fetch(apiUrl);
+
+                if (!chartResponse.ok) {
+                    console.error("Errore nella richiesta API:", chartResponse.statusText);
+                    return;
+                }
+                    
+
+            } catch (error) {
+                console.error("Errore nella richiesta API:", error);
+            }
+        }
+
+
+
+    
+
         getUserProfile();
+        getUserProject();
+        getTaskGraph();
     </script>
 }
-

@@ -36,7 +36,7 @@ namespace TeamTrackProject.Models.API
         /// <param name="adminId">ID dell'amministratore del progetto</param>
         /// <returns>Risultato dell'operazione con l'ID del progetto creato</returns>
         [HttpPost("CreaProgetto")]
-        public IActionResult CreaProgetto(string nome, string password, DateTime dataInizioProgetto, DateTime dataFineProgetto, int adminId)
+        public IActionResult CreaProgetto([FromForm]string nome, [FromForm] string password, [FromForm] DateTime dataInizioProgetto, [FromForm] DateTime dataFineProgetto, [FromForm] int adminId)
         {
             try
             {
@@ -130,10 +130,14 @@ namespace TeamTrackProject.Models.API
         /// <param name="password">Password del progetto</param>
         /// <returns>True se l'iscrizione ha successo, false in caso contrario</returns>
         [HttpPost("iscrizione/{id}")]
-        public bool AggiungiUtente(int id, string codice, string password)
+        public bool AggiungiUtente( int id, [FromForm] string codice, [FromForm] string password)
         {
             var utente = _serviziUtente.GetUtente(id);
             return _serviziProgetto.aggiungiUtente(utente, codice, password);
         }
+
+
+       
+
     }
 }

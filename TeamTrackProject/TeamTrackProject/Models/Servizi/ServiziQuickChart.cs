@@ -113,7 +113,8 @@ namespace TeamTrackProject.Models.Servizi
             var content = new StringContent($"{{\"chart\": {jsonConfig} }}", Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PostAsync(QuickChartUrl, content);
-
+            Console.Write(response);
+            Console.Write(response.Content);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Errore nella chiamata QuickChart: {response.StatusCode}");
