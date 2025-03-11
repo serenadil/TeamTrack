@@ -39,11 +39,7 @@ namespace TeamTrackProject.Models.Servizi
         /// <returns>La task appena creata.</returns>
         public TaskProgetto CreaTaskProgetto(int id, string nome, string descrizione, Priorità prioritàTask, DateTime dataInizioTask, DateTime dataFineTask, Stato? statoTask, int adminId)
         {
-            var admin = _serviziUtente.GetUtente(adminId);
-            if (admin == null || admin.Ruolo != Ruolo.Admin)
-                throw new ArgumentException("L'utente deve essere un Admin.", nameof(adminId));
-
-            Progetto progetto = _repositoryProgetto.GetById(id) ?? throw new ArgumentException("Nessun progetto trovato");
+            Progetto progetto = _repositoryProgetto.GetById(id);
 
             var taskProgetto = new TaskProgetto(nome, descrizione, progetto, prioritàTask, dataInizioTask, dataFineTask, statoTask);
             progetto.Tasks.Add(taskProgetto);

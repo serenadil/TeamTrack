@@ -78,7 +78,7 @@ namespace TeamTrackProject.Models.Dominio
 
             if (statoTask == null)
             {
-                throw new ArgumentNullException("La priorità della task non può essere null.", nameof(statoTask));
+                throw new ArgumentNullException("Lo stato della task non può essere null.", nameof(statoTask));
             }
             Nome = nome;
             Descrizione = descrizione;

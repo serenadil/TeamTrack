@@ -1,17 +1,18 @@
-﻿@{
+﻿@model TeamTrackProject.Models.Dominio.Progetto
+@{
     ViewData["Title"] = "Dettagli Progetto";
 }
 
 <h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
-<div class="container mt-4">
-  
-    <div class="row row-cols-1 row-cols-md-2 g-4">
+<h3 class="text-center mb-4">@Model.Nome</h3>
 
+<div class="container mt-4">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
             <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
-                    @await Html.PartialAsync("DatiProgetto")
+                    @await Html.PartialAsync("DatiProgetto", Model)
                 </div>
             </div>
         </div>
@@ -40,15 +41,28 @@
                 </div>
             </div>
         </div>
-    </div>
+     </div>
 </div>
 
 @section Scripts {
     <script>
+
+        function getCookie(name) {
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i].trim();
+                if (c.indexOf(name + "=") === 0) {
+                    return c.substring(name.length + 1, c.length);
+                }
+            }
+            return "";
+        }
+
        
         async function loadProjectDetails(projectId) {
             try {
-                const projectResponse = await fetch(`/api/progetti/${projectId}`);
+                const projectResponse = await fetch(`/api/Progetti/${projectId}`);
                 const projectData = await projectResponse.json();
 
              
@@ -60,7 +74,7 @@
 
        
         function loadPartialViews(projectData) {
-            
+
             document.getElementById('projectName').textContent = `Nome del Progetto: ${projectData.name}`;
             document.getElementById('projectCode').textContent = projectData.accessCode;
             document.getElementById('projectPassword').textContent = projectData.password;
@@ -76,7 +90,101 @@
             }
         }
 
-       
+        async function aggiungiTask() {
+            //const progettoId = new URLSearchParams(window.location.search).get('progettoId');
+             const progettoId = @Model.Id;
+             const nome = document.getElementById('nome').value;
+             const descrizione = document.getElementById('descrizione').value;
+             const priorità = document.getElementById('priorità').value;
+             let dataInizioTask = document.getElementById('dataInizioTask').value;
+             let dataFineTask = document.getElementById('dataFineTask').value;
+             const adminId = getCookie('userId');
+             console.log("Gianni: ", adminId);
+
+             let dataInizioTaskDate = new Date(dataInizioTask);
+             let dataFineTaskDate = new Date(dataFineTask);
+
+
+             let now = new Date();
+             if (dataInizioTaskDate < now) {
+                 alert("Errore: La data di inizio non può essere nel passato.");
+                 return;
+             }
+
+             if (dataFineTaskDate <= dataInizioTaskDate) {
+                 alert("Errore: La data di fine deve essere successiva alla data di inizio.");
+                 return;
+             }
+
+             dataInizioTask = dataInizioTaskDate.toISOString();
+             dataFineTask = dataFineTaskDate.toISOString();
+
+
+             try {
+                 const response = await fetch('/api/TaskProgetto', {
+                     method: 'POST',
+                     body: new URLSearchParams({
+                         nome: nome,
+                         descrizione: descrizione,
+                         priorità: priorità,
+                         dataInizioTask: dataInizioTask,
+                         dataFineTask: dataFineTask,
+                         stato: stato,
+                         progettoId: progettoId,
+                         adminId: adminId
+                     }),
+                    headers: {
+                         'Content-Type': 'application/x-www-form-urlencoded'
+                     }
+                 });
+
+                 if (response.ok) {
+                     const result = await response.json();
+                     alert("Task creata con successo!");
+                     window.location.href = `/Progetto/Dettagli?id=${params.get('progettoId')}`;
+                 } else {
+                     const errorText = await response.text();
+                     alert("Errore: " + errorText);
+                 }
+             } catch (error) {
+                 console.error("Errore nella richiesta API:", error);
+             }
+         }
+         document.getElementById('taskForm').addEventListener('submit', async function (e) {
+             e.preventDefault();
+             await aggiungiTask();
+         });
+
+         async function getTaskByProject() {
+                    const progettoId = new URLSearchParams(window.location.search).get('progettoId');
+                    const userId = getCookie('userId');
+                    if (!userId) {
+                        window.location.href = "/Aut/Login";
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch(`/api/TaskProgetto/progetto/${progettoId}`);
+                        if (!response.ok) {
+                            console.error("Errore API:", response.statusText);
+                            return;
+                        }
+
+                        const progetti = await response.json();
+                        const progettiList = document.getElementById('progettiList');
+                        if (progettiList) {
+                            progettiList.innerHTML = "";
+                            progetti.forEach(progetto => {
+                                const listItem = document.createElement("li");
+                                progettiList.appendChild(listItem);
+                            });
+                        }
+                    } catch (error) {
+                        console.error("Errore nella richiesta API:", error);
+                    }
+        }
+
+        getTaskByProject();
       
       
     </script>

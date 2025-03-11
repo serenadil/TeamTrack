@@ -66,11 +66,8 @@ namespace TeamTrackProject.Models.API
         /// <param name="userId">ID dell'utente che sta creando la task.</param>
         /// <returns>Ok se la task è stata creata, altrimenti BadRequest con il messaggio di errore.</returns>
         [HttpPost]
-        public ActionResult<TaskProgetto> CreaTask(int progettoId, string nome, string descrizione, Priorità prioritàTask, DateTime dataInizioTask, DateTime dataFineTask, Stato? statoTask, int userId)
+        public ActionResult<TaskProgetto> CreaTask(int progettoId, [FromForm] string nome, [FromForm] string descrizione, [FromForm] Priorità prioritàTask, [FromForm] DateTime dataInizioTask, [FromForm] DateTime dataFineTask, [FromForm] Stato statoTask, int userId)
         {
-            if (!IsAdmin(progettoId, userId))
-                return Unauthorized("Solo l'amministratore del progetto può creare task.");
-
             try
             {
                 var task = _serviziTaskProgetto.CreaTaskProgetto(progettoId, nome, descrizione, prioritàTask, dataInizioTask, dataFineTask, statoTask, userId);
@@ -93,7 +90,7 @@ namespace TeamTrackProject.Models.API
         public ActionResult EliminaTask(int taskId, int userId)
         {
             var task = _serviziTaskProgetto.GetTaskById(taskId);
-            if (task == null || !IsAdmin(task.IdProgetto, userId))
+            if (task == null)
                 return Unauthorized("Solo l'amministratore del progetto può eliminare task.");
 
             try
@@ -119,7 +116,7 @@ namespace TeamTrackProject.Models.API
         public ActionResult AggiungiUtenteATask(int taskId, int adminId, int userId)
         {
             var task = _serviziTaskProgetto.GetTaskById(taskId);
-            if (task == null || !IsAdmin(task.IdProgetto, adminId))
+            if (task == null)
                 return Unauthorized("Solo l'amministratore del progetto può aggiungere utenti a una task.");
 
             try
@@ -145,7 +142,7 @@ namespace TeamTrackProject.Models.API
         public ActionResult RimuoviUtenteDaTask(int taskId, int userId, int adminId)
         {
             var task = _serviziTaskProgetto.GetTaskById(taskId);
-            if (task == null || !IsAdmin(task.Progetto.Id, adminId))
+            if (task == null)
                 return Unauthorized("Solo l'amministratore del progetto può rimuovere utenti da una task.");
 
             try
@@ -171,7 +168,7 @@ namespace TeamTrackProject.Models.API
         public ActionResult AggiornaDescrizione(int taskId, string nuovaDescrizione, int userId)
         {
             var task = _serviziTaskProgetto.GetTaskById(taskId);
-            if (task == null || !IsAdmin(task.Progetto.Id, userId))
+            if (task == null)
                 return Unauthorized("Solo l'amministratore del progetto può modificare la descrizione della task.");
 
             try
@@ -197,7 +194,7 @@ namespace TeamTrackProject.Models.API
         public ActionResult AggiornaPriorita(int taskId, Stato stato, int userId)
         {
             var task = _serviziTaskProgetto.GetTaskById(taskId);
-            if (task == null || !IsAdmin(task.Progetto.Id, userId))
+            if (task == null)
                 return Unauthorized("Solo l'amministratore del progetto può modificare la priorità della task.");
 
             try
@@ -224,7 +221,7 @@ namespace TeamTrackProject.Models.API
         public ActionResult AggiornaDate(int taskId, DateTime dataInizio, DateTime dataFine, int userId)
         {
             var task = _serviziTaskProgetto.GetTaskById(taskId);
-            if (task == null || !IsAdmin(task.Progetto.Id, userId))
+            if (task == null)
                 return Unauthorized("Solo l'amministratore del progetto può modificare le date della task.");
 
             try
