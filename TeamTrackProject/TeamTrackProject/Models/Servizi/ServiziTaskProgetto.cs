@@ -43,9 +43,12 @@ namespace TeamTrackProject.Models.Servizi
 
             var taskProgetto = new TaskProgetto(nome, descrizione, progetto, prioritàTask, dataInizioTask, dataFineTask, statoTask);
             progetto.Tasks.Add(taskProgetto);
+            var admin = _serviziUtente.GetUtente(adminId);
+            admin.AggiungiTask(taskProgetto);            
 
             _repositoryTaskProgetto.Aggiungi(taskProgetto);
             _repositoryProgetto.Aggiorna(progetto);
+            _serviziUtente.salvaUtente(admin);
 
             return taskProgetto;
         }

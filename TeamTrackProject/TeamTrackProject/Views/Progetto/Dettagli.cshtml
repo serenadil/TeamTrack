@@ -4,11 +4,11 @@
 }
 
 <h2 class="text-center mb-4">@ViewData["Title"]</h2>
-
 <h3 class="text-center mb-4">@Model.Nome</h3>
 
 <div class="container mt-4">
     <div class="row row-cols-1 row-cols-md-2 g-4">
+        <!-- Dati Progetto Card -->
         <div class="col">
             <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
@@ -17,15 +17,17 @@
             </div>
         </div>
 
+        <!-- Grafico Task Card -->
         <div class="col">
             <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
                     @await Html.PartialAsync("GraficoTask")
+                    <div id="chartContainer2" style="width: 100%; text-align: center;"></div>
                 </div>
             </div>
         </div>
 
-      
+        <!-- Lista Task Card -->
         <div class="col">
             <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
@@ -34,6 +36,7 @@
             </div>
         </div>
 
+        <!-- Aggiungi Task Card (visibile solo per amministratori) -->
         <div class="col">
             <div class="card shadow-lg h-100" style="border-radius: 15px;" id="aggiungiTaskCard" style="display: none;">
                 <div class="card-body">
@@ -41,12 +44,12 @@
                 </div>
             </div>
         </div>
-     </div>
+    </div>
 </div>
 
 @section Scripts {
     <script>
-
+        // Funzione per ottenere il cookie
         function getCookie(name) {
             let decodedCookie = decodeURIComponent(document.cookie);
             let ca = decodedCookie.split(';');
@@ -59,133 +62,222 @@
             return "";
         }
 
-       
-        async function loadProjectDetails(projectId) {
-            try {
-                const projectResponse = await fetch(`/api/Progetti/${projectId}`);
-                const projectData = await projectResponse.json();
 
-             
-                loadPartialViews(projectData);
-            } catch (error) {
-                console.error('Errore nel caricare i dettagli del progetto:', error);
-            }
-        }
 
-       
-        function loadPartialViews(projectData) {
-
-            document.getElementById('projectName').textContent = `Nome del Progetto: ${projectData.name}`;
-            document.getElementById('projectCode').textContent = projectData.accessCode;
-            document.getElementById('projectPassword').textContent = projectData.password;
-            document.getElementById('projectAdmin').textContent = projectData.adminName;
-
-            loadProjectTasks(projectData.id);
-
-            loadProjectGraph(projectData.id);
-
-            
-            if (projectData.isAdmin) {
-                document.getElementById('aggiungiTaskCard').style.display = 'block';
-            }
-        }
-
+        // Funzione per aggiungere un task
         async function aggiungiTask() {
-            //const progettoId = new URLSearchParams(window.location.search).get('progettoId');
-             const progettoId = @Model.Id;
-             const nome = document.getElementById('nome').value;
-             const descrizione = document.getElementById('descrizione').value;
-             const priorità = document.getElementById('priorità').value;
-             let dataInizioTask = document.getElementById('dataInizioTask').value;
-             let dataFineTask = document.getElementById('dataFineTask').value;
-             const adminId = getCookie('userId');
-             console.log("Gianni: ", adminId);
+            const progettoId = @Model.Id;
+            const nome = document.getElementById('nome').value;
+            const descrizione = document.getElementById('descrizione').value;
+            const priorità = document.getElementById('priorità').value;
+            let dataInizioTask = document.getElementById('dataInizioTask').value;
+            let dataFineTask = document.getElementById('dataFineTask').value;
+            const adminId = getCookie('userId'); // Recupera l'ID dell'utente amministratore
 
-             let dataInizioTaskDate = new Date(dataInizioTask);
-             let dataFineTaskDate = new Date(dataFineTask);
+            // Converto le date in oggetti Date
+            let dataInizioTaskDate = new Date(dataInizioTask);
+            let dataFineTaskDate = new Date(dataFineTask);
 
+            // Ottieni la data attuale
+            let now = new Date();
 
-             let now = new Date();
-             if (dataInizioTaskDate < now) {
-                 alert("Errore: La data di inizio non può essere nel passato.");
-                 return;
-             }
+            // Verifica che la data di inizio non sia nel passato
+            if (dataInizioTaskDate < now) {
+                alert("Errore: La data di inizio non può essere nel passato.");
+                return;
+            }
 
-             if (dataFineTaskDate <= dataInizioTaskDate) {
-                 alert("Errore: La data di fine deve essere successiva alla data di inizio.");
-                 return;
-             }
+            // Verifica che la data di fine sia successiva alla data di inizio
+            if (dataFineTaskDate <= dataInizioTaskDate) {
+                alert("Errore: La data di fine deve essere successiva alla data di inizio.");
+                return;
+            }
 
-             dataInizioTask = dataInizioTaskDate.toISOString();
-             dataFineTask = dataFineTaskDate.toISOString();
+            // Converto le date in formato ISO per inviarle al server
+            dataInizioTask = dataInizioTaskDate.toISOString();
+            dataFineTask = dataFineTaskDate.toISOString();
 
+            // Preparo i dati per il POST
+            const taskData = new URLSearchParams({
+                nome: nome,
+                descrizione: descrizione,
+                priorità: priorità,
+                dataInizioTask: dataInizioTask,
+                dataFineTask: dataFineTask,
+                stato: "Da Fare", // Imposto uno stato predefinito per la task
+                progettoId: progettoId,
+                adminId: adminId
+            });
 
-             try {
-                 const response = await fetch('/api/TaskProgetto', {
-                     method: 'POST',
-                     body: new URLSearchParams({
-                         nome: nome,
-                         descrizione: descrizione,
-                         priorità: priorità,
-                         dataInizioTask: dataInizioTask,
-                         dataFineTask: dataFineTask,
-                         stato: stato,
-                         progettoId: progettoId,
-                         adminId: adminId
-                     }),
+            try {
+                // Esegui la chiamata API per creare il task
+                const response = await fetch('/api/TaskProgetto', {
+                    method: 'POST',
+                    body: taskData,
                     headers: {
-                         'Content-Type': 'application/x-www-form-urlencoded'
-                     }
-                 });
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
 
-                 if (response.ok) {
-                     const result = await response.json();
-                     alert("Task creata con successo!");
-                     window.location.href = `/Progetto/Dettagli?id=${params.get('progettoId')}`;
-                 } else {
-                     const errorText = await response.text();
-                     alert("Errore: " + errorText);
-                 }
-             } catch (error) {
-                 console.error("Errore nella richiesta API:", error);
-             }
-         }
-         document.getElementById('taskForm').addEventListener('submit', async function (e) {
-             e.preventDefault();
-             await aggiungiTask();
-         });
+                // Verifica la risposta del server
+                if (response.ok) {
+                    const result = await response.json();
+                    alert("Task creata con successo!");
+                    // Dopo aver creato il task, redirigi alla pagina dei dettagli del progetto
+                    window.location.href = `/Progetto/Dettagli?id=${progettoId}`;
+                } else {
+                    const errorText = await response.text();
+                    alert("Errore: " + errorText);
+                }
+            } catch (error) {
+                console.error("Errore nella richiesta API:", error);
+            }
+        }
 
-         async function getTaskByProject() {
-                    const progettoId = new URLSearchParams(window.location.search).get('progettoId');
-                    const userId = getCookie('userId');
-                    if (!userId) {
-                        window.location.href = "/Aut/Login";
+        // Aggiungi listener per il form di invio
+        document.getElementById('taskForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Preveniamo il comportamento predefinito del form
+            await aggiungiTask(); // Chiama la funzione per aggiungere il task
+        });
+
+
+        async function getProgettoTaskGraph(progettoId) {
+            const userId = getCookie('userId');
+            if (!userId) {
+                window.location.href = "/Aut/Login";
+                return;
+            }
+
+            try {
+                const tasksResponse = await fetch(`/api/TaskProgetto/progetto/${progettoId}`);
+                if (!tasksResponse.ok) {
+                    console.error("Errore nel recupero delle task:", tasksResponse.statusText);
+                    return;
+                }
+
+                const tasks = await tasksResponse.json();
+
+                let daFare = 0, inCorso = 0, completate = 0;
+
+                tasks.forEach((task, index) => {
+                    if (task.statoTask === undefined || task.statoTask === null || !Number.isInteger(task.statoTask)) {
+                        console.warn(`Task #${index} senza stato valido`, task);
                         return;
                     }
 
-                    try {
-                        const response = await fetch(`/api/TaskProgetto/progetto/${progettoId}`);
-                        if (!response.ok) {
-                            console.error("Errore API:", response.statusText);
-                            return;
-                        }
-
-                        const progetti = await response.json();
-                        const progettiList = document.getElementById('progettiList');
-                        if (progettiList) {
-                            progettiList.innerHTML = "";
-                            progetti.forEach(progetto => {
-                                const listItem = document.createElement("li");
-                                progettiList.appendChild(listItem);
-                            });
-                        }
-                    } catch (error) {
-                        console.error("Errore nella richiesta API:", error);
+                    switch (task.statoTask) {
+                        case 0:
+                            daFare++;
+                            break;
+                        case 1:
+                            inCorso++;
+                            break;
+                        case 2:
+                            completate++;
+                            break;
+                        default:
+                            console.warn(`❓ Stato sconosciuto per Task #${index}:`, task.statoTask);
                     }
+                });
+
+                const apiUrl = `/api/QuickChart/pie?daFare=${daFare}&inCorso=${inCorso}&completate=${completate}`;
+              
+                const chartResponse = await fetch(apiUrl);
+                if (!chartResponse.ok) {
+                    console.error("Errore nella richiesta API per il grafico:", chartResponse.statusText);
+                    return;
+                }
+
+                const imageArrayBuffer = await chartResponse.arrayBuffer();
+           
+
+                const base64String = arrayBufferToBase64(imageArrayBuffer);
+
+                const img = document.createElement('img');
+                img.src = `data:image/png;base64,${base64String}`;
+                img.alt = "Grafico stato task";
+                img.style.maxWidth = '100%';
+
+                document.getElementById('chartContainer2').innerHTML = '';
+                document.getElementById('chartContainer2').appendChild(img);
+
+            } catch (error) {
+                console.error("Errore nella richiesta API:", error);
+            }
         }
 
-        getTaskByProject();
-      
-      
+
+        // Funzione per convertire l'ArrayBuffer in base64
+        function arrayBufferToBase64(buffer) {
+            let binary = '';
+            const bytes = new Uint8Array(buffer);
+            for (let i = 0; i < bytes.byteLength; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return window.btoa(binary);
+        }
+
+        // Funzione per ottenere le task di un progetto
+        async function getProgettoTasks() {
+            const userId = getCookie('userId');
+            if (!userId) {
+                window.location.href = "/Aut/Login";
+                return;
+            }
+
+            try {
+                const tasksResponse = await fetch(`/api/TaskProgetto/progetto/${@Model.Id}`);
+                if (!tasksResponse.ok) {
+                    console.error("Errore nel recupero delle task:", tasksResponse.statusText);
+                    return;
+                }
+
+                const tasks = await tasksResponse.json();
+                displayTasks(tasks);
+            } catch (error) {
+                console.error("Errore nella richiesta API:", error);
+            }
+        }
+
+           function displayTasks(tasks) {
+            const taskList = document.getElementById("taskList");
+            taskList.innerHTML = ""; 
+
+            if (tasks.length === 0) {
+                taskList.innerHTML = "<li>Nessuna task disponibile.</li>";
+                return;
+            }
+
+            tasks.forEach(task => {
+                const listItem = document.createElement("li");
+                listItem.classList.add("task-item");
+                listItem.innerHTML = `
+                    <div class="task-card">
+                        <h4 class="task-title">${task.nome}</h4>
+                        <p class="task-description"><strong>Descrizione:</strong> ${task.descrizione}</p>
+                        <p><strong>Priorità:</strong> ${task.prioritàTask}</p>
+                        <p><strong>Inizio:</strong> ${formatDate(task.dataInizioTask)}</p>
+                        <p><strong>Fine:</strong> ${formatDate(task.dataFineTask)}</p>
+                        <p><strong>Stato:</strong> ${getStatoTask(task.statoTask)}</p>
+                    </div>
+                `;
+                taskList.appendChild(listItem);
+            });
+        }
+
+        // Funzione per formattare le date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return isNaN(date) ? "Data non valida" : date.toLocaleDateString();
+        }
+
+        // Funzione per ottenere lo stato delle task
+        function getStatoTask(stato) {
+            const stati = ["Da Fare", "In Corso", "Completata"];
+            return stati[stato] || "Sconosciuto";
+        }
+        document.addEventListener("DOMContentLoaded", getProgettoTasks);
+       
+        getProgettoTaskGraph(@Model.Id);
     </script>
 }

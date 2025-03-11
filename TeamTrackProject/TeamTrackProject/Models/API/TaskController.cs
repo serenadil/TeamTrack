@@ -29,30 +29,6 @@ namespace TeamTrackProject.Models.API
         }
 
         /// <summary>
-        /// Verifica se un utente è l'amministratore di un progetto.
-        /// </summary>
-        /// <param name="progettoId">ID del progetto.</param>
-        /// <param name="userId">ID dell'utente.</param>
-        /// <returns>True se l'utente è l'amministratore, altrimenti false.</returns>
-        private bool IsAdmin(int progettoId, int userId)
-        {
-            var progetto = _serviziProgetto.GetProgetto(progettoId);
-            return progetto != null && progetto.AdminId == userId;
-        }
-
-        /// <summary>
-        /// Verifica se un utente è un partecipante di un progetto.
-        /// </summary>
-        /// <param name="progettoId">ID del progetto.</param>
-        /// <param name="userId">ID dell'utente.</param>
-        /// <returns>True se l'utente è un partecipante, altrimenti false.</returns>
-        private bool IsParticipant(int progettoId, int userId)
-        {
-            var utente = _serviziUtente.GetUtente(userId);
-            return utente?.Progetti.Any(p => p.Id == progettoId) ?? false;
-        }
-
-        /// <summary>
         /// Crea una nuova task per un progetto.
         /// Solo l'amministratore del progetto può creare task.
         /// </summary>
@@ -245,8 +221,7 @@ namespace TeamTrackProject.Models.API
         [HttpGet("progetto/{progettoId}")]
         public ActionResult<IEnumerable<TaskProgetto>> GetTasksByProgetto(int progettoId, int userId)
         {
-            if (!IsParticipant(progettoId, userId))
-                return Unauthorized("Solo i membri del progetto possono visualizzare le task.");
+
 
             try
             {
