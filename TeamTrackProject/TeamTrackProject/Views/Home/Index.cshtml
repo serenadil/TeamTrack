@@ -33,12 +33,13 @@
         <div class="col">
             <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
+                   
                     <div id="chartContainer" style="width: 100%; text-align: center;">
                     </div>
-                    @await Html.PartialAsync("TaskChart")
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -241,7 +242,7 @@
 
 
 
-               async function getTaskGraph() {
+        async function getTaskGraph() {
             const userId = getCookie('userId');
             if (!userId) {
                 window.location.href = "/Aut/Login";
@@ -269,6 +270,7 @@
                 });
 
                 const apiUrl = `/api/QuickChart/tasks-participation?${tasksPerMonth.map(value => `tasksPerMonth=${value}`).join('&')}`;
+
                 const chartResponse = await fetch(apiUrl);
 
                 if (!chartResponse.ok) {
@@ -276,29 +278,35 @@
                     return;
                 }
 
-                const chartData = await chartResponse.json();
+                const imageArrayBuffer = await chartResponse.arrayBuffer();
 
-                
-                if (chartData.chartUrl) {
-                    const img = document.createElement('img');
-                    img.src = chartData.chartUrl; 
-                    img.alt = "Grafico delle task nel tempo";
-                    img.style.maxWidth = '100%';  
+                // Converti il byte array in base64 per visualizzare l'immagine
+                const base64String = arrayBufferToBase64(imageArrayBuffer);
 
-                  
-                    document.getElementById('chartContainer').appendChild(img);
-                } else {
-                    console.error("Nessun URL del grafico restituito.");
-                }
+                // Crea un elemento immagine
+                const img = document.createElement('img');
+                img.src = `data:image/png;base64,${base64String}`; 
+                img.alt = "Grafico delle task nel tempo";
+                img.style.maxWidth = '100%';
+
+                // Aggiungi l'immagine nel contenitore
+                document.getElementById('chartContainer').appendChild(img);
             } catch (error) {
                 console.error("Errore nella richiesta API:", error);
             }
         }
 
+        // Funzione per convertire l'ArrayBuffer in una stringa base64
+        function arrayBufferToBase64(buffer) {
+            let binary = '';
+            const bytes = new Uint8Array(buffer);
+            const length = bytes.byteLength;
+            for (let i = 0; i < length; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return window.btoa(binary);
+        }
 
-
-
-    
 
         getUserProfile();
         getUserProject();
