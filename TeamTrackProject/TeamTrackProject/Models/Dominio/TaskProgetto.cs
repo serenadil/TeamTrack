@@ -57,7 +57,7 @@ namespace TeamTrackProject.Models.Dominio
         /// </summary>
         public Stato? StatoTask { get; set; }
 
-        public TaskProgetto(string nome, string descrizione, Progetto progetto, Priorità prioritàTask, DateTime dataInizioTask, DateTime dataFineTask, Stato? statoTask)
+        public TaskProgetto(string nome, string descrizione, Progetto progetto, Priorità prioritàTask, DateTime dataInizioTask, DateTime dataFineTask, Stato statoTask)
         {
             if (string.IsNullOrWhiteSpace(nome))
             {
@@ -76,10 +76,7 @@ namespace TeamTrackProject.Models.Dominio
                 throw new ArgumentException("La data di fine della task deve essere successiva alla data di inizio.", nameof(dataFineTask));
             }
 
-            if (statoTask == null)
-            {
-                throw new ArgumentNullException("Lo stato della task non può essere null.", nameof(statoTask));
-            }
+    
             Nome = nome;
             Descrizione = descrizione;
             Progetto = progetto;

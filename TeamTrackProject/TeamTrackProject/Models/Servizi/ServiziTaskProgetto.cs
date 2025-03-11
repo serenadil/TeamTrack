@@ -37,7 +37,7 @@ namespace TeamTrackProject.Models.Servizi
         /// <param name="statoTask">Stato della task.</param>
         /// <param name="adminId">ID dell'utente amministratore che sta creando la task.</param>
         /// <returns>La task appena creata.</returns>
-        public TaskProgetto CreaTaskProgetto(int id, string nome, string descrizione, Priorità prioritàTask, DateTime dataInizioTask, DateTime dataFineTask, Stato? statoTask, int adminId)
+        public TaskProgetto CreaTaskProgetto(int id, string nome, string descrizione, Priorità prioritàTask, DateTime dataInizioTask, DateTime dataFineTask, Stato statoTask, int adminId)
         {
             Progetto progetto = _repositoryProgetto.GetById(id);
 
