@@ -41,8 +41,8 @@ namespace TeamTrackProject.Models.API
         /// <param name="statoTask">Stato della task.</param>
         /// <param name="userId">ID dell'utente che sta creando la task.</param>
         /// <returns>Ok se la task è stata creata, altrimenti BadRequest con il messaggio di errore.</returns>
-        [HttpPost("{progettoId}")]
-        public ActionResult<TaskProgetto> CreaTask(int progettoId, [FromForm] string nome, [FromForm] string descrizione, [FromForm] Priorità prioritàTask, [FromForm] DateTime dataInizioTask, [FromForm] DateTime dataFineTask, [FromForm] Stato statoTask, int userId)
+        [HttpPost("{progettoId}/{userId}")]
+        public ActionResult<TaskProgetto> CreaTask(int progettoId, int userId, [FromForm] string nome, [FromForm] string descrizione, [FromForm] Priorità prioritàTask, [FromForm] DateTime dataInizioTask, [FromForm] DateTime dataFineTask, [FromForm] Stato statoTask)
         {
             try
             {

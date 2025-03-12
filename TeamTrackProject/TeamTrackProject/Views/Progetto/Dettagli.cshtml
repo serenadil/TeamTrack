@@ -17,11 +17,9 @@
             </div>
         </div>
 
-        <!-- Grafico Task Card -->
         <div class="col">
             <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
-                    @await Html.PartialAsync("GraficoTask")
                     <div id="chartContainer2" style="width: 100%; text-align: center;"></div>
                 </div>
             </div>
@@ -49,7 +47,6 @@
 
 @section Scripts {
     <script>
-        // Funzione per ottenere il cookie
         function getCookie(name) {
             let decodedCookie = decodeURIComponent(document.cookie);
             let ca = decodedCookie.split(';');
@@ -62,55 +59,50 @@
             return "";
         }
 
-
-
-        // Funzione per aggiungere un task
                 async function aggiungiTask() {
-            const progettoId = @Model.Id;  // Assumendo che questo valore venga passato dal controller
+            const progettoId =  @Model.Id;
             const nome = document.getElementById('nome').value;
             const descrizione = document.getElementById('descrizione').value;
             const priorità = document.getElementById('priorità').value;
             let dataInizioTask = document.getElementById('dataInizioTask').value;
             let dataFineTask = document.getElementById('dataFineTask').value;
+            const stato = document.getElementById('stato').value;
             const adminId = getCookie('userId'); // Recupera l'ID dell'utente amministratore
 
             // Converto le date in oggetti Date
             let dataInizioTaskDate = new Date(dataInizioTask);
             let dataFineTaskDate = new Date(dataFineTask);
 
-            // Ottieni la data attuale
+            
             let now = new Date();
 
-            // Verifica che la data di inizio non sia nel passato
+            
             if (dataInizioTaskDate < now) {
                 alert("Errore: La data di inizio non può essere nel passato.");
                 return;
             }
 
-            // Verifica che la data di fine sia successiva alla data di inizio
             if (dataFineTaskDate <= dataInizioTaskDate) {
                 alert("Errore: La data di fine deve essere successiva alla data di inizio.");
                 return;
             }
 
-            // Converto le date in formato ISO per inviarle al server
             dataInizioTask = dataInizioTaskDate.toISOString();
             dataFineTask = dataFineTaskDate.toISOString();
 
-            // Preparo i dati per il POST
             const taskData = new URLSearchParams({
                 nome: nome,
                 descrizione: descrizione,
                 priorità: priorità,
                 dataInizioTask: dataInizioTask,
                 dataFineTask: dataFineTask,
-                stato: "Da Fare", // Imposto uno stato predefinito per la task
-                userId: adminId  // ID dell'utente amministratore
+                stato: stato,
+                userId: adminId  
             });
 
             try {
-                // Esegui la chiamata API per creare il task
-                const response = await fetch(`/api/TaskProgetto/${progettoId}`, { 
+
+                const response = await fetch(`/api/TaskProgetto/${progettoId}/${adminId}` , {
                     method: 'POST',
                     body: taskData,
                     headers: {
@@ -118,11 +110,9 @@
                     }
                 });
 
-                // Gestisco la risposta della chiamata
                 if (response.ok) {
-                    const task = await response.json(); // Ottieni i dati del task creato
+                    const task = await response.json(); 
                     alert("Task creato con successo!");
-                    // Potresti voler fare qualcosa con il task appena creato, come aggiornarlo nella UI
                 } else {
                     const errorText = await response.text();
                     alert("Errore nella creazione del task: " + errorText);
@@ -135,8 +125,8 @@
 
         // Aggiungi listener per il form di invio
         document.getElementById('taskForm').addEventListener('submit', async function (e) {
-            e.preventDefault(); // Preveniamo il comportamento predefinito del form
-            await aggiungiTask(); // Chiama la funzione per aggiungere il task
+            e.preventDefault(); 
+            await aggiungiTask();
         });
 
 

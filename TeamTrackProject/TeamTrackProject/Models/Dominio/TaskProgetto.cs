@@ -39,6 +39,8 @@ namespace TeamTrackProject.Models.Dominio
         /// <summary>
         /// Collezione di utenti associati all'attività.
         /// </summary>
+
+        [JsonIgnore]
         public ICollection<Utente> Utenti { get; set; }
 
         /// <summary>
@@ -49,7 +51,8 @@ namespace TeamTrackProject.Models.Dominio
         /// <summary>
         /// Progetto associato all'attività.
         /// </summary>
-        
+
+        [JsonIgnore] 
         public Progetto Progetto { get; set; }
 
         /// <summary>
