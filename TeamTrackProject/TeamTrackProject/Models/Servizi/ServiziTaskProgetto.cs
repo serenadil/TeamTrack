@@ -40,6 +40,7 @@ namespace TeamTrackProject.Models.Servizi
         public TaskProgetto CreaTaskProgetto(int id, string nome, string descrizione, Priorità prioritàTask, DateTime dataInizioTask, DateTime dataFineTask, Stato statoTask, int adminId)
         {
             Progetto progetto = _repositoryProgetto.GetById(id);
+            Console.WriteLine("Giorgio: ", progetto);
 
             var taskProgetto = new TaskProgetto(nome, descrizione, progetto, prioritàTask, dataInizioTask, dataFineTask, statoTask);
             progetto.Tasks.Add(taskProgetto);

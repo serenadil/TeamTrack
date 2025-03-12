@@ -65,8 +65,8 @@
 
 
         // Funzione per aggiungere un task
-        async function aggiungiTask() {
-            const progettoId = @Model.Id;
+                async function aggiungiTask() {
+            const progettoId = @Model.Id;  // Assumendo che questo valore venga passato dal controller
             const nome = document.getElementById('nome').value;
             const descrizione = document.getElementById('descrizione').value;
             const priorità = document.getElementById('priorità').value;
@@ -105,13 +105,12 @@
                 dataInizioTask: dataInizioTask,
                 dataFineTask: dataFineTask,
                 stato: "Da Fare", // Imposto uno stato predefinito per la task
-                progettoId: progettoId,
-                adminId: adminId
+                userId: adminId  // ID dell'utente amministratore
             });
 
             try {
                 // Esegui la chiamata API per creare il task
-                const response = await fetch('/api/TaskProgetto', {
+                const response = await fetch(`/api/TaskProgetto/${progettoId}`, { 
                     method: 'POST',
                     body: taskData,
                     headers: {
@@ -119,18 +118,18 @@
                     }
                 });
 
-                // Verifica la risposta del server
+                // Gestisco la risposta della chiamata
                 if (response.ok) {
-                    const result = await response.json();
-                    alert("Task creata con successo!");
-                    // Dopo aver creato il task, redirigi alla pagina dei dettagli del progetto
-                    window.location.href = `/Progetto/Dettagli?id=${progettoId}`;
+                    const task = await response.json(); // Ottieni i dati del task creato
+                    alert("Task creato con successo!");
+                    // Potresti voler fare qualcosa con il task appena creato, come aggiornarlo nella UI
                 } else {
                     const errorText = await response.text();
-                    alert("Errore: " + errorText);
+                    alert("Errore nella creazione del task: " + errorText);
                 }
             } catch (error) {
-                console.error("Errore nella richiesta API:", error);
+                console.error('Errore nell\'aggiunta del task:', error);
+                alert("Errore nell'operazione. Riprova.");
             }
         }
 

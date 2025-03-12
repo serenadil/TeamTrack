@@ -1,5 +1,5 @@
-﻿using System.Text.Json.Serialization;
-
+﻿using Microsoft.AspNetCore.Identity;
+using System.Text.Json.Serialization;
 namespace TeamTrackProject.Models.Dominio
 {/// <summary>
  /// Rappresenta un'attività di un progetto con informazioni come nome, descrizione, priorità e stato.
@@ -49,7 +49,7 @@ namespace TeamTrackProject.Models.Dominio
         /// <summary>
         /// Progetto associato all'attività.
         /// </summary>
-        [JsonIgnore]
+        
         public Progetto Progetto { get; set; }
 
         /// <summary>
@@ -67,6 +67,10 @@ namespace TeamTrackProject.Models.Dominio
             {
                 throw new ArgumentException("La descrizione della task non può essere null o vuoto.", nameof(descrizione));
             }
+            if (progetto == null)
+            {
+                throw new ArgumentNullException(nameof(progetto), "Il progetto associato alla task non può essere null.");
+            }
             if (dataInizioTask < DateTime.Now)
             {
                 throw new ArgumentException("La data di inizio della task non può essere nel passato.", nameof(dataInizioTask));
@@ -75,12 +79,12 @@ namespace TeamTrackProject.Models.Dominio
             {
                 throw new ArgumentException("La data di fine della task deve essere successiva alla data di inizio.", nameof(dataFineTask));
             }
+            
 
-    
             Nome = nome;
             Descrizione = descrizione;
             Progetto = progetto;
-            IdProgetto = progetto.Id;
+            IdProgetto = this.Progetto.Id;
             DataInizioTask = dataInizioTask;
             DataFineTask = dataFineTask;
             PrioritàTask = prioritàTask;

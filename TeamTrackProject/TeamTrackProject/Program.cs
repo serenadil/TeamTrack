@@ -21,11 +21,11 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new() { Title = "TeamTrack API", Version = "v1" });
 });
 builder.Services.AddScoped<RepositoryUtente>();
-builder.Services.AddScoped<ServiziUtente>();
 builder.Services.AddScoped<RepositoryProgetto>();
-builder.Services.AddScoped<ServiziTaskProgetto>();
 builder.Services.AddScoped<RepositoryTaskProgetto>();
+builder.Services.AddScoped<ServiziUtente>();
 builder.Services.AddScoped<ServiziProgetto>();
+builder.Services.AddScoped<ServiziTaskProgetto>();
 builder.Services.AddScoped<GeneratoreCodiciAccesso>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<ServiziQuickChart>();
