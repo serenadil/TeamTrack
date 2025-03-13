@@ -89,10 +89,10 @@
             const taskData = new URLSearchParams({
                 nome: nome,
                 descrizione: descrizione,
-                priorità: priorità,
+                prioritàTask: priorità,
                 dataInizioTask: dataInizioTask,
                 dataFineTask: dataFineTask,
-                stato: stato,
+                statoTask: stato,
                 userId: adminId  
             });
 
@@ -237,7 +237,7 @@
                     <div class="task-card">
                         <h4 class="task-title">${task.nome}</h4>
                         <p class="task-description"><strong>Descrizione:</strong> ${task.descrizione}</p>
-                        <p><strong>Priorità:</strong> ${task.prioritàTask}</p>
+                        <p><strong>Priorità:</strong> ${getPrioritaTask(task.prioritàTask)}</p>
                         <p><strong>Inizio:</strong> ${formatDate(task.dataInizioTask)}</p>
                         <p><strong>Fine:</strong> ${formatDate(task.dataFineTask)}</p>
                         <p><strong>Stato:</strong> ${getStatoTask(task.statoTask)}</p>
@@ -252,12 +252,27 @@
             return isNaN(date) ? "Data non valida" : date.toLocaleDateString();
         }
 
+         function getPrioritaTask(priorita) {
+            switch (priorita) {
+                case 0: return "Alta";
+                case 1: return "Media";
+                case 2: return "Bassa";
+                default: return "Non definita";
+            }
+        }
+
+
+
         function getStatoTask(stato) {
             const stati = ["Da Fare", "In Corso", "Completata"];
             return stati[stato] || "Sconosciuto";
         }
-        document.addEventListener("DOMContentLoaded", getProgettoTasks);
+
        
+         
+
+        document.addEventListener("DOMContentLoaded", getProgettoTasks);
+    
         getProgettoTaskGraph(@Model.Id);
     </script>
 }

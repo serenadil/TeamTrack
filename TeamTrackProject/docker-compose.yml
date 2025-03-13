@@ -1,4 +1,3 @@
-version: '3.4'
 
 services:
 
@@ -27,7 +26,10 @@ services:
       - teamtrack_network
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=TeamTrackDb;User Id=sa;Password=Your_password123;Encrypt=False
+   
+
 
 
 
