@@ -56,19 +56,23 @@
             return "";
         }
 
-        async function aggiungiTask() {
-            const progettoId = @Model.Id;
+                async function aggiungiTask() {
+            const progettoId =  @Model.Id;
             const nome = document.getElementById('nome').value;
             const descrizione = document.getElementById('descrizione').value;
-            const priorità = document.getElementById('priorità').value; 
+            const priorità = document.getElementById('priorità').value;
             let dataInizioTask = document.getElementById('dataInizioTask').value;
             let dataFineTask = document.getElementById('dataFineTask').value;
-            const stato = document.getElementById('stato').value; 
-            const adminId = getCookie('userId');
+            const stato = document.getElementById('stato').value;
+            const adminId = getCookie('userId'); 
+
             let dataInizioTaskDate = new Date(dataInizioTask);
             let dataFineTaskDate = new Date(dataFineTask);
+
+            
             let now = new Date();
 
+            
             if (dataInizioTaskDate < now) {
                 alert("Errore: La data di inizio non può essere nel passato.");
                 return;
@@ -85,15 +89,16 @@
             const taskData = new URLSearchParams({
                 nome: nome,
                 descrizione: descrizione,
-                prioritàTask: priorità,
+                priorità: priorità,
                 dataInizioTask: dataInizioTask,
                 dataFineTask: dataFineTask,
-                statoTask: stato, 
-                userId: adminId
+                stato: stato,
+                userId: adminId  
             });
-           
+
             try {
-                const response = await fetch(`/api/TaskProgetto/${progettoId}/${adminId}`, {
+
+                const response = await fetch(`/api/TaskProgetto/${progettoId}/${adminId}` , {
                     method: 'POST',
                     body: taskData,
                     headers: {
@@ -101,10 +106,8 @@
                     }
                 });
 
-            
-
                 if (response.ok) {
-                    const task = await response.json();
+                    const task = await response.json(); 
                     alert("Task creato con successo!");
                 } else {
                     const errorText = await response.text();
@@ -115,7 +118,6 @@
                 alert("Errore nell'operazione. Riprova.");
             }
         }
-
 
         document.getElementById('taskForm').addEventListener('submit', async function (e) {
             e.preventDefault(); 
@@ -235,7 +237,7 @@
                     <div class="task-card">
                         <h4 class="task-title">${task.nome}</h4>
                         <p class="task-description"><strong>Descrizione:</strong> ${task.descrizione}</p>
-                         <p><strong>Priorità:</strong> ${getPrioritaTask(task.prioritàTask)}</p>
+                        <p><strong>Priorità:</strong> ${task.prioritàTask}</p>
                         <p><strong>Inizio:</strong> ${formatDate(task.dataInizioTask)}</p>
                         <p><strong>Fine:</strong> ${formatDate(task.dataFineTask)}</p>
                         <p><strong>Stato:</strong> ${getStatoTask(task.statoTask)}</p>
@@ -250,49 +252,10 @@
             return isNaN(date) ? "Data non valida" : date.toLocaleDateString();
         }
 
-
-       function getPrioritaTask(priorita) {
-            switch (priorita) {
-                case 0: return "Alta";
-                case 1: return "Media";
-                case 2: return "Bassa";
-                default: return "Non definita";
-            }
-        }
-
         function getStatoTask(stato) {
             const stati = ["Da Fare", "In Corso", "Completata"];
             return stati[stato] || "Sconosciuto";
         }
-         async function getUserProfile() {
-             const userId = getCookie('userId');
-             if (!userId) {
-                 window.location.href = "/Aut/Login";
-                 return;
-             }
-
-             try {
-                 const response = await fetch(`/api/utente/utente/${userId}`);
-                 if (!response.ok) return;
-
-                 const responseData = await response.json();
-                 if (!responseData) {
-                     console.error('Dati utente non validi');
-                     return;
-                 }
-                 const isAdmin = responseData.ruolo === 0;
-
-                 const aggiungiTaskCard = document.getElementById('aggiungiTaskCard');
-                 if (aggiungiTaskCard) {
-                     aggiungiTaskCard.style.display = isAdmin ? 'block' : 'none';
-                 }
-
-             } catch (error) {
-                 console.error('Errore API:', error);
-             }
-         }
-
-         document.addEventListener("DOMContentLoaded", getUserProfile);
         document.addEventListener("DOMContentLoaded", getProgettoTasks);
        
         getProgettoTaskGraph(@Model.Id);

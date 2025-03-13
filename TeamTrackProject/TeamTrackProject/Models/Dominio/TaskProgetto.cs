@@ -24,7 +24,7 @@ namespace TeamTrackProject.Models.Dominio
         /// <summary>
         /// Priorità dell'attività (Alta, Media, Bassa).
         /// </summary>
-        public Priorità PrioritàTask { get; set; }
+        public Priorità? PrioritàTask { get; set; }
 
         /// <summary>
         /// Data di inizio dell'attività.
@@ -58,7 +58,7 @@ namespace TeamTrackProject.Models.Dominio
         /// <summary>
         /// Stato dell'attività (DaFare, InCorso, Completata).
         /// </summary>
-        public Stato StatoTask { get; set; }
+        public Stato? StatoTask { get; set; }
 
         public TaskProgetto(string nome, string descrizione, Progetto progetto, Priorità prioritàTask, DateTime dataInizioTask, DateTime dataFineTask, Stato statoTask)
         {

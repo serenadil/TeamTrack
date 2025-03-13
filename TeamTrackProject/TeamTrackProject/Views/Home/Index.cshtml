@@ -13,12 +13,11 @@
                 </div>
             </div>
         </div>
-         <div class="col">
-            <div class="card shadow-lg h-100" style="border-radius: 15px;">
+
+        <div class="col">
+            <div class="card shadow-lg h-100" id="createProject" style="border-radius: 15px; display: none;">
                 <div class="card-body">
-                   
-                    <div id="chartContainer" style="width: 100%; text-align: center;">
-                    </div>
+                    @await Html.PartialAsync("CreaProgetto")
                 </div>
             </div>
         </div>
@@ -31,11 +30,12 @@
             </div>
         </div>
 
-    
         <div class="col">
-            <div class="card shadow-lg h-100" id="createProject" style="border-radius: 15px; display: none;">
+            <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
-                    @await Html.PartialAsync("CreaProgetto")
+                   
+                    <div id="chartContainer" style="width: 100%; text-align: center;">
+                    </div>
                 </div>
             </div>
         </div>
@@ -315,8 +315,6 @@
             }
             return window.btoa(binary);
         }
-
-
 
         getUserProfile();
         getUserProject();
