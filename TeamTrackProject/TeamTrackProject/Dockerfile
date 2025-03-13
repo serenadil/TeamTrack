@@ -25,4 +25,4 @@ RUN dotnet publish "./TeamTrackProject.csproj" -c $BUILD_CONFIGURATION -o /app/p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "TeamTrackProject.ddl"] 
+ENTRYPOINT ["dotnet", "TeamTrackProject.dll"] 
