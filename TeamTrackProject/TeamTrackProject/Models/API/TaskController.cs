@@ -237,7 +237,7 @@ namespace TeamTrackProject.Models.API
         /// <summary>
         /// Ottiene tutte le task di un utente specifico.
         /// </summary>
-        /// <param name="userId">ID dell'utente che sta richiedendo le task.</param>
+        /// <param name="id">ID dell'utente che sta richiedendo le task.</param>
         /// <returns>Ok con la lista delle task.</returns>
         [HttpGet("utente/{id}")]
         public IActionResult GetTaskUtente(int id)

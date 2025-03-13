@@ -5,17 +5,13 @@ using TeamTrackProject.Models.Servizi;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Recupera la stringa di connessione
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Aggiungi servizi al contenitore.
 builder.Services.AddControllersWithViews();
 
-// Registra il DbContext con SQL Server
 builder.Services.AddDbContext<TeamTrackDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Aggiungi Swagger
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new() { Title = "TeamTrack API", Version = "v1" });

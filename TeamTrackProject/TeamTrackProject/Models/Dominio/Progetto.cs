@@ -64,7 +64,7 @@
         /// <param name="password">La password per accedere al progetto. Non può essere null o vuota.</param>
         /// <param name="dataInizioProgetto">La data di inizio del progetto. Non può essere nel passato.</param>
         /// <param name="dataFineProgetto">La data di fine del progetto. Deve essere successiva alla data di inizio.</param>
-        /// <param name="accessCode">Il codice di accesso del progetto. Se null o vuoto, verrà generato automaticamente.</param>
+        /// <param name="codiceAccesso">Il codice di accesso del progetto. Se null o vuoto, verrà generato automaticamente.</param>
         /// <param name="adminId">L'ID dell'amministratore del progetto.</param>
         /// <exception cref="ArgumentException">Viene lanciata se uno dei parametri non è valido, ad esempio se il nome è null o vuoto, la password è null, o le date non sono corrette.</exception>
         /// 

@@ -8,7 +8,6 @@
 
 <div class="container mt-4">
     <div class="row row-cols-1 row-cols-md-2 g-4">
-        <!-- Dati Progetto Card -->
         <div class="col">
             <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
@@ -25,7 +24,6 @@
             </div>
         </div>
 
-        <!-- Lista Task Card -->
         <div class="col">
             <div class="card shadow-lg h-100" style="border-radius: 15px;">
                 <div class="card-body">
@@ -34,7 +32,6 @@
             </div>
         </div>
 
-        <!-- Aggiungi Task Card (visibile solo per amministratori) -->
         <div class="col">
             <div class="card shadow-lg h-100" style="border-radius: 15px;" id="aggiungiTaskCard" style="display: none;">
                 <div class="card-body">
@@ -67,9 +64,8 @@
             let dataInizioTask = document.getElementById('dataInizioTask').value;
             let dataFineTask = document.getElementById('dataFineTask').value;
             const stato = document.getElementById('stato').value;
-            const adminId = getCookie('userId'); // Recupera l'ID dell'utente amministratore
+            const adminId = getCookie('userId'); 
 
-            // Converto le date in oggetti Date
             let dataInizioTaskDate = new Date(dataInizioTask);
             let dataFineTaskDate = new Date(dataFineTask);
 
@@ -123,7 +119,6 @@
             }
         }
 
-        // Aggiungi listener per il form di invio
         document.getElementById('taskForm').addEventListener('submit', async function (e) {
             e.preventDefault(); 
             await aggiungiTask();
@@ -196,7 +191,6 @@
         }
 
 
-        // Funzione per convertire l'ArrayBuffer in base64
         function arrayBufferToBase64(buffer) {
             let binary = '';
             const bytes = new Uint8Array(buffer);
@@ -206,7 +200,6 @@
             return window.btoa(binary);
         }
 
-        // Funzione per ottenere le task di un progetto
         async function getProgettoTasks() {
             const userId = getCookie('userId');
             if (!userId) {
@@ -254,13 +247,11 @@
             });
         }
 
-        // Funzione per formattare le date
         function formatDate(dateString) {
             const date = new Date(dateString);
             return isNaN(date) ? "Data non valida" : date.toLocaleDateString();
         }
 
-        // Funzione per ottenere lo stato delle task
         function getStatoTask(stato) {
             const stati = ["Da Fare", "In Corso", "Completata"];
             return stati[stato] || "Sconosciuto";

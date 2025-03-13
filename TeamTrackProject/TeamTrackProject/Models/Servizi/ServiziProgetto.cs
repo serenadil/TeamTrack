@@ -10,7 +10,6 @@ namespace TeamTrackProject.Models.Servizi
         private readonly ServiziUtente _serviziUtente;
         private readonly GeneratoreCodiciAccesso _generatoreCodiciAccesso;
 
-        // Costruttore della classe ServiziProgetto
         public ServiziProgetto(RepositoryProgetto repositoryProgetto, ServiziUtente serviziUtente, GeneratoreCodiciAccesso generatore, ServiziTaskProgetto serviziTaskProgetto)
         {
             _repositoryProgetto = repositoryProgetto;
@@ -142,19 +141,30 @@ namespace TeamTrackProject.Models.Servizi
             _repositoryProgetto.Aggiorna(progetto);
         }
 
-        // Metodo per ottenere un progetto tramite codice di accesso
+        /// <summary>
+        /// Metodo per ottenere un progetto tramite codice di accesso
+        /// </summary>
+        /// <param name="accessCode">Il codice di accesso del progetto.</param>
+        /// <returns>Il progetto associato al codice di accesso.</returns>
         public Progetto GetProgetto(string accessCode)
         {
             return _repositoryProgetto.GetByCodiceAccesso(accessCode);
         }
 
-        // Metodo per ottenere un progetto tramite ID
+        /// <summary>
+        /// Metodo per ottenere un progetto tramite ID
+        /// </summary>
+        /// <param name="id">L'ID del progetto.</param>
+        /// <returns>Il progetto associato all'ID.</returns>
         public Progetto GetProgetto(int id)
         {
             return _repositoryProgetto.GetById(id);
         }
 
-        // Metodo per aggiornare un progetto nel repository
+        /// <summary>
+        /// Metodo per aggiornare un progetto nel repository        
+        /// </summary>
+        /// <param name="progetto">Il progetto da aggiornare.</param>
         public void AggiornaProgetto(Progetto progetto)
         {
             _repositoryProgetto.Aggiorna(progetto);

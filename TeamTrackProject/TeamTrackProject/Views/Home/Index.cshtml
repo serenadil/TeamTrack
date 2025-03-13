@@ -166,7 +166,6 @@
                 return;
             }
 
-            // Converte le date nel formato ISO 8601 (standard universale) perchè senno esplode (?)
             dataInizio = dataInizioDate.toISOString();
             dataFine = dataFineDate.toISOString();
 
@@ -259,8 +258,6 @@
                 }
 
                 const tasks = await tasksResponse.json();
-                console.log("Task recuperate:", tasks);
-
                 const tasksPerMonth = new Array(12).fill(0);
                 const currentYear = new Date().getFullYear();
 
@@ -269,7 +266,6 @@
                 }
 
                 tasks.forEach((task, index) => {
-                    // Controllo corretto con la chiave esatta
                     if (!task.dataInizioTask) {
                         console.warn(`Task #${index} senza dataInizioTask`, task);
                         return;
@@ -289,11 +285,7 @@
                     }
                 });
 
-                console.log("Matrice tasksPerMonth finale:", tasksPerMonth);
-
                 const apiUrl = `/api/QuickChart/tasks-participation?${tasksPerMonth.map(value => `tasksPerMonth=${value}`).join('&')}`;
-                console.log("API URL per il grafico:", apiUrl);
-
                 const chartResponse = await fetch(apiUrl);
                 if (!chartResponse.ok) {
                     console.error("Errore nella richiesta API per il grafico:", chartResponse.statusText);
@@ -314,8 +306,6 @@
             }
         }
 
-
-        // Funzione per convertire l'ArrayBuffer in una stringa base64
         function arrayBufferToBase64(buffer) {
             let binary = '';
             const bytes = new Uint8Array(buffer);
